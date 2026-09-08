@@ -29,9 +29,9 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
-		EFD5297A3050A39F00E99158 /* Data */ = {
+		EFD5297A3050A39F00E99158 /* Models */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Data;
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -57,7 +57,7 @@
 				EFD5296F3050A15F00E99158 /* TripView.swift */,
 				EFCAF3683049FA9E0095C793 /* Products */,
 				EFD529783050A1F100E99158 /* Assets */,
-				EFD5297A3050A39F00E99158 /* Data */,
+				EFD5297A3050A39F00E99158 /* Models */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,7 +86,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				EFD529783050A1F100E99158 /* Assets */,
-				EFD5297A3050A39F00E99158 /* Data */,
+				EFD5297A3050A39F00E99158 /* Models */,
 			);
 			name = 123Pack;
 			packageProductDependencies = (
