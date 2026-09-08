@@ -16,9 +16,9 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		EFD529783050A1F100E99158 /* Assets */ = {
+		EFD529783050A1F100E99158 /* Settings */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Assets;
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		EFD5297A3050A39F00E99158 /* Models */ = {
@@ -50,7 +50,7 @@
 				EFD5296930509F7900E99158 /* 123PackApp.swift */,
 				EFD529A43050AC0400E99158 /* Views */,
 				EFCAF3683049FA9E0095C793 /* Products */,
-				EFD529783050A1F100E99158 /* Assets */,
+				EFD529783050A1F100E99158 /* Settings */,
 				EFD5297A3050A39F00E99158 /* Models */,
 			);
 			sourceTree = "<group>";
@@ -79,7 +79,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				EFD529783050A1F100E99158 /* Assets */,
+				EFD529783050A1F100E99158 /* Settings */,
 				EFD5297A3050A39F00E99158 /* Models */,
 				EFD529A43050AC0400E99158 /* Views */,
 			);

@@ -15,9 +15,10 @@ struct ContentView: View {
             HStack {
                 Image(systemName: "globe")
                     .imageScale(.large)
-                    .foregroundStyle(.tint)
+                    .foregroundStyle(Colors.titlecolor)
                 Text("123Pack")
                     .font(Font.largeTitle.bold())
+                    .foregroundStyle(Colors.titlecolor)
             }
             
             // trip 1
@@ -27,18 +28,19 @@ struct ContentView: View {
                 // placeholder for image
                 
                 RoundedRectangle(cornerRadius: 12)
-                    .fill(.gray.opacity(0.2))
+                    .fill(Colors.boxcolor.opacity(0.2))
                     .frame(width: 100, height: 100)
                     .overlay {
                         Image(systemName: "photo")
                             .font(.largeTitle)
-                            .foregroundStyle(.gray)
+                            .foregroundStyle(Colors.primarycolor)
                     }
                 
                 // placeholder information about the trip
+                
                 VStack(alignment: .leading, spacing: 8) {
                     
-                    Text("Mein Urlaub")
+                    Text("Mein Urlaub 1")
                         .font(.title2.bold())
                     
                     HStack {
@@ -74,19 +76,19 @@ struct ContentView: View {
                 // placeholder for image
                 
                 RoundedRectangle(cornerRadius: 12)
-                    .fill(.gray.opacity(0.2))
+                    .fill(Colors.boxcolor.opacity(0.2))
                     .frame(width: 100, height: 100)
                     .overlay {
                         Image(systemName: "photo")
                             .font(.largeTitle)
-                            .foregroundStyle(.gray)
+                            .foregroundStyle(Colors.primarycolor)
                     }
                 
                 // placeholder information about the trip
                 
                 VStack(alignment: .leading, spacing: 8) {
                     
-                    Text("Mein Urlaub")
+                    Text("Mein Urlaub 2")
                         .font(.title2.bold())
                     
                     HStack {
@@ -125,18 +127,19 @@ struct ContentView: View {
                 HStack {
                     
                     RoundedRectangle(cornerRadius: 12)
-                        .fill(.gray.opacity(0.2))
+                        .fill(Colors.boxcolor.opacity(0.2))
                         .frame(width: 100, height: 100)
                         .overlay {
                             Image(systemName: "plus.circle.fill")
                                 .font(.title2)
                                 .font(.largeTitle)
-                                .foregroundStyle(.gray)
+                                .foregroundStyle(Colors.boxcolor)
                         }
        
                     
                     Text("Trip hinzufügen")
                         .font(.headline)
+                        .foregroundStyle(Colors.primarycolor)
                     
                     Spacer()
                 }
@@ -144,7 +147,6 @@ struct ContentView: View {
             }
             .buttonStyle(.plain)
             .foregroundStyle(.tint)
-            .background(.gray.opacity(0.1))
             .clipShape(
                 RoundedRectangle(cornerRadius: 12)
             )
