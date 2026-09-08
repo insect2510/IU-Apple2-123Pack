@@ -10,8 +10,9 @@ import SwiftUI
 
 enum Colors {
 
-    static let primarycolor: Color = .black
-    static let backgroundcolor: Color = .white
-    static let boxcolor: Color = .gray
-    static let titlecolor: Color = .green
+    static let primarycolor: Color = .darkBlueGrey
+    static let backgroundcolor: Color = .brightSand
+    static let cardcolor: Color = .warmWhite
+    static let titlecolor: Color = .sunsetOrange
+    static let carddarkcolor: Color = .darkSand
 }

@@ -28,7 +28,7 @@ struct ContentView: View {
                 // placeholder for image
                 
                 RoundedRectangle(cornerRadius: 12)
-                    .fill(Colors.boxcolor.opacity(0.2))
+                    .fill(Colors.carddarkcolor.opacity(0.5))
                     .frame(width: 100, height: 100)
                     .overlay {
                         Image(systemName: "photo")
@@ -63,7 +63,7 @@ struct ContentView: View {
                 Spacer()
             }
             .padding()
-            .background(.background)
+            .background(Colors.cardcolor)
             .clipShape(
                 RoundedRectangle(cornerRadius: 16)
             )
@@ -76,7 +76,7 @@ struct ContentView: View {
                 // placeholder for image
                 
                 RoundedRectangle(cornerRadius: 12)
-                    .fill(Colors.boxcolor.opacity(0.2))
+                    .fill(Colors.carddarkcolor.opacity(0.5))
                     .frame(width: 100, height: 100)
                     .overlay {
                         Image(systemName: "photo")
@@ -111,7 +111,7 @@ struct ContentView: View {
                 Spacer()
             }
             .padding()
-            .background(.background)
+            .background(Colors.cardcolor)
             .clipShape(
                 RoundedRectangle(cornerRadius: 16)
             )
@@ -127,13 +127,13 @@ struct ContentView: View {
                 HStack {
                     
                     RoundedRectangle(cornerRadius: 12)
-                        .fill(Colors.boxcolor.opacity(0.2))
+                        .fill(Colors.cardcolor.opacity(0.2))
                         .frame(width: 100, height: 100)
                         .overlay {
                             Image(systemName: "plus.circle.fill")
                                 .font(.title2)
                                 .font(.largeTitle)
-                                .foregroundStyle(Colors.boxcolor)
+                                .foregroundStyle(Colors.cardcolor)
                         }
        
                     
@@ -150,11 +150,14 @@ struct ContentView: View {
             .clipShape(
                 RoundedRectangle(cornerRadius: 12)
             )
-            
         }
         
+        .background(Colors.backgroundcolor)
+        
     }
+       
 }
+
 
 #Preview {
     ContentView()
