@@ -8,19 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		EFD5296C30509F7900E99158 /* 123PackApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD5296930509F7900E99158 /* 123PackApp.swift */; };
-		EFD5296D30509F7900E99158 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD5296B30509F7900E99158 /* ContentView.swift */; };
-		EFD529713050A16B00E99158 /* TripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD5296F3050A15F00E99158 /* TripView.swift */; };
-		EFD529733050A18E00E99158 /* PackingListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD529723050A18E00E99158 /* PackingListItemView.swift */; };
-		EFD529773050A1CC00E99158 /* PackingListItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD529763050A1CC00E99158 /* PackingListItemDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		EFCAF3673049FA9E0095C793 /* 123Pack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 123Pack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFD5296930509F7900E99158 /* 123PackApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 123PackApp.swift; sourceTree = "<group>"; };
-		EFD5296B30509F7900E99158 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		EFD5296F3050A15F00E99158 /* TripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripView.swift; sourceTree = "<group>"; };
-		EFD529723050A18E00E99158 /* PackingListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackingListItemView.swift; sourceTree = "<group>"; };
-		EFD529763050A1CC00E99158 /* PackingListItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackingListItemDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -32,6 +24,11 @@
 		EFD5297A3050A39F00E99158 /* Models */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Models;
+			sourceTree = "<group>";
+		};
+		EFD529A43050AC0400E99158 /* Views */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -50,11 +47,8 @@
 		EFCAF35E3049FA9E0095C793 = {
 			isa = PBXGroup;
 			children = (
-				EFD529763050A1CC00E99158 /* PackingListItemDetailView.swift */,
 				EFD5296930509F7900E99158 /* 123PackApp.swift */,
-				EFD5296B30509F7900E99158 /* ContentView.swift */,
-				EFD529723050A18E00E99158 /* PackingListItemView.swift */,
-				EFD5296F3050A15F00E99158 /* TripView.swift */,
+				EFD529A43050AC0400E99158 /* Views */,
 				EFCAF3683049FA9E0095C793 /* Products */,
 				EFD529783050A1F100E99158 /* Assets */,
 				EFD5297A3050A39F00E99158 /* Models */,
@@ -87,6 +81,7 @@
 			fileSystemSynchronizedGroups = (
 				EFD529783050A1F100E99158 /* Assets */,
 				EFD5297A3050A39F00E99158 /* Models */,
+				EFD529A43050AC0400E99158 /* Views */,
 			);
 			name = 123Pack;
 			packageProductDependencies = (
@@ -144,11 +139,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EFD529713050A16B00E99158 /* TripView.swift in Sources */,
 				EFD5296C30509F7900E99158 /* 123PackApp.swift in Sources */,
-				EFD5296D30509F7900E99158 /* ContentView.swift in Sources */,
-				EFD529733050A18E00E99158 /* PackingListItemView.swift in Sources */,
-				EFD529773050A1CC00E99158 /* PackingListItemDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
