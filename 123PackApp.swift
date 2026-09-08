@@ -1,6 +1,6 @@
 //
-//  _23BagyApp.swift
-//  123Bagy
+//  123PackApp.swift
+//  123Pack
 //
 //  Created by Oliver Hartmann on 03.09.26.
 //
@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct _23BagyApp: App {
+struct App123Pack: App {
     var body: some Scene {
         WindowGroup {
             ContentView()

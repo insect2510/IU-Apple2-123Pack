@@ -6,14 +6,32 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		EFD5296C30509F7900E99158 /* 123PackApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD5296930509F7900E99158 /* 123PackApp.swift */; };
+		EFD5296D30509F7900E99158 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD5296B30509F7900E99158 /* ContentView.swift */; };
+		EFD529713050A16B00E99158 /* TripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD5296F3050A15F00E99158 /* TripView.swift */; };
+		EFD529733050A18E00E99158 /* PackingListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD529723050A18E00E99158 /* PackingListItemView.swift */; };
+		EFD529773050A1CC00E99158 /* PackingListItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD529763050A1CC00E99158 /* PackingListItemDetailView.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
-		EFCAF3673049FA9E0095C793 /* 123Bagy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 123Bagy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFCAF3673049FA9E0095C793 /* 123Pack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 123Pack.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFD5296930509F7900E99158 /* 123PackApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 123PackApp.swift; sourceTree = "<group>"; };
+		EFD5296B30509F7900E99158 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		EFD5296F3050A15F00E99158 /* TripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripView.swift; sourceTree = "<group>"; };
+		EFD529723050A18E00E99158 /* PackingListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackingListItemView.swift; sourceTree = "<group>"; };
+		EFD529763050A1CC00E99158 /* PackingListItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackingListItemDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		EFCAF3693049FA9E0095C793 /* 123Bagy */ = {
+		EFD529783050A1F100E99158 /* Assets */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = 123Bagy;
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		EFD5297A3050A39F00E99158 /* Data */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -32,15 +50,21 @@
 		EFCAF35E3049FA9E0095C793 = {
 			isa = PBXGroup;
 			children = (
-				EFCAF3693049FA9E0095C793 /* 123Bagy */,
+				EFD529763050A1CC00E99158 /* PackingListItemDetailView.swift */,
+				EFD5296930509F7900E99158 /* 123PackApp.swift */,
+				EFD5296B30509F7900E99158 /* ContentView.swift */,
+				EFD529723050A18E00E99158 /* PackingListItemView.swift */,
+				EFD5296F3050A15F00E99158 /* TripView.swift */,
 				EFCAF3683049FA9E0095C793 /* Products */,
+				EFD529783050A1F100E99158 /* Assets */,
+				EFD5297A3050A39F00E99158 /* Data */,
 			);
 			sourceTree = "<group>";
 		};
 		EFCAF3683049FA9E0095C793 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EFCAF3673049FA9E0095C793 /* 123Bagy.app */,
+				EFCAF3673049FA9E0095C793 /* 123Pack.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,9 +72,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		EFCAF3663049FA9E0095C793 /* 123Bagy */ = {
+		EFCAF3663049FA9E0095C793 /* 123Pack */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EFCAF3723049FA9F0095C793 /* Build configuration list for PBXNativeTarget "123Bagy" */;
+			buildConfigurationList = EFCAF3723049FA9F0095C793 /* Build configuration list for PBXNativeTarget "123Pack" */;
 			buildPhases = (
 				EFCAF3633049FA9E0095C793 /* Sources */,
 				EFCAF3643049FA9E0095C793 /* Frameworks */,
@@ -61,13 +85,14 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				EFCAF3693049FA9E0095C793 /* 123Bagy */,
+				EFD529783050A1F100E99158 /* Assets */,
+				EFD5297A3050A39F00E99158 /* Data */,
 			);
-			name = 123Bagy;
+			name = 123Pack;
 			packageProductDependencies = (
 			);
 			productName = 123Bagy;
-			productReference = EFCAF3673049FA9E0095C793 /* 123Bagy.app */;
+			productReference = EFCAF3673049FA9E0095C793 /* 123Pack.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -85,7 +110,7 @@
 					};
 				};
 			};
-			buildConfigurationList = EFCAF3623049FA9E0095C793 /* Build configuration list for PBXProject "123Bagy" */;
+			buildConfigurationList = EFCAF3623049FA9E0095C793 /* Build configuration list for PBXProject "123Pack" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -99,7 +124,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EFCAF3663049FA9E0095C793 /* 123Bagy */,
+				EFCAF3663049FA9E0095C793 /* 123Pack */,
 			);
 		};
 /* End PBXProject section */
@@ -119,6 +144,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFD529713050A16B00E99158 /* TripView.swift in Sources */,
+				EFD5296C30509F7900E99158 /* 123PackApp.swift in Sources */,
+				EFD5296D30509F7900E99158 /* ContentView.swift in Sources */,
+				EFD529733050A18E00E99158 /* PackingListItemView.swift in Sources */,
+				EFD529773050A1CC00E99158 /* PackingListItemDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,7 +343,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EFCAF3623049FA9E0095C793 /* Build configuration list for PBXProject "123Bagy" */ = {
+		EFCAF3623049FA9E0095C793 /* Build configuration list for PBXProject "123Pack" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EFCAF3703049FA9F0095C793 /* Debug */,
@@ -322,7 +352,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EFCAF3723049FA9F0095C793 /* Build configuration list for PBXNativeTarget "123Bagy" */ = {
+		EFCAF3723049FA9F0095C793 /* Build configuration list for PBXNativeTarget "123Pack" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EFCAF3733049FA9F0095C793 /* Debug */,
