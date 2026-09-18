@@ -36,3 +36,29 @@ class Trip {
     
 }
 
+let thailandTrip = Trip(
+    name: "Thailand Backpacking",
+    startDate: Calendar.current.date(
+        from: DateComponents(year: 2026, month: 10, day: 15)
+    ),
+    endDate: Calendar.current.date(
+        from: DateComponents(year: 2026, month: 11, day: 12)
+    ),
+    image: TripIcon.airplane.rawValue
+)
+
+let portugalTrip = Trip(
+    name: "Portugal Backpacking",
+    startDate: Calendar.current.date(
+        from: DateComponents(year: 2027, month: 5, day: 10)
+    ),
+    endDate: Calendar.current.date(
+        from: DateComponents(year: 2027, month: 5, day: 24)
+    ),
+    image: TripIcon.globe.rawValue
+)
+
+let exampleTrips: [Trip] = [
+    thailandTrip,
+    portugalTrip
+]
