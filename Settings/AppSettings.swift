@@ -34,3 +34,95 @@ enum MenuIcon: String {
     case items = "checklist"
     case category = "square.grid.2x2"
 }
+
+
+
+enum PackingCategory: String, CaseIterable, Identifiable {
+
+    case clothing = "tshirt"
+    case hygiene = "shower"
+    case medicine = "cross.case"
+    case technology = "iphone"
+    case documents = "doc.text"
+    case money = "wallet.pass"
+    case food = "fork.knife"
+    case camping = "tent"
+    case outdoor = "figure.hiking"
+    case accessories = "bag"
+    case electronics = "headphones"
+    case miscellaneous = "square.grid.2x2"
+
+    var id: String {
+        rawValue
+    }
+
+    var title: String {
+        switch self {
+        case .clothing: return "Kleidung"
+        case .hygiene: return "Hygiene"
+        case .medicine: return "Medizin"
+        case .technology: return "Technik"
+        case .documents: return "Dokumente"
+        case .money: return "Geld"
+        case .food: return "Essen"
+        case .camping: return "Camping"
+        case .outdoor: return "Outdoor"
+        case .accessories: return "Accessoires"
+        case .electronics: return "Elektronik"
+        case .miscellaneous: return "Sonstiges"
+        }
+    }
+}
+
+
+enum PackingItemIcon: String, CaseIterable, Identifiable {
+
+    // Kleidung
+    case tshirt = "tshirt"
+    case pants = "figure.walk"
+    case shoes = "shoe"
+    case socks = "tshirt.fill"
+    case jacket = "cloud"
+
+    // Hygiene
+    case toothbrush = "mouth"
+    case shampoo = "shower"
+    case towel = "rectangle.portrait"
+
+    // Medizin
+    case firstAid = "cross.case"
+    case medication = "pills"
+    case sunscreen = "sun.max"
+
+    // Technik
+    case smartphone = "iphone"
+    case charger = "battery.100.bolt"
+    case headphones = "headphones"
+    case camera = "camera"
+    case laptop = "laptopcomputer"
+
+    // Dokumente & Geld
+    case passport = "person.text.rectangle"
+    case wallet = "wallet.pass"
+    case creditCard = "creditcard"
+
+    // Essen
+    case waterBottle = "waterbottle"
+    case snacks = "fork.knife"
+    case mug = "mug"
+
+    // Camping & Outdoor
+    case tent = "tent"
+    case sleepingBag = "bed.double"
+    case flashlight = "flashlight.on.fill"
+    case backpack = "backpack"
+
+    // Sonstiges
+    case sunglasses = "sunglasses"
+    case book = "book"
+    case padlock = "lock"
+
+    var id: String {
+        rawValue
+    }
+}
