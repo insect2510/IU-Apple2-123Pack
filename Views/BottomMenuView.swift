@@ -29,10 +29,10 @@ struct BottomMenuView: View {
             )
 
             // Category
-            MenuItemView(
-                icon: MenuIcon.category.rawValue,
-                title: "Category"
-            )
+           // MenuItemView(
+           //     icon: MenuIcon.category.rawValue,
+           //     title: "Category"
+           // )
         }
         .padding(.vertical, 10)
         .frame(maxWidth: .infinity)

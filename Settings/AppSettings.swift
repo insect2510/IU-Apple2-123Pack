@@ -32,7 +32,7 @@ enum MenuIcon: String {
     case trips = "airplane"
     case lists = "list.bullet"
     case items = "checklist"
-    case category = "square.grid.2x2"
+  //  case category = "square.grid.2x2"
 }
 
 
@@ -44,13 +44,13 @@ enum PackingCategory: String, CaseIterable, Identifiable {
     case medicine = "cross.case"
     case technology = "iphone"
     case documents = "doc.text"
-    case money = "wallet.pass"
+//  case money = "wallet.pass"
     case food = "fork.knife"
     case camping = "tent"
     case outdoor = "figure.hiking"
     case accessories = "bag"
-    case electronics = "headphones"
-    case miscellaneous = "square.grid.2x2"
+    case music = "headphones"
+
 
     var id: String {
         rawValue
@@ -63,13 +63,13 @@ enum PackingCategory: String, CaseIterable, Identifiable {
         case .medicine: return "Medizin"
         case .technology: return "Technik"
         case .documents: return "Dokumente"
-        case .money: return "Geld"
+     //   case .money: return "Geld"
         case .food: return "Essen"
         case .camping: return "Camping"
         case .outdoor: return "Outdoor"
         case .accessories: return "Accessoires"
-        case .electronics: return "Elektronik"
-        case .miscellaneous: return "Sonstiges"
+        case .music: return "Musik"
+    //    case .miscellaneous: return "Sonstiges"
         }
     }
 }
