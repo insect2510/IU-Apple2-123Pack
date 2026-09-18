@@ -6,12 +6,18 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
-struct App123Pack: App {
+struct App123PackApp: App {
+
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: [
+            Trip.self,
+            PackingList.self
+        ])
     }
 }
