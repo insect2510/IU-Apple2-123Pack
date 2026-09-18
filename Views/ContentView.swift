@@ -17,15 +17,16 @@ struct ContentView: View {
     var body: some View {
         VStack(spacing: 0) {
 
-            // MARK: - Logo + Title
-            
+            // MARK: - Header
+
             HeaderView()
-            
-            
-            ScrollView  {
-                
-                VStack(spacing: 20) {
-                    
+
+            // MARK: - Scrollable Content
+
+            ScrollView {
+
+                LazyVStack(spacing: 20) {
+
                     // MARK: - Trips
 
                     if trips.isEmpty {
@@ -43,7 +44,7 @@ struct ContentView: View {
                     // MARK: - Add new trip
 
                     Button {
-                        // Button to add a new trip
+                        // Neuer Trip
                     } label: {
                         HStack {
 
@@ -65,28 +66,22 @@ struct ContentView: View {
                         .padding()
                     }
                     .buttonStyle(.plain)
-                    .clipShape(
-                        RoundedRectangle(cornerRadius: 12)
-                    )
-
-                    Spacer()
                 }
-               .padding()
-                    
-                }
-
-              
+                .padding()
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Colors.backgroundcolor)
-            .task {
-                addExampleTrips()
-            }
-                
-            }
-            
-            
+
+            // MARK: - Bottom Menu
+
+            BottomMenuView()
+        }
         
-        // Unteres Menü
-               BottomMenuView()
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Colors.backgroundcolor)
+        .task {
+            addExampleTrips()
+        }
     }
 
     // MARK: - Add Example Trips
