@@ -16,3 +16,12 @@ enum Colors {
     static let titlecolor: Color = .sunsetOrange
     static let carddarkcolor: Color = .darkSand
 }
+
+enum TripIcon: String, CaseIterable {
+    case airplane = "airplane"
+    case globe = "globe.europe.africa"
+    case backpack = "backpack"
+    case tent = "tent"
+    case map = "map"
+    case hiking = "figure.hiking"
+}
