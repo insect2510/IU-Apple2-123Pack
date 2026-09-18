@@ -22,13 +22,13 @@ class PackingList {
     
     var name: String
     var createdAt: Date?
-    var categories: [PackingListCategory]
+    var categories: [PackingListItemCategory]
     var items: [PackingListItem]
 
     
     init(name: String,
          createdAt: Date? = nil,
-         categories: [PackingListCategory] = [],
+         categories: [PackingListItemCategory] = [],
          items: [PackingListItem] = [],
 
     ) {

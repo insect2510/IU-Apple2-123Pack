@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-class PackingListCategory {
+class PackingListItemCategory {
     
     var name: String
     var icon: String

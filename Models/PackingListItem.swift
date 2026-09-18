@@ -16,7 +16,7 @@ class PackingListItem {
     var image: Data?
     var note: String?
     var isPacked: BooleanLiteralType
-    var category: PackingListCategory
+    var category: PackingListItemCategory
     
 
     init(name: String,
@@ -24,7 +24,7 @@ class PackingListItem {
          image: Data?,
          note: String?,
          isPacked: Bool,
-         category: PackingListCategory
+         category: PackingListItemCategory
 
     ) {
         self.name = name
