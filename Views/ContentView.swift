@@ -15,70 +15,78 @@ struct ContentView: View {
     @Query private var trips: [Trip]
 
     var body: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: 0) {
 
             // MARK: - Logo + Title
+            
+            HeaderView()
+            
+            
+            ScrollView  {
+                
+                VStack(spacing: 20) {
+                    
+                    // MARK: - Trips
 
-            HStack {
-                Image(systemName: "globe")
-                    .imageScale(.large)
-                    .foregroundStyle(Colors.titlecolor)
-
-                Text("123Pack")
-                    .font(Font.largeTitle.bold())
-                    .foregroundStyle(Colors.titlecolor)
-            }
-
-            // MARK: - Trips
-
-            if trips.isEmpty {
-                ContentUnavailableView(
-                    "Keine Trips vorhanden",
-                    systemImage: "backpack",
-                    description: Text("Füge einen neuen Trip hinzu.")
-                )
-            } else {
-                ForEach(trips) { trip in
-                    TripCardView(trip: trip)
-                }
-            }
-
-            // MARK: - Add new trip
-
-            Button {
-                // Button to add a new trip
-            } label: {
-                HStack {
-
-                    RoundedRectangle(cornerRadius: 12)
-                        .fill(Colors.cardcolor.opacity(0.2))
-                        .frame(width: 100, height: 100)
-                        .overlay {
-                            Image(systemName: "plus.circle.fill")
-                                .font(.largeTitle)
-                                .foregroundStyle(Colors.cardcolor)
+                    if trips.isEmpty {
+                        ContentUnavailableView(
+                            "Keine Trips vorhanden",
+                            systemImage: "backpack",
+                            description: Text("Füge einen neuen Trip hinzu.")
+                        )
+                    } else {
+                        ForEach(trips) { trip in
+                            TripCardView(trip: trip)
                         }
+                    }
 
-                    Text("Trip hinzufügen")
-                        .font(.headline)
-                        .foregroundStyle(Colors.primarycolor)
+                    // MARK: - Add new trip
+
+                    Button {
+                        // Button to add a new trip
+                    } label: {
+                        HStack {
+
+                            RoundedRectangle(cornerRadius: 12)
+                                .fill(Colors.cardcolor.opacity(0.2))
+                                .frame(width: 100, height: 100)
+                                .overlay {
+                                    Image(systemName: "plus.circle.fill")
+                                        .font(.largeTitle)
+                                        .foregroundStyle(Colors.cardcolor)
+                                }
+
+                            Text("Trip hinzufügen")
+                                .font(.headline)
+                                .foregroundStyle(Colors.primarycolor)
+
+                            Spacer()
+                        }
+                        .padding()
+                    }
+                    .buttonStyle(.plain)
+                    .clipShape(
+                        RoundedRectangle(cornerRadius: 12)
+                    )
 
                     Spacer()
                 }
-                .padding()
-            }
-            .buttonStyle(.plain)
-            .clipShape(
-                RoundedRectangle(cornerRadius: 12)
-            )
+               .padding()
+                    
+                }
 
-            Spacer()
-        }
-        .padding()
-        .background(Colors.backgroundcolor)
-        .task {
-            addExampleTrips()
-        }
+              
+            .background(Colors.backgroundcolor)
+            .task {
+                addExampleTrips()
+            }
+                
+            }
+            
+            
+        
+        // Unteres Menü
+               BottomMenuView()
     }
 
     // MARK: - Add Example Trips
@@ -92,18 +100,10 @@ struct ContentView: View {
         let thailandTrip = Trip(
             name: "Thailand Backpacking",
             startDate: Calendar.current.date(
-                from: DateComponents(
-                    year: 2026,
-                    month: 10,
-                    day: 15
-                )
+                from: DateComponents(year: 2026, month: 10, day: 15)
             ),
             endDate: Calendar.current.date(
-                from: DateComponents(
-                    year: 2026,
-                    month: 11,
-                    day: 12
-                )
+                from: DateComponents(year: 2026, month: 11, day: 12)
             ),
             image: TripIcon.airplane.rawValue
         )
@@ -111,24 +111,40 @@ struct ContentView: View {
         let portugalTrip = Trip(
             name: "Portugal Backpacking",
             startDate: Calendar.current.date(
-                from: DateComponents(
-                    year: 2027,
-                    month: 5,
-                    day: 10
-                )
+                from: DateComponents(year: 2027, month: 5, day: 10)
             ),
             endDate: Calendar.current.date(
-                from: DateComponents(
-                    year: 2027,
-                    month: 5,
-                    day: 24
-                )
+                from: DateComponents(year: 2027, month: 5, day: 24)
             ),
             image: TripIcon.globe.rawValue
         )
 
+        let japanTrip = Trip(
+            name: "Japan Backpacking",
+            startDate: Calendar.current.date(
+                from: DateComponents(year: 2027, month: 9, day: 5)
+            ),
+            endDate: Calendar.current.date(
+                from: DateComponents(year: 2027, month: 9, day: 26)
+            ),
+            image: TripIcon.map.rawValue
+        )
+
+        let norwayTrip = Trip(
+            name: "Norwegen Roadtrip",
+            startDate: Calendar.current.date(
+                from: DateComponents(year: 2028, month: 6, day: 1)
+            ),
+            endDate: Calendar.current.date(
+                from: DateComponents(year: 2028, month: 6, day: 15)
+            ),
+            image: TripIcon.tent.rawValue
+        )
+
         modelContext.insert(thailandTrip)
         modelContext.insert(portugalTrip)
+        modelContext.insert(japanTrip)
+        modelContext.insert(norwayTrip)
     }
 }
 

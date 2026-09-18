@@ -13,7 +13,8 @@ enum Colors {
     static let primarycolor: Color = .darkBlueGrey
     static let backgroundcolor: Color = .brightSand
     static let cardcolor: Color = .warmWhite
-    static let titlecolor: Color = .sunsetOrange
+    static let menubackgroundcolor: Color = .sunsetOrange
+    static let menutextcolor: Color = .warmWhite
     static let carddarkcolor: Color = .darkSand
 }
 
@@ -24,4 +25,12 @@ enum TripIcon: String, CaseIterable {
     case tent = "tent"
     case map = "map"
     case hiking = "figure.hiking"
+}
+
+
+enum MenuIcon: String {
+    case trips = "airplane"
+    case lists = "list.bullet"
+    case items = "checklist"
+    case category = "square.grid.2x2"
 }
