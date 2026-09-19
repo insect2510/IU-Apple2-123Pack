@@ -5,13 +5,6 @@
 //  Created by Oliver Hartmann on 08.09.26.
 //
 
-//
-//  Trip.swift
-//  123Pack
-//
-//  Created by Oliver Hartmann on 08.09.26.
-//
-
 
 
 import Foundation

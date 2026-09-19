@@ -37,45 +37,26 @@ enum MenuIcon: String {
 
 
 
-enum PackingCategory: String, CaseIterable, Identifiable {
+enum CategoryIcon: String, CaseIterable, Identifiable {
 
     case clothing = "tshirt"
     case hygiene = "shower"
     case medicine = "cross.case"
     case technology = "iphone"
     case documents = "doc.text"
-//  case money = "wallet.pass"
     case food = "fork.knife"
     case camping = "tent"
     case outdoor = "figure.hiking"
     case accessories = "bag"
     case music = "headphones"
 
-
     var id: String {
         rawValue
-    }
-
-    var title: String {
-        switch self {
-        case .clothing: return "Kleidung"
-        case .hygiene: return "Hygiene"
-        case .medicine: return "Medizin"
-        case .technology: return "Technik"
-        case .documents: return "Dokumente"
-     //   case .money: return "Geld"
-        case .food: return "Essen"
-        case .camping: return "Camping"
-        case .outdoor: return "Outdoor"
-        case .accessories: return "Accessoires"
-        case .music: return "Musik"
-    //    case .miscellaneous: return "Sonstiges"
-        }
     }
 }
 
 
-enum PackingItemIcon: String, CaseIterable, Identifiable {
+enum ItemIcon: String, CaseIterable, Identifiable {
 
     // Kleidung
     case tshirt = "tshirt"
