@@ -9,29 +9,30 @@ import Foundation
 import SwiftData
 
 @Model
-class PackingListItem {
+class Item {
     
     var name: String
     var quantity: Int
-    var image: Data?
+   // var image: Data?
+  // var icon: String
     var details: String?
-    var isPacked: BooleanLiteralType
-    var category: PackingListItemCategory
+    var isPacked: Bool
+    var category: Category
     
 
     init(name: String,
          quantity: Int,
         // image: Data?,
-         icon: ItemIcon,
-         note: String?,
+        // icon: String,
+         details: String?,
          isPacked: Bool,
-         category: PackingListItemCategory
+         category: Category
 
     ) {
         self.name = name
         self.quantity = quantity
-       // self.image = image
-        self.icon = icon
+      //  self.image = image
+      //  self.icon = icon.rawValue
         self.details = details
         self.isPacked = isPacked
         self.category = category
@@ -39,13 +40,13 @@ class PackingListItem {
     
 }
 
-let exampleItems: [PackingListItem] = [
+let exampleItems: [Item] = [
 
-    PackingListItem(
+    Item(
         name: "T-Shirts",
         quantity: 3,
-        icon: ItemIcon.tshirt,
-        note: "Leichte, schnell trocknende Shirts",
+      //  icon: ItemIcon.tshirt,
+        details: "Leichte, schnell trocknende Shirts",
         isPacked: true,
         category: exampleCategories[0]
     )

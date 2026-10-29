@@ -12,7 +12,7 @@ import Foundation
 import SwiftData
 
 @Model
-class PackingListItemCategory {
+class Category {
 
     @Attribute(.unique)
     var id: UUID
@@ -34,63 +34,63 @@ class PackingListItemCategory {
     }
 }
 
-let exampleCategories: [PackingListItemCategory] = [
+let exampleCategories: [Category] = [
 
-    PackingListItemCategory(
+    Category(
         name: "Kleidung",
         icon: CategoryIcon.clothing.rawValue,
         categoryDescribtion: "Alle Kleidungsstücke für deine Reise."
     ),
 
-    PackingListItemCategory(
+   Category(
         name: "Hygiene",
         icon: CategoryIcon.hygiene.rawValue,
         categoryDescribtion: "Körperpflege und Hygieneartikel."
     ),
 
-    PackingListItemCategory(
+    Category(
         name: "Medizin",
         icon: CategoryIcon.medicine.rawValue,
         categoryDescribtion: "Medikamente und Erste-Hilfe-Utensilien."
     ),
 
-    PackingListItemCategory(
+    Category(
         name: "Technik",
         icon: CategoryIcon.technology.rawValue,
         categoryDescribtion: "Elektronische Geräte und Zubehör."
     ),
 
-    PackingListItemCategory(
+    Category(
         name: "Dokumente",
         icon: CategoryIcon.documents.rawValue,
         categoryDescribtion: "Reisepass, Tickets und wichtige Unterlagen."
     ),
 
-    PackingListItemCategory(
+    Category(
         name: "Essen",
         icon: CategoryIcon.food.rawValue,
         categoryDescribtion: "Lebensmittel und Verpflegung."
     ),
 
-    PackingListItemCategory(
+    Category(
         name: "Camping",
         icon: CategoryIcon.camping.rawValue,
         categoryDescribtion: "Ausrüstung zum Übernachten und Campen."
     ),
 
-    PackingListItemCategory(
+    Category(
         name: "Outdoor",
         icon: CategoryIcon.outdoor.rawValue,
         categoryDescribtion: "Ausrüstung für Wanderungen und Outdoor-Aktivitäten."
     ),
 
-    PackingListItemCategory(
+    Category(
         name: "Accessoires",
         icon: CategoryIcon.accessories.rawValue,
         categoryDescribtion: "Zusätzliche Gegenstände und persönliche Accessoires."
     ),
 
-    PackingListItemCategory(
+    Category(
         name: "Musik",
         icon: CategoryIcon.music.rawValue,
         categoryDescribtion: "Kopfhörer und musikalisches Zubehör."
