@@ -22,12 +22,12 @@ class Trip {
         startDate: Date? = nil,
         endDate: Date? = nil,
         image: String? = nil,
-        item: Item? = nil
+        items: [Item] = []
     ) {
         self.name = name
         self.startDate = startDate
         self.endDate = endDate
         self.image = image
-        self.item = item
+        self.items = items
     }
 }
