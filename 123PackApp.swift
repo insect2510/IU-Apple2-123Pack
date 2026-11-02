@@ -13,11 +13,13 @@ struct App123PackApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SampleDataView()
         }
         .modelContainer(for: [
             Trip.self,
-            PackingList.self
+            PackingList.self,
+            Item.self,
+            Category.self
         ])
     }
 }

@@ -15,19 +15,19 @@ class Trip {
     var image: String?
 
     @Relationship(deleteRule: .cascade)
-    var items: [Item]
+    var packingList: [PackingList] = []
 
     init(
         name: String,
         startDate: Date? = nil,
         endDate: Date? = nil,
         image: String? = nil,
-        items: [Item] = []
+        packingList: [PackingList] = []
     ) {
         self.name = name
         self.startDate = startDate
         self.endDate = endDate
         self.image = image
-        self.items = items
+        self.packingList = packingList
     }
 }

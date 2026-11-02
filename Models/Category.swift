@@ -37,6 +37,12 @@ class Category {
 let exampleCategories: [Category] = [
 
     Category(
+        name: "Dokumente",
+        icon: CategoryIcon.documents.rawValue,
+        categoryDescribtion: "Reisepass, Tickets und wichtige Unterlagen."
+    ),
+
+    Category(
         name: "Kleidung",
         icon: CategoryIcon.clothing.rawValue,
         categoryDescribtion: "Alle Kleidungsstücke für deine Reise."
@@ -58,12 +64,6 @@ let exampleCategories: [Category] = [
         name: "Technik",
         icon: CategoryIcon.technology.rawValue,
         categoryDescribtion: "Elektronische Geräte und Zubehör."
-    ),
-
-    Category(
-        name: "Dokumente",
-        icon: CategoryIcon.documents.rawValue,
-        categoryDescribtion: "Reisepass, Tickets und wichtige Unterlagen."
     ),
 
     Category(
