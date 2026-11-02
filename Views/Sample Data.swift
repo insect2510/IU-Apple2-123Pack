@@ -9,22 +9,34 @@ struct SampleDataView: View {
     @Query private var categories: [Category]
     @Query private var items: [Item]
     @Query private var trips: [Trip]
-
+    @State private var showNewItemView = false
+    
     var body: some View {
 
         NavigationStack {
             List {
 
+                tripSection
+                itemSection
+                categorySection
+
                 Button("Create Sample Data") {
                     createSampleData()
                 }
                 .disabled(!trips.isEmpty)
-
-                categorySection
-                itemSection
-                tripSection
+                Button {
+                    showNewItemView = true
+                } label: {
+                    Label("Create New Item", systemImage: "plus")
+                }
             }
             .navigationTitle("Sample Data")
+
+            
+            // Sheet für NewItemView
+            .sheet(isPresented: $showNewItemView) {
+                NewItemView()
+            }
         }
     }
 
