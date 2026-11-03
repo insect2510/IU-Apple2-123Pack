@@ -13,7 +13,7 @@ struct App123PackApp: App {
 
     var body: some Scene {
         WindowGroup {
-            SampleDataView()
+            TripView()
         }
         .modelContainer(for: [
             Trip.self,

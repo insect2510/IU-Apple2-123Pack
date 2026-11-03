@@ -17,14 +17,17 @@ class PackingList {
 
     var itemID: UUID
     var quantity: Int
+    var isPacked: Bool
 
     init(
         id: UUID = UUID(),
         itemID: UUID,
-        quantity: Int = 1
+        quantity: Int = 1,
+        isPacked: Bool = false
     ) {
         self.id = id
         self.itemID = itemID
         self.quantity = quantity
+        self.isPacked = isPacked
     }
 }

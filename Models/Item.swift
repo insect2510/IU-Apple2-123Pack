@@ -19,7 +19,6 @@ class Item {
    // var image: Data?
   // var icon: String
     var details: String?
-    var isPacked: Bool
     var isAutoAdd: Bool
     var category: Category
     
@@ -31,7 +30,6 @@ class Item {
         // image: Data?,
         // icon: String,
          details: String?,
-         isPacked: Bool,
          isAutoAdd: Bool,
          category: Category
 
@@ -42,7 +40,6 @@ class Item {
       //  self.image = image
       //  self.icon = icon.rawValue
         self.details = details
-        self.isPacked = isPacked
         self.isAutoAdd = isAutoAdd
         self.category = category
     }

@@ -52,17 +52,14 @@ struct CardTripView: View {
                         .foregroundStyle(.secondary)
                 }
 
-                // Packing List
+                // Packing List Items
+
                 HStack {
                     Image(systemName: "suitcase")
 
-                    Text(
-                        trip.packingList == nil
-                        ? "Keine Packliste"
-                        : "Packliste vorhanden"
-                    )
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                    Text("\(trip.packingList.count) Items")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
                 }
             }
 
