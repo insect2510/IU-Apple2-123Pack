@@ -128,6 +128,11 @@ struct SampleData {
         modelContext.insert(trip1)
         modelContext.insert(trip2)
 
-        try? modelContext.save()
+        do {
+            try modelContext.save()
+            print("Sample Data successfully saved!")
+        } catch {
+            print("SwiftData save error: \(error.localizedDescription)")
+        }
     }
 }

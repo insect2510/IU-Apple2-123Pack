@@ -111,7 +111,6 @@ struct NewItemView: View {
             name: name,
             defaultQuantity: defaultQuantity,
             details: details.isEmpty ? nil : details,
-            isPacked: false,
             isAutoAdd: isAutoAdd,
             category: category
         )

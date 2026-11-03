@@ -10,6 +10,7 @@ struct TripView: View {
     @Query private var items: [Item]
     @Query private var trips: [Trip]
     @State private var showNewItemView = false
+    @State private var showNewTripView = false
     
     var body: some View {
         
@@ -26,27 +27,51 @@ struct TripView: View {
                 categorySection
                 
                 // MARK: - Create Sample Data
-                
-               Button("Create Sample Data") {
+
+                Button {
                     SampleData.create(in: modelContext)
+                } label: {
+                    Label("Create Sample Data", systemImage: "plus")
                 }
                 .disabled(!trips.isEmpty)
                 
                 
+                // MARK: - Create New Item
+
                 Button {
                     showNewItemView = true
                 } label: {
                     Label("Create New Item", systemImage: "plus")
                 }
+                
+                
+                // MARK: - Create New Trip
+                
+                Button {
+                    showNewTripView = true
+                } label: {
+                    Label("Create New Trip", systemImage: "plus")
+                }
             }
             .navigationTitle("Sample Data")
-            
+        
             
             // Sheet für NewItemView
+            
             .sheet(isPresented: $showNewItemView) {
                 NewItemView()
             }
+            .padding(0)
+            
+            // Sheet für NewTripView
+            
+            .sheet(isPresented: $showNewTripView) {
+                NewTripView()
+            }
+            
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Colors.backgroundcolor)
         
         // MARK: - Bottom Menu
 

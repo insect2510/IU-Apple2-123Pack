@@ -57,7 +57,7 @@ struct CardTripView: View {
                 HStack {
                     Image(systemName: "suitcase")
 
-                    Text("\(trip.packingList.count) Items")
+                    Text("\(trip.packingList.filter { $0.isPacked }.count)/\(trip.packingList.count) Items packed")
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                 }
