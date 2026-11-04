@@ -16,6 +16,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		EF496405309B699C00CE02A3 /* Menus */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Menus;
+			sourceTree = "<group>";
+		};
+		EF496407309B6B1700CE02A3 /* Cards */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Cards;
+			sourceTree = "<group>";
+		};
 		EFD529783050A1F100E99158 /* Settings */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Settings;
@@ -48,6 +58,8 @@
 			isa = PBXGroup;
 			children = (
 				EFD5296930509F7900E99158 /* 123PackApp.swift */,
+				EF496407309B6B1700CE02A3 /* Cards */,
+				EF496405309B699C00CE02A3 /* Menus */,
 				EFD529A43050AC0400E99158 /* Views */,
 				EFCAF3683049FA9E0095C793 /* Products */,
 				EFD529783050A1F100E99158 /* Settings */,
@@ -79,6 +91,8 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				EF496405309B699C00CE02A3 /* Menus */,
+				EF496407309B6B1700CE02A3 /* Cards */,
 				EFD529783050A1F100E99158 /* Settings */,
 				EFD5297A3050A39F00E99158 /* Models */,
 				EFD529A43050AC0400E99158 /* Views */,

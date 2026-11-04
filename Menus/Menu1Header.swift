@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HeaderView: View {
+struct Menu1Header: View {
 
     var body: some View {
         HStack {
@@ -29,5 +29,5 @@ struct HeaderView: View {
 }
 
 #Preview {
-    HeaderView()
+    Menu1Header()
 }

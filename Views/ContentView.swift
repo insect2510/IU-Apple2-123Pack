@@ -19,7 +19,7 @@ struct ContentView: View {
 
             // MARK: - Header
 
-            HeaderView()
+            Menu1Header()
 
             // MARK: - Scrollable Content
 
@@ -74,7 +74,7 @@ struct ContentView: View {
 
             // MARK: - Bottom Menu
 
-            BottomMenuView()
+            Menu2Bottom()
         }
         
         .frame(maxWidth: .infinity, maxHeight: .infinity)

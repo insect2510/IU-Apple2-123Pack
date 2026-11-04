@@ -5,7 +5,7 @@
 
 import SwiftUI
 
-struct BottomMenuView: View {
+struct Menu2Bottom: View {
 
     var body: some View {
         HStack(spacing: 0) {
@@ -68,5 +68,5 @@ struct MenuItemView: View {
 // MARK: - Preview
 
 #Preview {
-    BottomMenuView()
+    Menu2Bottom()
 }

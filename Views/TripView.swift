@@ -16,7 +16,7 @@ struct TripView: View {
         
     
         // MARK: - Header
-        HeaderView()
+        Menu1Header()
         
         NavigationStack {
             
@@ -75,7 +75,7 @@ struct TripView: View {
         
         // MARK: - Bottom Menu
 
-        BottomMenuView()
+        Menu2Bottom()
     }
     
     
