@@ -28,7 +28,7 @@ struct CardTripView: View {
             // MARK: Trip Icon
 
             RoundedRectangle(cornerRadius: 12)
-                .fill(Colors.carddarkcolor.opacity(0.5))
+                .fill(Colors.cardcolor.opacity(0.5))
                 .frame(width: 100, height: 100)
                 .overlay {
                     Image(systemName: trip.image ?? "photo")

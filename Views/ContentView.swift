@@ -55,6 +55,7 @@ struct ContentView: View {
                                     Image(systemName: "plus.circle.fill")
                                         .font(.largeTitle)
                                         .foregroundStyle(Colors.cardcolor)
+                                    
                                 }
 
                             Text("Trip hinzufügen")

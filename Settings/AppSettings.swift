@@ -13,9 +13,10 @@ enum Colors {
     static let primarycolor: Color = .darkBlueGrey
     static let backgroundcolor: Color = .brightSand
     static let cardcolor: Color = .warmWhite
-    static let menubackgroundcolor: Color = .sunsetOrange
+    static let menubackgroundcolor: Color = .terra
     static let menutextcolor: Color = .warmWhite
-    static let carddarkcolor: Color = .darkSand
+    static let buttonbackgroundcolor: Color = .ocean
+    static let buttontextcolor: Color = .warmWhite
 }
 
 enum TripIcon: String, CaseIterable {
