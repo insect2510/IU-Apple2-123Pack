@@ -53,7 +53,7 @@ enum TripIcon: String, CaseIterable {
 
 enum MenuIcon: String {
     case trips = "airplane"
-    case lists = "list.bullet"
+    case categories = "list.bullet"
     case items = "checklist"
   //  case category = "square.grid.2x2"
 }

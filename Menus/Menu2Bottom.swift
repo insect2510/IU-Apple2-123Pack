@@ -16,23 +16,29 @@ struct Menu2Bottom: View {
                 title: "Trips"
             )
 
-            // Lists
-            MenuItemView(
-                icon: MenuIcon.lists.rawValue,
-                title: "Lists"
-            )
 
             // Items
-            MenuItemView(
-                icon: MenuIcon.items.rawValue,
-                title: "Items"
-            )
+            NavigationLink {
+                AllItemsView()
+            } label: {
+                MenuItemView(
+                    icon: MenuIcon.items.rawValue,
+                    title: "Items"
+                )
+            }
+            .buttonStyle(.plain)
 
-            // Category
-           // MenuItemView(
-           //     icon: MenuIcon.category.rawValue,
-           //     title: "Category"
-           // )
+            
+           // Category
+            NavigationLink {
+                AllCategoriesView()
+            } label: {
+                MenuItemView(
+                    icon: MenuIcon.categories.rawValue,
+                    title: "Category"
+                )
+            }
+            .buttonStyle(.plain)
         }
         .padding(.vertical, 10)
         .frame(maxWidth: .infinity)

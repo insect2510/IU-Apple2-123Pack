@@ -21,7 +21,6 @@ struct ContentView: View {
             List {
 
                 tripSection
-                itemSection
                 categorySection
 
                 // MARK: - Create Sample Data
@@ -101,13 +100,14 @@ struct ContentView: View {
                 NewTripView()
             }
 
+            // MARK: - Bottom Menu
+
+            Menu2Bottom()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Colors.backgroundcolor)
 
-        // MARK: - Bottom Menu
 
-        Menu2Bottom()
     }
 
     // MARK: - Category Section
@@ -125,27 +125,6 @@ struct ContentView: View {
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     }
-                }
-            }
-        }
-    }
-
-    // MARK: - Item Section
-
-    private var itemSection: some View {
-        Section("Items (\(items.count))") {
-
-            ForEach(items) { item in
-                VStack(alignment: .leading) {
-                    Text(item.name)
-                        .font(.headline)
-
-                    Text(item.category.name)
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-
-                    Text("Default Quantity: \(item.defaultQuantity)")
-                        .font(.caption)
                 }
             }
         }

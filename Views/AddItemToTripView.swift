@@ -94,7 +94,6 @@ struct AddItemToTripView: View {
                 }
             }
             
-            
             // Show New Item View
             
             .sheet(isPresented: $showNewItemView) {
