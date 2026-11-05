@@ -20,12 +20,34 @@ enum Colors {
 }
 
 enum TripIcon: String, CaseIterable {
+
     case airplane = "airplane"
-    case globe = "globe.europe.africa"
     case backpack = "backpack"
-    case tent = "tent"
-    case map = "map"
+    case camping = "tent"
+    case city = "building.2"
     case hiking = "figure.hiking"
+    case roadtrip = "car"
+    case sailboat = "sailboat"
+
+
+    
+
+    var title: String {
+        switch self {
+        case .airplane: return "Airplane"
+        case .backpack: return "Backpack"
+        case .camping: return "Camping"
+        case .city: return "Citytrip"
+        case .hiking: return "Hiking"
+        case .roadtrip: return "Roadtrip"
+        case .sailboat: return "Sailing"
+            
+        }
+    }
+
+    var symbol: String {
+        rawValue
+    }
 }
 
 

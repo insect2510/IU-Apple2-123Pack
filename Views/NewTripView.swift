@@ -26,7 +26,7 @@ struct NewTripView: View {
         to: Date()
     ) ?? Date()
 
-    @State private var selectedIcon = "airplane"
+    @State private var selectedIcon: TripIcon = .airplane
 
     // MARK: - Body
 
@@ -62,23 +62,14 @@ struct NewTripView: View {
 
                     Picker("Select Icon", selection: $selectedIcon) {
 
-                        Label("Airplane", systemImage: "airplane")
-                            .tag("airplane")
+                        ForEach(TripIcon.allCases, id: \.self) { icon in
 
-                        Label("Car", systemImage: "car")
-                            .tag("car")
-
-                        Label("Train", systemImage: "tram")
-                            .tag("tram")
-
-                        Label("Hiking", systemImage: "figure.hiking")
-                            .tag("figure.hiking")
-
-                        Label("Camping", systemImage: "tent")
-                            .tag("tent")
-
-                        Label("Sailboat", systemImage: "sailboat")
-                            .tag("sailboat")
+                            HStack {
+                                Image(systemName: icon.rawValue)
+                                Text(icon.title)
+                            }
+                            .tag(icon)
+                        }
                     }
                 }
 
@@ -86,23 +77,40 @@ struct NewTripView: View {
 
                 Section("Packing List") {
 
-                    HStack {
-                        Text("Automatic Items")
+                    let automaticItems = items.filter { $0.isAutoAdd }
 
-                        Spacer()
+                    if automaticItems.isEmpty {
 
-                        Text("\(items.filter { $0.isAutoAdd }.count)")
+                        Text("No automatic items selected.")
                             .foregroundStyle(.secondary)
+
+                    } else {
+
+                        ForEach(automaticItems) { item in
+
+                            HStack {
+
+                                Image(systemName: item.category.icon)
+                                    .foregroundStyle(.secondary)
+                                    .frame(width: 28)
+
+                                Text(item.name)
+
+                                Spacer()
+
+                                Text("× \(item.defaultQuantity)")
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
                     }
 
-                    Text("All items marked as automatic will be added to your packing list.")
+                    Text("These items will automatically be added to your packing list.")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
-            }
-            .navigationTitle("New Trip")
-            .navigationBarTitleDisplayMode(.inline)
 
+            }
+                
             // MARK: - Toolbar
 
             .toolbar {
@@ -144,7 +152,7 @@ struct NewTripView: View {
             name: name,
             startDate: startDate,
             endDate: endDate,
-            image: selectedIcon,
+            image: selectedIcon.rawValue,
             packingList: packingList
         )
 

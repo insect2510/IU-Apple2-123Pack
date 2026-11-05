@@ -1,160 +1,215 @@
-//
-//  ContentView.swift
-//  123Pack
-//
-//  Created by Oliver Hartmann on 03.09.26.
-//
-
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 struct ContentView: View {
 
-    // SwiftData
     @Environment(\.modelContext) private var modelContext
+
+    @Query private var categories: [Category]
+    @Query private var items: [Item]
     @Query private var trips: [Trip]
+    @State private var showNewItemView = false
+    @State private var showNewTripView = false
 
     var body: some View {
-        VStack(spacing: 0) {
 
-            // MARK: - Header
+        // MARK: - Header
+        Menu1Header()
 
-            Menu1Header()
+        NavigationStack {
 
-            // MARK: - Scrollable Content
+            List {
 
-            ScrollView {
+                tripSection
+                itemSection
+                categorySection
 
-                LazyVStack(spacing: 20) {
+                // MARK: - Create Sample Data
 
-                    // MARK: - Trips
+                Button {
+                    SampleData.create(in: modelContext)
+                } label: {
+                    Label("Create Sample Data", systemImage: "plus")
+                    
+                }
+                .disabled(!trips.isEmpty)
 
-                    if trips.isEmpty {
-                        ContentUnavailableView(
-                            "Keine Trips vorhanden",
-                            systemImage: "backpack",
-                            description: Text("Füge einen neuen Trip hinzu.")
-                        )
-                    } else {
-                        ForEach(trips) { trip in
-                            CardTripView(trip: trip)
-                        }
-                    }
+                // MARK: - Buttons for New
 
-                    // MARK: - Add new trip
+                HStack(spacing: 16) {
 
                     Button {
-                        // Neuer Trip
+                        showNewItemView = true
                     } label: {
-                        HStack {
+                        VStack(spacing: 8) {
+                            Image(systemName: "plus")
+                                .font(.system(size: 24, weight: .medium))
 
-                            RoundedRectangle(cornerRadius: 12)
-                                .fill(Colors.cardcolor.opacity(0.2))
-                                .frame(width: 100, height: 100)
-                                .overlay {
-                                    Image(systemName: "plus.circle.fill")
-                                        .font(.largeTitle)
-                                        .foregroundStyle(Colors.cardcolor)
-                                    
-                                }
-
-                            Text("Trip hinzufügen")
-                                .font(.headline)
-                                .foregroundStyle(Colors.primarycolor)
-
-                            Spacer()
+                            Text("Create New Item")
+                                .font(.system(size: 14, weight: .medium))
                         }
-                        .padding()
+                        .foregroundStyle(Colors.buttontextcolor)
+                        .frame(width: 140, height: 100)
+                        .background(Colors.buttonbackgroundcolor)
+                        .clipShape(RoundedRectangle(cornerRadius: 16))
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 16)
+                                .stroke(Colors.menutextcolor.opacity(0.15), lineWidth: 1)
+                        }
+                    }
+                    .buttonStyle(.plain)
+
+
+                    Button {
+                        showNewTripView = true
+                    } label: {
+                        VStack(spacing: 8) {
+                            Image(systemName: "plus")
+                                .font(.system(size: 24, weight: .medium))
+
+                            Text("Create New Trip")
+                                .font(.system(size: 14, weight: .medium))
+                        }
+                        .foregroundStyle(Colors.buttontextcolor)
+                        .frame(width: 140, height: 100)
+                        .background(Colors.buttonbackgroundcolor)
+                        .clipShape(RoundedRectangle(cornerRadius: 16))
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 16)
+                                .stroke(Colors.menutextcolor.opacity(0.95), lineWidth: 1)
+                        }
                     }
                     .buttonStyle(.plain)
                 }
-                .padding()
+              //  frame(maxWidth: .infinity)
+                .listRowBackground(Color.clear)
+               // .listRowSeparator(.hidden)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Colors.backgroundcolor)
+            
+        //    .navigationTitle("Sample Data")
 
-            // MARK: - Bottom Menu
+            // Sheet für NewItemView
 
-            Menu2Bottom()
+            .sheet(isPresented: $showNewItemView) {
+                NewItemView()
+            }
+            .padding(0)
+
+            // Sheet für NewTripView
+
+            .sheet(isPresented: $showNewTripView) {
+                NewTripView()
+            }
+
         }
-        
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Colors.backgroundcolor)
-        .task {
-            addExampleTrips()
+
+        // MARK: - Bottom Menu
+
+        Menu2Bottom()
+    }
+
+    // MARK: - Category Section
+
+    private var categorySection: some View {
+        Section("Categories (\(categories.count))") {
+
+            ForEach(categories) { category in
+                HStack {
+                    Image(systemName: category.icon)
+
+                    VStack(alignment: .leading) {
+                        Text(category.name)
+                        Text(category.categoryDescribtion)
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                }
+            }
         }
     }
 
-    // MARK: - Add Example Trips
+    // MARK: - Item Section
 
-    private func addExampleTrips() {
+    private var itemSection: some View {
+        Section("Items (\(items.count))") {
 
-        // Keine Beispieldaten hinzufügen,
-        // wenn bereits Trips existieren.
-        guard trips.isEmpty else { return }
+            ForEach(items) { item in
+                VStack(alignment: .leading) {
+                    Text(item.name)
+                        .font(.headline)
 
-        let thailandTrip = Trip(
-            name: "Thailand Backpacking",
-            startDate: Calendar.current.date(
-                from: DateComponents(year: 2026, month: 10, day: 15)
-            ),
-            endDate: Calendar.current.date(
-                from: DateComponents(year: 2026, month: 11, day: 12)
-            ),
-            image: TripIcon.airplane.rawValue
-        )
+                    Text(item.category.name)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
 
-        let portugalTrip = Trip(
-            name: "Portugal Backpacking",
-            startDate: Calendar.current.date(
-                from: DateComponents(year: 2027, month: 5, day: 10)
-            ),
-            endDate: Calendar.current.date(
-                from: DateComponents(year: 2027, month: 5, day: 24)
-            ),
-            image: TripIcon.globe.rawValue
-        )
+                    Text("Default Quantity: \(item.defaultQuantity)")
+                        .font(.caption)
+                }
+            }
+        }
+    }
 
-        let japanTrip = Trip(
-            name: "Japan Backpacking",
-            startDate: Calendar.current.date(
-                from: DateComponents(year: 2027, month: 9, day: 5)
-            ),
-            endDate: Calendar.current.date(
-                from: DateComponents(year: 2027, month: 9, day: 26)
-            ),
-            image: TripIcon.map.rawValue
-        )
+    // MARK: - Trip Section
 
-        let norwayTrip = Trip(
-            name: "Norwegen Roadtrip",
-            startDate: Calendar.current.date(
-                from: DateComponents(year: 2028, month: 6, day: 1)
-            ),
-            endDate: Calendar.current.date(
-                from: DateComponents(year: 2028, month: 6, day: 15)
-            ),
-            image: TripIcon.tent.rawValue
-        )
+    private var tripSection: some View {
+        Section("Trips (\(trips.count))") {
 
-        modelContext.insert(thailandTrip)
-        modelContext.insert(portugalTrip)
-        modelContext.insert(japanTrip)
-        modelContext.insert(norwayTrip)
+            ForEach(trips) { trip in
+                CardTripView(trip: trip)
+            }
+        }
+    }
+
+    // MARK: - Separate Trip Row View
+
+    struct TripRowView: View {
+
+        let trip: Trip
+        let items: [Item]
+
+        var body: some View {
+
+            VStack(alignment: .leading, spacing: 8) {
+
+                Text(trip.name)
+                    .font(.headline)
+
+                ForEach(trip.packingList, id: \.id) { entry in
+                    packingListItemRow(entry)
+                }
+            }
+            .padding(.vertical, 4)
+        }
+
+        @ViewBuilder
+        private func packingListItemRow(_ entry: PackingList) -> some View {
+
+            if let item = items.first(where: { $0.id == entry.itemID }) {
+
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text(item.name)
+
+                        Text(item.category.name)
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+
+                    Spacer()
+
+                    Text("\(entry.quantity) x")
+                        .foregroundStyle(.secondary)
+                }
+            }
+        }
     }
 }
-
-
 
 // MARK: - Preview
 
 #Preview {
     ContentView()
-        .modelContainer(
-            for: [
-                Trip.self,
-                PackingList.self
-            ],
-            inMemory: true
-        )
+
 }
