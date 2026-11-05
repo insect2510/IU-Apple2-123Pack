@@ -157,7 +157,13 @@ struct ContentView: View {
         Section("Trips (\(trips.count))") {
 
             ForEach(trips) { trip in
-                CardTripView(trip: trip)
+
+                NavigationLink {
+                    SingleTripView(trip: trip)
+                } label: {
+                    CardTripView(trip: trip)
+                }
+                .buttonStyle(.plain)
             }
         }
     }
