@@ -21,8 +21,7 @@ struct ContentView: View {
             List {
 
                 tripSection
-                categorySection
-
+                
                 // MARK: - Create Sample Data
 
                 Button {
@@ -108,26 +107,6 @@ struct ContentView: View {
         .background(Colors.backgroundcolor)
 
 
-    }
-
-    // MARK: - Category Section
-
-    private var categorySection: some View {
-        Section("Categories (\(categories.count))") {
-
-            ForEach(categories) { category in
-                HStack {
-                    Image(systemName: category.icon)
-
-                    VStack(alignment: .leading) {
-                        Text(category.name)
-                        Text(category.categoryDescribtion)
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                    }
-                }
-            }
-        }
     }
 
     // MARK: - Trip Section
