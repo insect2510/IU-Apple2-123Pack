@@ -10,6 +10,7 @@ import SwiftData
 class Trip {
 
     var name: String
+    var details: String?
     var startDate: Date?
     var endDate: Date?
     var image: String?
@@ -19,12 +20,14 @@ class Trip {
 
     init(
         name: String,
+        details: String? = nil,
         startDate: Date? = nil,
         endDate: Date? = nil,
         image: String? = nil,
         packingList: [PackingList] = []
     ) {
         self.name = name
+        self.details = details
         self.startDate = startDate
         self.endDate = endDate
         self.image = image

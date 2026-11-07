@@ -32,6 +32,22 @@ struct SingleTripView: View {
                 Section("Trip Information") {
 
                     TextField("Trip Name", text: $trip.name)
+                    
+                    VStack(alignment: .leading, spacing: 8) {
+
+                        Text("Details")
+                            .foregroundStyle(.secondary)
+
+                        TextField(
+                            "Trip Details",
+                            text: Binding(
+                                get: { trip.details ?? "" },
+                                set: { trip.details = $0 }
+                            ),
+                            axis: .vertical
+                        )
+                        .lineLimit(3...5)
+                    }
 
                     DatePicker(
                         "Start Date",

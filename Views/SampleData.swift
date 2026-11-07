@@ -105,6 +105,7 @@ struct SampleData {
 
         let trip1 = Trip(
             name: "Japan Backpacking",
+            details: "From Tokyo to Hiroshima mit dem Shinkansen. What a Fun!",
             startDate: Calendar.current.date(
                 from: DateComponents(year: 2026, month: 10, day: 22)
             ),
@@ -115,7 +116,8 @@ struct SampleData {
         )
 
         let trip2 = Trip(
-            name: "Portugal Backpacking",
+            name: "Thailand Backpacking",
+            details: "Endlich wieder in die Sonne. Bangkok und Koh Phangan",
             startDate: Calendar.current.date(
                 from: DateComponents(year: 2027, month: 5, day: 10)
             ),

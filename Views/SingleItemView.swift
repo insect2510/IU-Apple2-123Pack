@@ -11,7 +11,12 @@ import SwiftData
 
 struct SingleItemView: View {
 
-    let item: Item
+    @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) private var dismiss
+
+    @Bindable var item: Item
+
+    @Query(sort: \Category.name) private var categories: [Category]
 
     var body: some View {
 
@@ -21,26 +26,37 @@ struct SingleItemView: View {
 
             Section("Item Information") {
 
-                LabeledContent("Name") {
-                    Text(item.name)
-                }
+                TextField("Item Name", text: $item.name)
 
-                LabeledContent("Category") {
-                    Text(item.category.name)
-                }
+                Picker("Category", selection: $item.category) {
 
-                LabeledContent("Default Quantity") {
-                    Text("\(item.defaultQuantity)")
-                }
+                    ForEach(categories) { category in
 
-                if let details = item.details, !details.isEmpty {
-
-                    VStack(alignment: .leading, spacing: 6) {
-                        Text("Details")
-                            .foregroundStyle(.secondary)
-
-                        Text(details)
+                        Text(category.name)
+                            .tag(category)
                     }
+                }
+
+                Stepper(
+                    "Default Quantity: \(item.defaultQuantity)",
+                    value: $item.defaultQuantity,
+                    in: 1...99
+                )
+
+                VStack(alignment: .leading, spacing: 8) {
+
+                    Text("Details")
+                        .foregroundStyle(.secondary)
+
+                    TextField(
+                        "Item Details",
+                        text: Binding(
+                            get: { item.details ?? "" },
+                            set: { item.details = $0 }
+                        ),
+                        axis: .vertical
+                    )
+                    .lineLimit(3...5)
                 }
             }
 
@@ -48,17 +64,28 @@ struct SingleItemView: View {
 
             Section("Settings") {
 
-                LabeledContent("Automatic Add") {
-                    Image(systemName: item.isAutoAdd
-                          ? "checkmark.circle.fill"
-                          : "circle")
-                        .foregroundStyle(
-                            item.isAutoAdd ? .green : .secondary
-                        )
+                Toggle(
+                    "Automatic Add",
+                    isOn: $item.isAutoAdd
+                )
+            }
+        }
+        .navigationTitle("Edit Item")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+
+            ToolbarItem(placement: .confirmationAction) {
+
+                Button("Done") {
+
+                    do {
+                        try modelContext.save()
+                        dismiss()
+                    } catch {
+                        print("Error saving item: \(error.localizedDescription)")
+                    }
                 }
             }
         }
-        .navigationTitle(item.name)
-        .navigationBarTitleDisplayMode(.inline)
     }
 }

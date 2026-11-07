@@ -24,26 +24,31 @@ struct AllItemsView: View {
 
                     ForEach(items) { item in
 
-                        HStack(spacing: 12) {
+                        NavigationLink {
+                            SingleItemView(item: item)
+                        } label: {
 
-                            Image(systemName: item.category.icon)
-                                .foregroundStyle(.secondary)
-                                .frame(width: 28)
+                            HStack(spacing: 12) {
 
-                            VStack(alignment: .leading, spacing: 4) {
+                                Image(systemName: item.category.icon)
+                                    .foregroundStyle(.secondary)
+                                    .frame(width: 28)
 
-                                Text(item.name)
-                                    .font(.headline)
+                                VStack(alignment: .leading, spacing: 4) {
 
-                                Text(item.category.name)
-                                    .font(.caption)
+                                    Text(item.name)
+                                        .font(.headline)
+
+                                    Text(item.category.name)
+                                        .font(.caption)
+                                        .foregroundStyle(.secondary)
+                                }
+
+                                Spacer()
+
+                                Text("× \(item.defaultQuantity)")
                                     .foregroundStyle(.secondary)
                             }
-
-                            Spacer()
-
-                            Text("× \(item.defaultQuantity)")
-                                .foregroundStyle(.secondary)
                         }
                     }
                 }
