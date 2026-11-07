@@ -76,6 +76,21 @@ enum CategoryIcon: String, CaseIterable, Identifiable {
     var id: String {
         rawValue
     }
+
+    var title: String {
+        switch self {
+        case .clothing: return "Clothing"
+        case .hygiene: return "Hygiene"
+        case .medicine: return "Medicine"
+        case .technology: return "Technology"
+        case .documents: return "Documents"
+        case .food: return "Food"
+        case .camping: return "Camping"
+        case .outdoor: return "Outdoor"
+        case .accessories: return "Accessories"
+        case .music: return "Music"
+        }
+    }
 }
 
 

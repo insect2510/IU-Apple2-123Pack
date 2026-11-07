@@ -90,7 +90,7 @@ struct NewItemView: View {
                 }
             }
             .sheet(isPresented: $showNewCategoryView) {
-                NewCategoryView { category in
+                CategoryView { category in
                     selectedCategoryID = category.id
                 }
             }

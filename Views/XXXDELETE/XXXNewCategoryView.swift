@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 import SwiftData
 
-struct NewCategoryView: View {
+struct XXXNewCategoryView: View {
 
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
