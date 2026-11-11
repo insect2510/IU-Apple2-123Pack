@@ -42,6 +42,7 @@ struct CardTripView: View {
 
                 Text(trip.name)
                     .font(.title2.bold())
+                    .foregroundStyle(Colors.primarycolor)
 
                 // Date
                 HStack {
@@ -49,7 +50,7 @@ struct CardTripView: View {
 
                     Text(dateRange)
                         .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(Colors.primarycolor)
                 }
 
                 // Packing List Items
@@ -59,7 +60,7 @@ struct CardTripView: View {
 
                     Text("\(trip.packingList.filter { $0.isPacked }.count)/\(trip.packingList.count) Items packed")
                         .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(Colors.primarycolor)
                 }
             }
 
