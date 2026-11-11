@@ -108,10 +108,7 @@ struct ContentView: View {
         .preferredColorScheme(.light)
         
     }
-      
- 
-        
-        
+    
 
     // MARK: - Trip Section
 
@@ -126,50 +123,6 @@ struct ContentView: View {
                     CardTripView(trip: trip)
                 }
                 .buttonStyle(.plain)
-            }
-        }
-    }
-
-    // MARK: - Separate Trip Row View
-
-    struct TripRowView: View {
-
-        let trip: Trip
-        let items: [Item]
-
-        var body: some View {
-
-            VStack(alignment: .leading, spacing: 8) {
-
-                Text(trip.name)
-                    .font(.headline)
-
-                ForEach(trip.packingList, id: \.id) { entry in
-                    packingListItemRow(entry)
-                }
-            }
-            .padding(.vertical, 4)
-        }
-
-        @ViewBuilder
-        private func packingListItemRow(_ entry: PackingList) -> some View {
-
-            if let item = items.first(where: { $0.id == entry.itemID }) {
-
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text(item.name)
-
-                        Text(item.category.name)
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                    }
-
-                    Spacer()
-
-                    Text("\(entry.quantity) x")
-                        .foregroundStyle(.secondary)
-                }
             }
         }
     }
