@@ -23,11 +23,11 @@ struct CardTripView: View {
     }
 
     var body: some View {
-        HStack(spacing: 16) {
+        HStack(spacing: 8) {
 
             // MARK: Trip Icon
 
-            RoundedRectangle(cornerRadius: 12)
+            RoundedRectangle(cornerRadius: 8)
                 .fill(Colors.cardcolor.opacity(0.5))
                 .frame(width: 100, height: 100)
                 .overlay {
@@ -47,6 +47,7 @@ struct CardTripView: View {
                 // Date
                 HStack {
                     Image(systemName: "calendar")
+                        .foregroundStyle(Colors.primarycolor)
 
                     Text(dateRange)
                         .font(.subheadline)
@@ -57,6 +58,7 @@ struct CardTripView: View {
 
                 HStack {
                     Image(systemName: "suitcase")
+                        .foregroundStyle(Colors.primarycolor)
 
                     Text("\(trip.packingList.filter { $0.isPacked }.count)/\(trip.packingList.count) Items packed")
                         .font(.subheadline)
@@ -89,8 +91,6 @@ struct CardTripView: View {
         return "\(start) – \(end)"
     }
 }
-
-// MARK: - Preview
 
 // MARK: - Preview
 

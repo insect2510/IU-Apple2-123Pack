@@ -11,7 +11,7 @@ import SwiftUI
 enum Colors {
 
     static let primarycolor: Color = .darkBlueGrey
-    static let backgroundcolor: Color = .brightSand
+    static let backgroundcolor: Color = .warmWhite
     static let cardcolor: Color = .warmWhite
     static let menubackgroundcolor: Color = .terra
     static let menutextcolor: Color = .warmWhite

@@ -15,99 +15,103 @@ struct ContentView: View {
 
         // MARK: - Header
         Menu1Header()
+        
+        // MARK: - MAIN
 
-        NavigationStack {
-
-            List {
-
-                tripSection
-                
-                // MARK: - Create Sample Data
-
-                Button {
-                    SampleData.create(in: modelContext)
-                } label: {
-                    Label("Create Sample Data", systemImage: "plus")
-                    
-                }
-                .disabled(!trips.isEmpty)
-
-                // MARK: - Buttons for New
-
-                HStack(spacing: 16) {
-
-                    Button {
-                        showNewItemView = true
-                    } label: {
-                        VStack(spacing: 8) {
-                            Image(systemName: "plus")
-                                .font(.system(size: 24, weight: .medium))
-
-                            Text("Create New Item")
-                                .font(.system(size: 14, weight: .medium))
-                        }
-                        .foregroundStyle(Colors.buttontextcolor)
-                        .frame(width: 140, height: 100)
-                        .background(Colors.buttonbackgroundcolor)
-                        .clipShape(RoundedRectangle(cornerRadius: 16))
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 16)
-                                .stroke(Colors.menutextcolor.opacity(0.15), lineWidth: 1)
-                        }
-                    }
-                    .buttonStyle(.plain)
-
-
-                    Button {
-                        showNewTripView = true
-                    } label: {
-                        VStack(spacing: 8) {
-                            Image(systemName: "plus")
-                                .font(.system(size: 24, weight: .medium))
-
-                            Text("Create New Trip")
-                                .font(.system(size: 14, weight: .medium))
-                        }
-                        .foregroundStyle(Colors.buttontextcolor)
-                        .frame(width: 140, height: 100)
-                        .background(Colors.buttonbackgroundcolor)
-                        .clipShape(RoundedRectangle(cornerRadius: 16))
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 16)
-                                .stroke(Colors.menutextcolor.opacity(0.95), lineWidth: 1)
-                        }
-                    }
-                    .buttonStyle(.plain)
-                }
-              //  frame(maxWidth: .infinity)
-                .listRowBackground(Color.clear)
-               // .listRowSeparator(.hidden)
-            }
+        ZStack {
+            Colors.backgroundcolor
+                .ignoresSafeArea()
             
-        //    .navigationTitle("Sample Data")
+            NavigationStack {
 
-            // Sheet für NewItemView
+                List {
 
-            .sheet(isPresented: $showNewItemView) {
-                NewItemView()
+                    tripSection
+                    
+                    // MARK: - Create Sample Data
+
+                    Button {
+                        SampleData.create(in: modelContext)
+                    } label: {
+                        Label("Create Sample Data", systemImage: "plus")
+                        
+                    }
+                    .disabled(!trips.isEmpty)
+
+                    // MARK: - Buttons for New
+
+                    HStack(spacing: 16) {
+                        
+                        Button {
+                            showNewTripView = true
+                        } label: {
+                            VStack(spacing: 8) {
+                                Image(systemName: "plus")
+                                    .font(.system(size: 24, weight: .medium))
+
+                                Text("Create New Trip")
+                                    .font(.system(size: 14, weight: .medium))
+                            }
+                            .foregroundStyle(Colors.buttontextcolor)
+                            .frame(width: 140, height: 100)
+                            .background(Colors.buttonbackgroundcolor)
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                        }
+                        .buttonStyle(.plain)
+
+                        Button {
+                            showNewItemView = true
+                        } label: {
+                            VStack(spacing: 8) {
+                                Image(systemName: "plus")
+                                    .font(.system(size: 24, weight: .medium))
+
+                                Text("Create New Item")
+                                    .font(.system(size: 14, weight: .medium))
+                            }
+                            .foregroundStyle(Colors.buttontextcolor)
+                            .frame(width: 140, height: 100)
+                            .background(Colors.buttonbackgroundcolor)
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+
+                        }
+                        .buttonStyle(.plain)
+
+
+                    }
+                    .listRowBackground(Color.clear)
+                }
+                
+
+                // MARK: Sheet für NewItemView
+
+                .sheet(isPresented: $showNewItemView) {
+                    NewItemView()
+                }
+                .padding(0)
+
+                
+                // MARK: Sheet für NewTripView
+
+                .sheet(isPresented: $showNewTripView) {
+                    NewTripView()
+                }
+
+                // MARK: - Bottom Menu
+
+                Menu2Bottom()
             }
-            .padding(0)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .scrollContentBackground(.hidden)
 
-            // Sheet für NewTripView
-
-            .sheet(isPresented: $showNewTripView) {
-                NewTripView()
-            }
-
-            // MARK: - Bottom Menu
-
-            Menu2Bottom()
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Colors.backgroundcolor)
-
-
+        .preferredColorScheme(.light)
+        
     }
+      
+ 
+        
+        
 
     // MARK: - Trip Section
 
