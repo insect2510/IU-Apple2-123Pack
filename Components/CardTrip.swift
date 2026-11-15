@@ -16,25 +16,6 @@ struct CardTripView: View {
     
     let trip: Trip
     
-    
-    
-    
-    
-    
-    
-    //    private var dateFormatter: DateFormatter {
-    //        let formatter = DateFormatter()
-    //        formatter.dateFormat = "dd.MM.yy"
-    //        return formatter
-    //    }
-    
-    
-    
-    
-    
-    
-    
-    
     var body: some View {
         HStack(spacing: 8) {
             

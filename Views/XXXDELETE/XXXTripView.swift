@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 import SwiftData
 
-struct TripView: View {
+struct XXXTripView: View {
 
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
