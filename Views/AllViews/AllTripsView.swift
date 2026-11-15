@@ -17,7 +17,7 @@ struct AllTripsView: View {
 
         ZStack {
             Colors.backgroundcolor
-                .ignoresSafeArea()
+            //    .ignoresSafeArea()
             
             NavigationStack {
 
@@ -26,7 +26,6 @@ struct AllTripsView: View {
                     tripSection
                     
                     // MARK: - Create Sample Data
-
                     
                     SecondaryButton(
                         title: "Create Sample Data",
@@ -35,6 +34,7 @@ struct AllTripsView: View {
                         SampleData.create(in: modelContext)
                     }
                     .disabled(!trips.isEmpty)
+                    
 
                     // MARK: - Buttons for New
 

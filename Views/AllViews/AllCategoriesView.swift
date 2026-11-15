@@ -19,55 +19,64 @@ struct AllCategoriesView: View {
     
     var body: some View {
         
-        NavigationStack {
+        ZStack {
             
-            List {
-                Section("All Categories (\(categories.count))") {
-                    
-                    ForEach(categories) { category in
+            Colors.backgroundcolor
+                .ignoresSafeArea()
+            
+            NavigationStack {
+                
+                List {
+                    Section("All Categories (\(categories.count))") {
                         
-                        NavigationLink {
-                            CategoryView(category: category)
-                        } label: {
+                        ForEach(categories) { category in
                             
-                            HStack(spacing: 12) {
+                            NavigationLink {
+                                CategoryView(category: category)
+                            } label: {
                                 
-                                Image(systemName: category.icon)
-                                    .foregroundStyle(.secondary)
-                                    .frame(width: 28)
-                                
-                                VStack(alignment: .leading, spacing: 4) {
+                                HStack(spacing: 12) {
                                     
-                                    Text(category.name)
-                                        .font(.headline)
-                                    
-                                    Text(category.categoryDescribtion)
-                                        .font(.caption)
+                                    Image(systemName: category.icon)
                                         .foregroundStyle(.secondary)
+                                        .frame(width: 28)
+                                    
+                                    VStack(alignment: .leading, spacing: 4) {
+                                        
+                                        Text(category.name)
+                                            .font(.headline)
+                                        
+                                        Text(category.categoryDescribtion)
+                                            .font(.caption)
+                                            .foregroundStyle(.secondary)
+                                    }
+                                    
+                                    Spacer()
                                 }
-                                
-                                Spacer()
                             }
                         }
                     }
+                    
+                    // MARK: Button Create New Category
+                    SecondaryButton(
+                        title: "Create New Category",
+                        icon: "plus"
+                    ) {
+                        showNewCategoryView = true
+                    }
+                    
                 }
-                
-                
+                .navigationTitle("Categories")
+                .navigationBarTitleDisplayMode(.large)
+                .sheet(isPresented: $showNewCategoryView) {
+                    CategoryView()
+                }
             }
-            .navigationTitle("Categories")
-            .navigationBarTitleDisplayMode(.large)
-            .sheet(isPresented: $showNewCategoryView) {
-                CategoryView()
-            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .scrollContentBackground(.hidden)
             
             
-            // MARK: Button Create New Category
-            SecondaryButton(
-                title: "Create New Category",
-                icon: "plus"
-            ) {
-                showNewCategoryView = true
-            }
+
         }
     }
 }
