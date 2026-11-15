@@ -13,20 +13,33 @@ import SwiftData
 // MARK: - Trip Card
 
 struct CardTripView: View {
-
+    
     let trip: Trip
-
-    private var dateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.yyyy"
-        return formatter
-    }
-
+    
+    
+    
+    
+    
+    
+    
+    //    private var dateFormatter: DateFormatter {
+    //        let formatter = DateFormatter()
+    //        formatter.dateFormat = "dd.MM.yy"
+    //        return formatter
+    //    }
+    
+    
+    
+    
+    
+    
+    
+    
     var body: some View {
         HStack(spacing: 8) {
-
+            
             // MARK: Trip Icon
-
+            
             RoundedRectangle(cornerRadius: 8)
                 .fill(Colors.cardcolor.opacity(0.5))
                 .frame(width: 100, height: 100)
@@ -35,37 +48,37 @@ struct CardTripView: View {
                         .font(.largeTitle)
                         .foregroundStyle(Colors.primarycolor)
                 }
-
+            
             // MARK: Trip Information
-
+            
             VStack(alignment: .leading, spacing: 8) {
-
+                
                 Text(trip.name)
                     .font(.title2.bold())
                     .foregroundStyle(Colors.primarycolor)
-
+                
                 // Date
                 HStack {
                     Image(systemName: "calendar")
                         .foregroundStyle(Colors.primarycolor)
-
+                    
                     Text(dateRange)
                         .font(.subheadline)
                         .foregroundStyle(Colors.primarycolor)
                 }
-
+                
                 // Packing List Items
-
+                
                 HStack {
                     Image(systemName: "suitcase")
                         .foregroundStyle(Colors.primarycolor)
-
+                    
                     Text("\(trip.packingList.filter { $0.isPacked }.count)/\(trip.packingList.count) Items packed")
                         .font(.subheadline)
                         .foregroundStyle(Colors.primarycolor)
                 }
             }
-
+            
             Spacer()
         }
         .padding()
@@ -75,17 +88,17 @@ struct CardTripView: View {
         )
         .shadow(radius: 2)
     }
-
+    
     // MARK: - Date Range
-
+    
     private var dateRange: String {
 
         let start = trip.startDate.map {
-            dateFormatter.string(from: $0)
+            AppDateFormatter.shared.format($0)
         } ?? "–"
 
         let end = trip.endDate.map {
-            dateFormatter.string(from: $0)
+            AppDateFormatter.shared.format($0)
         } ?? "–"
 
         return "\(start) – \(end)"
