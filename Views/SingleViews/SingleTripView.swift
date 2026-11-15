@@ -22,6 +22,8 @@ struct SingleTripView: View {
     // MARK: - State
 
     @State private var isEditing = false
+    
+    @State private var showDeleteConfirmation = false
 
     // Trip Information
 
@@ -267,6 +269,7 @@ struct SingleTripView: View {
                         )
                     }
                 }
+                    
             }
 
             // MARK: - Navigation
@@ -293,6 +296,33 @@ struct SingleTripView: View {
                         }
                     }
                 }
+                
+                ToolbarItem(placement: .destructiveAction) {
+
+                    if isEditing {
+
+                        Button(role: .destructive) {
+                            showDeleteConfirmation = true
+                        } label: {
+                            Image(systemName: "trash")
+                        }
+                    }
+                }
+            }
+            .confirmationDialog(
+                "Delete Trip?",
+                isPresented: $showDeleteConfirmation,
+                titleVisibility: .visible
+            ) {
+
+                Button("Delete Trip", role: .destructive) {
+                    deleteTrip()
+                }
+
+                Button("Cancel", role: .cancel) {}
+
+            } message: {
+                Text("Are you sure you want to delete this trip? This action cannot be undone.")
             }
         }
     }
@@ -564,6 +594,21 @@ struct SingleTripView: View {
             print(
                 "Error saving trip: \(error.localizedDescription)"
             )
+        }
+    }
+    
+    
+    // MARK: - Delete Trip
+
+    private func deleteTrip() {
+
+        modelContext.delete(trip)
+
+        do {
+            try modelContext.save()
+            dismiss()
+        } catch {
+            print("Error deleting trip: \(error.localizedDescription)")
         }
     }
 }
