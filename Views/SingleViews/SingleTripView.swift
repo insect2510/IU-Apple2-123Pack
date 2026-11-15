@@ -131,6 +131,7 @@ struct SingleTripView: View {
         }
     }
     
+    
     // MARK: - Packing List Row
     @ViewBuilder
     private func packingListRow(_ entry: PackingList) -> some View {

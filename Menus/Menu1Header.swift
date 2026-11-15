@@ -23,7 +23,7 @@ struct Menu1Header: View {
         }
         .frame(maxWidth: .infinity)
         .padding(.horizontal)
-        .padding(.vertical, 12)
+        .padding(.vertical, 8)
         .background(Colors.menubackgroundcolor)
     }
 }

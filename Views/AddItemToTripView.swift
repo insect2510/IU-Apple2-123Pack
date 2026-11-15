@@ -16,7 +16,7 @@ struct AddItemToTripView: View {
     @Query private var items: [Item]
 
     @Bindable var trip: Trip
-    @State private var showNewItemView = false
+    @State private var showItemView = false
 
     var availableItems: [Item] {
         items.filter { item in
@@ -76,10 +76,10 @@ struct AddItemToTripView: View {
                     
                     // MARK: Creat New Item Button
                     Button {
-                        showNewItemView = true
+                        showItemView = true
                     } label: {
                         Label("Create New Item", systemImage: "plus.circle")
-                            .foregroundStyle(.primary)
+                            .foregroundStyle(Colors.buttonbackgroundcolor)
                     }
                 }
             }
@@ -96,8 +96,8 @@ struct AddItemToTripView: View {
             
             // Show New Item View
             
-            .sheet(isPresented: $showNewItemView) {
-                NewItemView()
+            .sheet(isPresented: $showItemView) {
+                ItemView()
             }
         }
     }

@@ -8,41 +8,39 @@ import SwiftUI
 struct Menu2Bottom: View {
 
     var body: some View {
-        HStack(spacing: 0) {
+    
+        TabView {
 
             // Trips
-            MenuItemView(
-                icon: MenuIcon.trips.rawValue,
-                title: "Trips"
-            )
-
-
-            // Items
-            NavigationLink {
-                AllItemsView()
-            } label: {
-                MenuItemView(
-                    icon: MenuIcon.items.rawValue,
-                    title: "Items"
-                )
+            Tab("Trips", systemImage: MenuIcon.trips.rawValue) {
+           
+                    AllTripsView()
+                 
             }
-            .buttonStyle(.plain)
 
+
+            // Items    AllItemsView()
+            Tab("Items", systemImage: MenuIcon.items.rawValue) {
+              
+                    AllItemsView()
+                
+            }
             
-           // Category
-            NavigationLink {
-                AllCategoriesView()
-            } label: {
-                MenuItemView(
-                    icon: MenuIcon.categories.rawValue,
-                    title: "Category"
-                )
+            
+            // CategoryAllCategoriesView()
+            Tab("Category", systemImage: MenuIcon.categories.rawValue) {
+             
+                     AllCategoriesView()
+                 
             }
-            .buttonStyle(.plain)
+
         }
-        .padding(.vertical, 10)
+
         .frame(maxWidth: .infinity)
-        .background(Colors.menubackgroundcolor)
+        .tint(Colors.primarycolor)
+        .toolbarBackground(Colors.menubackgroundcolor, for: .tabBar)
+        .toolbarBackground(.visible, for: .tabBar)
+        .toolbarColorScheme(.light, for: .tabBar)
     }
 }
 

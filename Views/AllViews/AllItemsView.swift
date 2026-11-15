@@ -13,6 +13,7 @@ import SwiftData
 struct AllItemsView: View {
 
     @Query(sort: \Item.name) private var items: [Item]
+    @State private var showItemView = false
 
     var body: some View {
 
@@ -25,7 +26,7 @@ struct AllItemsView: View {
                     ForEach(items) { item in
 
                         NavigationLink {
-                            SingleItemView(item: item)
+                            ItemView(item: item)
                         } label: {
 
                             HStack(spacing: 12) {
@@ -52,9 +53,27 @@ struct AllItemsView: View {
                         }
                     }
                 }
+                
+                
+                // MARK: Button Create New Item
+                
+                SecondaryButton(
+                    title: "Create New Item",
+                    icon: "plus"
+                ) {
+                    showItemView = true
+                }
             }
-            .navigationTitle("All Items")
+            
+            .navigationTitle("Items")
             .navigationBarTitleDisplayMode(.large)
         }
+        
+        // MARK: Sheet für NewItemView
+
+        .sheet(isPresented: $showItemView) {
+            ItemView()
+        }
+        .padding(0)
     }
 }
