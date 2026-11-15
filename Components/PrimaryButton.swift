@@ -26,6 +26,7 @@ struct PrimaryButton: View {
 
                 Text(title)
                     .font(.system(size: 14, weight: .medium))
+                    .textCase(.uppercase)
 
                 }
                 .buttonStyle(.plain)

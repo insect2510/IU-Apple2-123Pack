@@ -60,15 +60,6 @@ struct SingleItemView: View {
                 }
             }
 
-            // MARK: - Settings
-
-            Section("Settings") {
-
-                Toggle(
-                    "Automatic Add",
-                    isOn: $item.isAutoAdd
-                )
-            }
         }
         .navigationTitle("Edit Item")
         .navigationBarTitleDisplayMode(.inline)

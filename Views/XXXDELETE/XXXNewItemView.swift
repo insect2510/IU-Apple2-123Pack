@@ -20,7 +20,6 @@ struct NewItemView: View {
     @State private var name = ""
     @State private var details = ""
     @State private var defaultQuantity = 1
-    @State private var isAutoAdd = false
     @State private var selectedCategoryID: UUID?
     @State private var showNewCategoryView = false
 
@@ -63,14 +62,6 @@ struct NewItemView: View {
                     }
                 }
 
-                Section("Settings") {
-
-                    Toggle(
-                        "Automatically add to every trip",
-                        isOn: $isAutoAdd
-                    )
-                }
-
                 Section {
 
                     Button("Save Item") {
@@ -111,7 +102,6 @@ struct NewItemView: View {
             name: name,
             defaultQuantity: defaultQuantity,
             details: details.isEmpty ? nil : details,
-            isAutoAdd: isAutoAdd,
             category: category
         )
 

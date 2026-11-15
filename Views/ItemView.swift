@@ -24,7 +24,6 @@ struct ItemView: View {
     @State private var name: String
     @State private var details: String
     @State private var defaultQuantity: Int
-    @State private var isAutoAdd: Bool
     @State private var selectedCategoryID: UUID?
 
     @State private var isEditing: Bool
@@ -39,7 +38,6 @@ struct ItemView: View {
         _name = State(initialValue: item?.name ?? "")
         _details = State(initialValue: item?.details ?? "")
         _defaultQuantity = State(initialValue: item?.defaultQuantity ?? 1)
-        _isAutoAdd = State(initialValue: item?.isAutoAdd ?? false)
         _selectedCategoryID = State(initialValue: item?.category.id)
 
         // New item starts in edit mode
@@ -138,26 +136,6 @@ struct ItemView: View {
                 }
             }
 
-            // MARK: Settings
-
-            Section("Settings") {
-
-                if isEditing {
-
-                    Toggle(
-                        "Automatically add to every trip",
-                        isOn: $isAutoAdd
-                    )
-
-                } else {
-
-                    LabeledContent(
-                        "Automatic Add",
-                        value: (item?.isAutoAdd ?? false) ? "Yes" : "No"
-                    )
-                }
-            }
-
             // MARK: Save Button
 
             if isEditing {
@@ -248,7 +226,6 @@ struct ItemView: View {
             item.name = trimmedName
             item.details = details.isEmpty ? nil : details
             item.defaultQuantity = defaultQuantity
-            item.isAutoAdd = isAutoAdd
             item.category = category
 
         } else {
@@ -259,7 +236,6 @@ struct ItemView: View {
                 name: trimmedName,
                 defaultQuantity: defaultQuantity,
                 details: details.isEmpty ? nil : details,
-                isAutoAdd: isAutoAdd,
                 category: category
             )
 

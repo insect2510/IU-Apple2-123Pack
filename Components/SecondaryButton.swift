@@ -26,6 +26,7 @@ struct SecondaryButton: View {
                 }
 
                 Text(title)
+                    .textCase(.uppercase)
 
                 }
             .foregroundStyle(Colors.buttontextcolor)

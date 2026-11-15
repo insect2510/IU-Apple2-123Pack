@@ -36,7 +36,6 @@ struct SampleData {
             name: "T-Shirt",
             defaultQuantity: 2,
             details: "Basic T-Shirt",
-            isAutoAdd: true,
             category: clothing
         )
 
@@ -44,7 +43,6 @@ struct SampleData {
             name: "Pullover",
             defaultQuantity: 1,
             details: "Warm pullover",
-            isAutoAdd: false,
             category: clothing
         )
 
@@ -52,7 +50,6 @@ struct SampleData {
             name: "Trousers",
             defaultQuantity: 2,
             details: "Comfortable trousers",
-            isAutoAdd: true,
             category: clothing
         )
 
@@ -60,7 +57,6 @@ struct SampleData {
             name: "Toothbrush",
             defaultQuantity: 1,
             details: "Manual toothbrush",
-            isAutoAdd: true,
             category: hygiene
         )
 
@@ -68,7 +64,6 @@ struct SampleData {
             name: "Shampoo",
             defaultQuantity: 1,
             details: "Travel size shampoo",
-            isAutoAdd: false,
             category: hygiene
         )
 

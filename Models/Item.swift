@@ -16,10 +16,7 @@ class Item {
     
     var name: String
     var defaultQuantity: Int
-   // var image: Data?
-  // var icon: String
     var details: String?
-    var isAutoAdd: Bool
     var category: Category
     
 
@@ -27,20 +24,14 @@ class Item {
         id: UUID = UUID(),
         name: String,
          defaultQuantity: Int,
-        // image: Data?,
-        // icon: String,
          details: String?,
-         isAutoAdd: Bool,
          category: Category
 
     ) {
         self.id = id
         self.name = name
         self.defaultQuantity = defaultQuantity
-      //  self.image = image
-      //  self.icon = icon.rawValue
         self.details = details
-        self.isAutoAdd = isAutoAdd
         self.category = category
     }
     

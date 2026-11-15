@@ -1,3 +1,4 @@
+
 //
 //  NewTripView.swift
 //  123Pack
@@ -14,19 +15,27 @@ struct NewTripView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
 
-    @Query private var items: [Item]
+    @Query(sort: \Item.name) private var items: [Item]
 
     // MARK: - Properties
 
     @State private var name = ""
+
     @State private var startDate = Date()
+
     @State private var endDate = Calendar.current.date(
         byAdding: .day,
         value: 7,
         to: Date()
     ) ?? Date()
+    
+    @State private var details = ""
 
     @State private var selectedIcon: TripIcon = .airplane
+
+    // MARK: - Item Selection
+
+    @State private var selectedItemIDs: Set<PersistentIdentifier> = []
 
     // MARK: - Body
 
@@ -39,21 +48,37 @@ struct NewTripView: View {
                 // MARK: - Trip Information
 
                 Section("Trip Information") {
+                    
+                    
+                    // Trip Name
 
                     TextField("Trip Name", text: $name)
 
+                    // Trip Start Date
+                    
                     DatePicker(
                         "Start Date",
                         selection: $startDate,
                         displayedComponents: .date
                     )
 
+                    // Trip End Date
+                    
                     DatePicker(
                         "End Date",
                         selection: $endDate,
                         in: startDate...,
                         displayedComponents: .date
                     )
+                    
+                    // Trip Details
+                    
+                    TextField(
+                        "Description",
+                        text: $details,
+                        axis: .vertical
+                    )
+                    .lineLimit(3...5)
                 }
 
                 // MARK: - Trip Icon
@@ -73,61 +98,104 @@ struct NewTripView: View {
                     }
                 }
 
-                // MARK: - Auto Add Items
+                // MARK: - Packing List
 
-                Section("Packing List") {
+                Section {
 
-                    let automaticItems = items.filter { $0.isAutoAdd }
+                    if items.isEmpty {
 
-                    if automaticItems.isEmpty {
-
-                        Text("No automatic items selected.")
+                        Text("No items available.")
                             .foregroundStyle(.secondary)
 
                     } else {
 
-                        ForEach(automaticItems) { item in
+                        ForEach(items) { item in
 
-                            HStack {
+                            Button {
 
-                                Image(systemName: item.category.icon)
-                                    .foregroundStyle(.secondary)
-                                    .frame(width: 28)
+                                toggleItem(item)
 
-                                Text(item.name)
+                            } label: {
 
-                                Spacer()
+                                HStack {
 
-                                Text("× \(item.defaultQuantity)")
-                                    .foregroundStyle(.secondary)
+                                    Image(systemName: item.category.icon)
+                                        .foregroundStyle(.secondary)
+                                        .frame(width: 28)
+
+                                    Text(item.name)
+                                        .foregroundStyle(.primary)
+
+                                    Spacer()
+
+                                    Text("× \(item.defaultQuantity)")
+                                        .foregroundStyle(.secondary)
+
+                                    Image(
+                                        systemName: selectedItemIDs.contains(item.persistentModelID)
+                                        ? "checkmark.circle.fill"
+                                        : "circle"
+                                    )
+                                    .foregroundStyle(
+                                        selectedItemIDs.contains(item.persistentModelID)
+                                        ? Colors.primarycolor
+                                        : .secondary
+                                    )
+                                }
+                                .contentShape(Rectangle())
                             }
+                            .buttonStyle(.plain)
                         }
                     }
 
-                    Text("These items will automatically be added to your packing list.")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
+                } header: {
 
+                    HStack {
+                        Text("Packing List")
+                        Spacer()
+                        Text("\(selectedItemIDs.count) selected")
+                    }
+
+                } footer: {
+
+                    Text("Select the items you want to add to your trip.")
+                }
             }
-                
+
             // MARK: - Toolbar
 
             .toolbar {
 
                 ToolbarItem(placement: .cancellationAction) {
+
                     Button("Cancel") {
                         dismiss()
                     }
                 }
 
                 ToolbarItem(placement: .confirmationAction) {
+
                     Button("Create") {
                         createTrip()
                     }
-                    .disabled(name.trimmingCharacters(in: .whitespaces).isEmpty)
+                    .disabled(
+                        name.trimmingCharacters(in: .whitespaces).isEmpty
+                    )
                 }
             }
+        }
+    }
+
+    // MARK: - Toggle Item
+
+    private func toggleItem(_ item: Item) {
+
+        let id = item.persistentModelID
+
+        if selectedItemIDs.contains(id) {
+            selectedItemIDs.remove(id)
+        } else {
+            selectedItemIDs.insert(id)
         }
     }
 
@@ -135,21 +203,28 @@ struct NewTripView: View {
 
     private func createTrip() {
 
-        // Automatic Packing List Items
+        // Get selected items
 
-        let packingList = items
-            .filter { $0.isAutoAdd }
-            .map { item in
-                PackingList(
-                    itemID: item.id,
-                    quantity: item.defaultQuantity
-                )
-            }
+        let selectedItems = items.filter {
+            selectedItemIDs.contains($0.persistentModelID)
+        }
+
+        // Create Packing List
+
+        let packingList = selectedItems.map { item in
+
+            PackingList(
+                itemID: item.id,
+                quantity: item.defaultQuantity,
+                isPacked: false
+            )
+        }
 
         // Create Trip
 
         let newTrip = Trip(
             name: name,
+            details: details.isEmpty ? nil : details,
             startDate: startDate,
             endDate: endDate,
             image: selectedIcon.rawValue,
