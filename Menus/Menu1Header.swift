@@ -11,9 +11,6 @@ struct Menu1Header: View {
 
     var body: some View {
         HStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(Colors.menutextcolor)
 
             Text("123PACK")
                 .font(.largeTitle.bold())
