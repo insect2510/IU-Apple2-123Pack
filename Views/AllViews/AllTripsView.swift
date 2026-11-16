@@ -8,7 +8,7 @@ struct AllTripsView: View {
     @Query private var categories: [Category]
     @Query private var items: [Item]
     @Query private var trips: [Trip]
-    @State private var showItemView = false
+    @State private var showNewItemView = false
     @State private var showNewTripView = false
 
     var body: some View {
@@ -53,7 +53,7 @@ struct AllTripsView: View {
                             title: "Create New Item",
                             icon: "plus"
                         ) {
-                            showItemView = true
+                            showNewItemView = true
                         }
                     
                     }
@@ -73,8 +73,8 @@ struct AllTripsView: View {
 
                 // MARK: Sheet für NewItemView
 
-                .sheet(isPresented: $showItemView) {
-                    ItemView()
+                .sheet(isPresented: $showNewItemView) {
+                    NewItemView()
                 }
                 .padding(0)
             }

@@ -13,7 +13,7 @@ import SwiftData
 struct AllItemsView: View {
     
     @Query(sort: \Item.name) private var items: [Item]
-    @State private var showItemView = false
+    @State private var showNewItemView = false
     
     var body: some View {
         
@@ -66,7 +66,7 @@ struct AllItemsView: View {
                         title: "Create New Item",
                         icon: "plus"
                     ) {
-                        showItemView = true
+                        showNewItemView = true
                     }
                 }
                 
@@ -81,8 +81,8 @@ struct AllItemsView: View {
         
         // MARK: Sheet für NewItemView
         
-        .sheet(isPresented: $showItemView) {
-            ItemView()
+        .sheet(isPresented: $showNewItemView) {
+            NewItemView()
         }
         .padding(0)
     }
