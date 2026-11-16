@@ -25,7 +25,7 @@ struct PrimaryButton: View {
                 }
 
                 Text(title)
-                    .font(.system(size: 14, weight: .medium))
+                    .font(.system(size: 14, weight: .bold))
                     .textCase(.uppercase)
 
                 }
@@ -33,7 +33,7 @@ struct PrimaryButton: View {
                 
             }
         .foregroundStyle(Colors.buttontextcolor)
-        .frame(width: 140, height: 100)
+        .frame(width: 150, height: 100)
         .background(Colors.buttonbackgroundcolor)
         .clipShape(RoundedRectangle(cornerRadius: 8))
 

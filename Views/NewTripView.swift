@@ -22,10 +22,10 @@ struct NewTripView: View {
     @State private var name = ""
 
     @State private var startDate = Date()
-
+    
     @State private var endDate = Calendar.current.date(
         byAdding: .day,
-        value: 7,
+        value: 1,
         to: Date()
     ) ?? Date()
     
@@ -89,7 +89,7 @@ struct NewTripView: View {
 
                         ForEach(TripIcon.allCases, id: \.self) { icon in
 
-                            HStack {
+                            HStack(spacing: 10) {
                                 Image(systemName: icon.rawValue)
                                 Text(icon.title)
                             }
@@ -165,23 +165,17 @@ struct NewTripView: View {
             // MARK: - Toolbar
 
             .toolbar {
-
-                ToolbarItem(placement: .cancellationAction) {
-
-                    Button("Cancel") {
+                FormToolbar(
+                    cancelAction: {
                         dismiss()
-                    }
-                }
-
-                ToolbarItem(placement: .confirmationAction) {
-
-                    Button("Create") {
+                    },
+                    saveAction: {
                         createTrip()
-                    }
-                    .disabled(
-                        name.trimmingCharacters(in: .whitespaces).isEmpty
-                    )
-                }
+                    },
+                    saveDisabled: name.trimmingCharacters(
+                        in: .whitespaces
+                    ).isEmpty
+                )
             }
         }
     }
@@ -240,4 +234,10 @@ struct NewTripView: View {
             print("Error creating trip: \(error.localizedDescription)")
         }
     }
+}
+
+
+#Preview {
+    NewTripView()
+
 }

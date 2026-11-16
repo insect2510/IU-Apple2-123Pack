@@ -55,8 +55,14 @@ enum MenuIcon: String {
     case trips = "airplane"
     case categories = "list.bullet"
     case items = "checklist"
-  //  case category = "square.grid.2x2"
 }
+
+enum NavIcons: String {
+    case cancel = "xmark"
+    case save = "checkmark"
+    
+}
+
 
 
 

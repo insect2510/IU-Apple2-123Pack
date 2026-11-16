@@ -26,6 +26,7 @@ struct SecondaryButton: View {
                 }
 
                 Text(title)
+                    .font(.system(size: 14, weight: .bold))
                     .textCase(.uppercase)
 
                 }

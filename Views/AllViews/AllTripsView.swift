@@ -47,6 +47,7 @@ struct AllTripsView: View {
                             showNewTripView = true
                         }
                     
+                        Spacer()
                         
                         PrimaryButton(
                             title: "Create New Item",
