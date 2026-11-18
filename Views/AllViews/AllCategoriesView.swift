@@ -45,7 +45,7 @@ struct AllCategoriesView: View {
                                         Text(category.name)
                                             .font(.headline)
                                         
-                                        Text(category.categoryDescribtion)
+                                        Text(category.details)
                                             .font(.caption)
                                             .foregroundStyle(.secondary)
                                     }

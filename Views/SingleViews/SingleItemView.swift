@@ -17,20 +17,18 @@ struct SingleItemView: View {
     let item: Item
     
     @State private var showDeleteConfirmation = false
+    
+    @Query private var trips: [Trip]
 
     var body: some View {
 
         Form {
             
-            HStack(spacing: 8) {
-                
-                
-                // MARK: - Item Name
+            // MARK: - Item Name
 
-                Text(item.name)
-                    .font(.title)
-                
-            }
+            Text(item.name)
+                .font(.title)
+                .fontWeight(.bold)
 
             // MARK: - Item Information
 
@@ -94,7 +92,7 @@ struct SingleItemView: View {
 
         // MARK: - Navigation
 
-        .navigationTitle("Item Details")
+        .navigationTitle("Item Detail")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
         .toolbar {
@@ -132,19 +130,31 @@ struct SingleItemView: View {
 
     private func deleteItem() {
 
+        // Alle Packlisten-Einträge dieses Items finden und löschen
+        
+        for trip in trips {
+
+            let entriesToDelete = trip.packingList.filter {
+                $0.item == item
+            }
+
+            for entry in entriesToDelete {
+                trip.packingList.removeAll {
+                    $0.persistentModelID == entry.persistentModelID
+                }
+
+                modelContext.delete(entry)
+            }
+        }
+
+        // Anschließend das eigentliche Item löschen
         modelContext.delete(item)
 
         do {
-
             try modelContext.save()
             dismiss()
-
-
         } catch {
-
-            print(
-                "Error deleting item: \(error.localizedDescription)"
-            )
+            print("Error deleting item: \(error.localizedDescription)")
         }
     }
 }

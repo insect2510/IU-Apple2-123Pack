@@ -12,21 +12,16 @@ import SwiftData
 @Model
 class PackingList {
 
-    @Attribute(.unique)
-    var id: UUID
-
-    var itemID: UUID
+    var item: Item
     var quantity: Int
     var isPacked: Bool
 
     init(
-        id: UUID = UUID(),
-        itemID: UUID,
+        item: Item,
         quantity: Int = 1,
         isPacked: Bool = false
     ) {
-        self.id = id
-        self.itemID = itemID
+        self.item = item
         self.quantity = quantity
         self.isPacked = isPacked
     }

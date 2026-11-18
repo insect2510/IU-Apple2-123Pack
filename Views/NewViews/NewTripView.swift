@@ -211,7 +211,7 @@ struct NewTripView: View {
         let packingList = selectedItems.map { item in
 
             PackingList(
-                itemID: item.id,
+                item: item,
                 quantity: item.defaultQuantity,
                 isPacked: false
             )

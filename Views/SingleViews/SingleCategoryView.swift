@@ -35,27 +35,33 @@ struct SingleCategoryView: View {
         
         Form {
             
+            // MARK: - Item Name
+
+
+            
             HStack(spacing: 8) {
                 
                 // MARK: - Category Icon
                 Image(systemName: category.icon)
                     .font(.title)
+                
                 Text(category.name)
                     .font(.title)
+                    .fontWeight(.bold)
             }
             
             // MARK: - Category Information
             
             Section {
                 
-                if !category.categoryDescribtion.isEmpty {
+                if !category.details.isEmpty {
                     
                     VStack(alignment: .leading, spacing: 8) {
                         
-                        Text("Description")
+                        Text("Details")
                             .foregroundStyle(.secondary)
                         
-                        Text(category.categoryDescribtion)
+                        Text(category.details)
                     }
                 }
             }

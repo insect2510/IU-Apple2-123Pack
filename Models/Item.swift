@@ -19,14 +19,14 @@ class Item {
     var details: String?
     var category: Category
     
-
+    
     init(
         id: UUID = UUID(),
         name: String,
-         defaultQuantity: Int,
-         details: String?,
-         category: Category
-
+        defaultQuantity: Int,
+        details: String?,
+        category: Category
+        
     ) {
         self.id = id
         self.name = name
@@ -36,4 +36,3 @@ class Item {
     }
     
 }
-

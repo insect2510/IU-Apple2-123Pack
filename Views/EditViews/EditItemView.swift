@@ -112,7 +112,6 @@ struct EditItemView: View {
                 }
             }
             
-            
         }
         
         // MARK: - Navigation

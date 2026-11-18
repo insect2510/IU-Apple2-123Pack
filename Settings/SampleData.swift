@@ -17,13 +17,13 @@ struct SampleData {
         let clothing = Category(
             name: "Clothing",
             icon: "tshirt",
-            categoryDescribtion: "Clothing and accessories"
+            details: "Clothing and accessories"
         )
 
         let hygiene = Category(
             name: "Hygiene",
             icon: "shower",
-            categoryDescribtion: "Personal hygiene"
+            details: "Personal hygiene"
         )
 
         modelContext.insert(clothing)
@@ -83,16 +83,16 @@ struct SampleData {
         // MARK: - Packing Lists
 
         let packingList1: [PackingList] = [
-            PackingList(itemID: tshirt.id, quantity: 3, isPacked: true),
-            PackingList(itemID: pullover.id, quantity: 1, isPacked: true),
-            PackingList(itemID: toothbrush.id, quantity: 1, isPacked: false)
+            PackingList(item: tshirt, quantity: 3, isPacked: true),
+            PackingList(item: pullover, quantity: 1, isPacked: true),
+            PackingList(item: toothbrush, quantity: 1, isPacked: false)
         ]
 
         let packingList2: [PackingList] = [
-            PackingList(itemID: tshirt.id, quantity: 2, isPacked: false),
-            PackingList(itemID: trousers.id, quantity: 2, isPacked: false),
-            PackingList(itemID: toothbrush.id, quantity: 1, isPacked: false),
-            PackingList(itemID: shampoo.id, quantity: 1, isPacked: true)
+            PackingList(item: tshirt, quantity: 2, isPacked: false),
+            PackingList(item: trousers, quantity: 2, isPacked: false),
+            PackingList(item: toothbrush, quantity: 1, isPacked: false),
+            PackingList(item: shampoo, quantity: 1, isPacked: true)
         ]
 
 

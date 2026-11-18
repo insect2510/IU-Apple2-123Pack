@@ -20,7 +20,7 @@ struct NewCategoryView: View {
     
     @State private var name = ""
     @State private var icon = CategoryIcon.allCases.first?.rawValue ?? "folder"
-    @State private var categoryDescription = ""
+    @State private var details = ""
     
     // MARK: - Body
     
@@ -48,12 +48,12 @@ struct NewCategoryView: View {
                 
                 VStack(alignment: .leading, spacing: 8) {
                     
-                    Text("Description")
+                    Text("Details")
                         .foregroundStyle(.secondary)
                     
                     TextField(
-                        "Category Description",
-                        text: $categoryDescription,
+                        "Category Details",
+                        text: $details,
                         axis: .vertical
                     )
                     .lineLimit(3...5)
@@ -112,7 +112,7 @@ struct NewCategoryView: View {
         let newCategory = Category(
             name: trimmedName,
             icon: icon.isEmpty ? "folder" : icon,
-            categoryDescribtion: categoryDescription
+            details: details
         )
         
         modelContext.insert(newCategory)

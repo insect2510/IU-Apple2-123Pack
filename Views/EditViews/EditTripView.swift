@@ -220,18 +220,18 @@ struct EditTripView: View {
         ) ?? .airplane
 
         selectedItemIDs = Set(
-            trip.packingList.map { $0.itemID }
+            trip.packingList.map { $0.item.id }
         )
 
         packedItemIDs = Set(
             trip.packingList
                 .filter { $0.isPacked }
-                .map { $0.itemID }
+                .map { $0.item.id }
         )
 
         quantities = Dictionary(
             uniqueKeysWithValues: trip.packingList.map {
-                ($0.itemID, $0.quantity)
+                ($0.item.id, $0.quantity)
             }
         )
     }
@@ -376,22 +376,26 @@ struct EditTripView: View {
 
         for itemID in selectedItemIDs {
 
+            guard let item = items.first(where: {
+                $0.id == itemID
+            }) else {
+                continue
+            }
+
             if let existingEntry = oldEntries.first(where: {
-                $0.itemID == itemID
+                $0.item.id == itemID
             }) {
 
                 existingEntry.quantity = quantities[itemID] ?? 1
 
-                existingEntry.isPacked = packedItemIDs.contains(
-                    itemID
-                )
+                existingEntry.isPacked = packedItemIDs.contains(itemID)
 
                 updatedPackingList.append(existingEntry)
 
             } else {
 
                 let newEntry = PackingList(
-                    itemID: itemID,
+                    item: item,
                     quantity: quantities[itemID] ?? 1,
                     isPacked: packedItemIDs.contains(itemID)
                 )
@@ -402,16 +406,16 @@ struct EditTripView: View {
             }
         }
 
-        // Delete Removed Entries
+        // MARK: - Delete Removed Entries
 
         for entry in oldEntries {
 
-            if !selectedItemIDs.contains(entry.itemID) {
+            if !selectedItemIDs.contains(entry.item.id) {
                 modelContext.delete(entry)
             }
         }
 
-        // Update Packing List
+        // MARK: - Update Packing List
 
         trip.packingList = updatedPackingList
 

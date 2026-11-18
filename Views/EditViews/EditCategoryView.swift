@@ -20,7 +20,7 @@ struct EditCategoryView: View {
 
     @State private var name: String
     @State private var icon: String
-    @State private var categoryDescription: String
+    @State private var details: String
 
     // MARK: - Initializer
 
@@ -30,8 +30,8 @@ struct EditCategoryView: View {
 
         _name = State(initialValue: category.name)
         _icon = State(initialValue: category.icon)
-        _categoryDescription = State(
-            initialValue: category.categoryDescribtion
+        _details = State(
+            initialValue: category.details
         )
     }
 
@@ -61,12 +61,12 @@ struct EditCategoryView: View {
 
                 VStack(alignment: .leading, spacing: 8) {
 
-                    Text("Description")
+                    Text("Details")
                         .foregroundStyle(.secondary)
 
                     TextField(
-                        "Category Description",
-                        text: $categoryDescription,
+                        "Category Details",
+                        text: $details,
                         axis: .vertical
                     )
                     .lineLimit(3...5)
@@ -120,7 +120,7 @@ struct EditCategoryView: View {
 
         category.name = trimmedName
         category.icon = icon.isEmpty ? "folder" : icon
-        category.categoryDescribtion = categoryDescription
+        category.details = details
 
         do {
             try modelContext.save()

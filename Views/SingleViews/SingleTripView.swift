@@ -17,7 +17,7 @@ struct SingleTripView: View {
     
     @Bindable var trip: Trip
     
-    @Query(sort: \Item.name) private var items: [Item]
+   // @Query(sort: \Item.name) private var items: [Item]
     
     @State private var showDeleteConfirmation = false
     
@@ -25,14 +25,11 @@ struct SingleTripView: View {
         
         Form {
             
-            HStack(spacing: 8) {
-                
-                // MARK: - Trip Icon
-                Image(systemName: trip.image ?? "airplane")
-                    .font(.title)
-                Text(trip.name)
-                    .font(.title)
-            }
+            // MARK: - Trip Titel
+            
+            Text(trip.name)
+                .font(.title)
+                .fontWeight(.bold)
             
             // MARK: - Trip Information
             
@@ -114,6 +111,7 @@ struct SingleTripView: View {
                 ) {
                     showDeleteConfirmation = true
                 }
+                .disabled(!trip.packingList.isEmpty)
             }
         }
         
@@ -160,50 +158,44 @@ struct SingleTripView: View {
     
     @ViewBuilder
     private func packingListRow(_ entry: PackingList) -> some View {
-        
-        if let item = items.first(where: {
-            $0.id == entry.itemID
-        }) {
-            
-            HStack(spacing: 12) {
-                
-                Image(
-                    systemName: entry.isPacked
-                    ? "checkmark.circle.fill"
-                    : "circle"
-                )
-                .font(.system(size: 22))
-                .foregroundStyle(
-                    entry.isPacked ? .green : .secondary
-                )
-                
-                VStack(alignment: .leading) {
-                    
-                    Text(item.name)
-                        .strikethrough(entry.isPacked)
-                        .foregroundStyle(
-                            entry.isPacked ? .secondary : .primary
-                        )
-                    
-                    Text(item.category.name)
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
+
+        HStack(spacing: 12) {
+
+            Image(
+                systemName: entry.isPacked
+                ? "checkmark.circle.fill"
+                : "circle"
+            )
+            .font(.system(size: 22))
+            .foregroundStyle(
+                entry.isPacked ? .green : .secondary
+            )
+
+            VStack(alignment: .leading) {
+
+                Text(entry.item.name)
+                    .strikethrough(entry.isPacked)
+                    .foregroundStyle(
+                        entry.isPacked ? .secondary : .primary
+                    )
+
+                HStack (spacing: 4) {
+                    Image(systemName: entry.item.category.icon)
+                    Text(entry.item.category.name)
+
                 }
-                
-                Spacer()
-                
-                Text("× \(entry.quantity)")
-                    .foregroundStyle(.secondary)
+                .font(.caption)
+                .foregroundStyle(.secondary)
+
             }
-            .padding(.vertical, 4)
-            
-        } else {
-            
-            Text("Item unavailable")
+
+            Spacer()
+
+            Text("× \(entry.quantity)")
                 .foregroundStyle(.secondary)
         }
+        .padding(.vertical, 4)
     }
-    
     
     // MARK: - Delete Trip
     
