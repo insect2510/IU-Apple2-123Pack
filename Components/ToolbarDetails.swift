@@ -9,9 +9,9 @@
 import Foundation
 import SwiftUI
 
-struct FormToolbar: ToolbarContent {
+struct FormToolbarBack: ToolbarContent {
 
-    let cancelAction: () -> Void
+
     let saveAction: () -> Void
 
     var saveDisabled: Bool = false
