@@ -20,7 +20,6 @@ struct AllItemsView: View {
         ZStack {
             
             Colors.backgroundcolor
-                .ignoresSafeArea()
             
             NavigationStack {
                 
@@ -31,7 +30,7 @@ struct AllItemsView: View {
                         ForEach(items) { item in
                             
                             NavigationLink {
-                                ItemView(item: item)
+                                SingleItemView(item: item)
                             } label: {
                                 
                                 HStack(spacing: 12) {
@@ -62,8 +61,8 @@ struct AllItemsView: View {
                     
                     // MARK: Button Create New Item
                     
-                    SecondaryButton(
-                        title: "Create New Item",
+                    PrimaryButton(
+                        title: "New Item",
                         icon: "plus"
                     ) {
                         showNewItemView = true
@@ -82,7 +81,12 @@ struct AllItemsView: View {
         // MARK: Sheet für NewItemView
         
         .sheet(isPresented: $showNewItemView) {
-            NewItemView()
+            
+            NavigationStack{
+                NewItemView()
+            }
+            
+      
         }
         .padding(0)
     }

@@ -176,12 +176,13 @@ struct EditTripView: View {
 
         .navigationTitle("Edit Trip")
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
 
         
         // MARK: - Toolbar
 
         .toolbar {
-            FormToolbar(
+            ToolbarEdit(
                 cancelAction: {
                     dismiss()
                 },
@@ -428,9 +429,6 @@ struct EditTripView: View {
             )
         }
     }
-
-
-    
     
 }
 

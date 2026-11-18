@@ -41,8 +41,6 @@ struct NewTripView: View {
 
     var body: some View {
 
-        NavigationStack {
-
             Form {
 
                 // MARK: - Trip Information
@@ -161,11 +159,17 @@ struct NewTripView: View {
                     Text("Select the items you want to add to your trip.")
                 }
             }
+            
+            // MARK: - Navigation
+            
+            .navigationTitle("New Trip")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden(true)
 
             // MARK: - Toolbar
 
             .toolbar {
-                FormToolbar(
+                ToolbarEdit(
                     cancelAction: {
                         dismiss()
                     },
@@ -177,7 +181,6 @@ struct NewTripView: View {
                     ).isEmpty
                 )
             }
-        }
     }
 
     // MARK: - Toggle Item

@@ -22,7 +22,6 @@ struct AllCategoriesView: View {
         ZStack {
             
             Colors.backgroundcolor
-                .ignoresSafeArea()
             
             NavigationStack {
                 
@@ -32,7 +31,7 @@ struct AllCategoriesView: View {
                         ForEach(categories) { category in
                             
                             NavigationLink {
-                                CategoryView(category: category)
+                                SingleCategoryView(category: category)
                             } label: {
                                 
                                 HStack(spacing: 12) {
@@ -58,9 +57,9 @@ struct AllCategoriesView: View {
                     }
                     
                     // MARK: Button Create New Category
-                    SecondaryButton(
-                        title: "Create New Category",
-                        icon: "plus"
+                    PrimaryButton(
+                        title: "New Category",
+                        icon: NavIcons.new.rawValue
                     ) {
                         showNewCategoryView = true
                     }
@@ -68,8 +67,12 @@ struct AllCategoriesView: View {
                 }
                 .navigationTitle("Categories")
                 .navigationBarTitleDisplayMode(.large)
+                
                 .sheet(isPresented: $showNewCategoryView) {
-                    CategoryView()
+                    
+                    NavigationStack {
+                        NewCategoryView()
+                    }
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)

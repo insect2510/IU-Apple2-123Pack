@@ -19,6 +19,29 @@ enum Colors {
     static let buttontextcolor: Color = .warmWhite
 }
 
+
+
+// MARK: Icons for navigation and user action
+
+enum NavIcons: String {
+    case cancel = "xmark"
+    case save = "checkmark"
+    case back = "chevron.left"
+    case new = "plus"
+    case trash = "trash"
+}
+
+// MARK: Icons for main flying menu
+
+enum MenuIcon: String {
+    case trips = "airplane"
+    case categories = "list.bullet"
+    case items = "checklist"
+}
+
+
+// MARK: Icons for trips
+
 enum TripIcon: String, CaseIterable {
 
     case airplane = "airplane"
@@ -28,9 +51,6 @@ enum TripIcon: String, CaseIterable {
     case hiking = "figure.hiking"
     case roadtrip = "car"
     case sailboat = "sailboat"
-
-
-    
 
     var title: String {
         switch self {
@@ -51,33 +71,21 @@ enum TripIcon: String, CaseIterable {
 }
 
 
-enum MenuIcon: String {
-    case trips = "airplane"
-    case categories = "list.bullet"
-    case items = "checklist"
-}
-
-enum NavIcons: String {
-    case cancel = "xmark"
-    case save = "checkmark"
-    
-}
-
-
-
+// MARK: Icons for categories
 
 enum CategoryIcon: String, CaseIterable, Identifiable {
 
+    case none = "folder"
+    case accessories = "bag"
+    case camping = "tent"
     case clothing = "tshirt"
-    case hygiene = "shower"
-    case medicine = "cross.case"
-    case technology = "iphone"
     case documents = "doc.text"
     case food = "fork.knife"
-    case camping = "tent"
-    case outdoor = "figure.hiking"
-    case accessories = "bag"
+    case hygiene = "shower"
+    case medicine = "cross.case"
     case music = "headphones"
+    case outdoor = "figure.hiking"
+    case technology = "iphone"
 
     var id: String {
         rawValue
@@ -85,16 +93,18 @@ enum CategoryIcon: String, CaseIterable, Identifiable {
 
     var title: String {
         switch self {
+
+        case .none: return "None"
+        case .accessories: return "Accessories"
+        case .camping: return "Camping"
         case .clothing: return "Clothing"
-        case .hygiene: return "Hygiene"
-        case .medicine: return "Medicine"
-        case .technology: return "Technology"
         case .documents: return "Documents"
         case .food: return "Food"
-        case .camping: return "Camping"
-        case .outdoor: return "Outdoor"
-        case .accessories: return "Accessories"
+        case .hygiene: return "Hygiene"
+        case .medicine: return "Medicine"
         case .music: return "Music"
+        case .outdoor: return "Outdoor"
+        case .technology: return "Technology"
         }
     }
 }
