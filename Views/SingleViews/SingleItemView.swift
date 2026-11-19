@@ -33,7 +33,21 @@ struct SingleItemView: View {
             // MARK: - Item Information
 
             Section() {
-            
+                
+                // MARK: - Category
+                
+                HStack {
+                    
+                    Text("Category:")
+                    
+                    Spacer()
+                    
+                    HStack(spacing: 8) {
+                        Image(systemName: item.category.icon)
+                            .foregroundStyle(.secondary)
+                        Text(item.category.name)
+                    }
+                }
                 
                 // MARK: - Default Quantity
                 
@@ -61,20 +75,6 @@ struct SingleItemView: View {
                     }
                 }
                 
-                // MARK: - Category
-                
-                HStack {
-                    
-                    Text("Category:")
-                    
-                    Spacer()
-                    
-                    HStack(spacing: 8) {
-                        Image(systemName: item.category.icon)
-                            .foregroundStyle(.secondary)
-                        Text(item.category.name)
-                    }
-                }
             }
             
             // MARK: - Delete Item

@@ -74,13 +74,9 @@ struct CardTripView: View {
     
     private var dateRange: String {
 
-        let start = trip.startDate.map {
-            AppDateFormatter.shared.format($0)
-        } ?? "–"
+        let start = AppDateFormatter.shared.format(trip.startDate)
 
-        let end = trip.endDate.map {
-            AppDateFormatter.shared.format($0)
-        } ?? "–"
+        let end = AppDateFormatter.shared.format(trip.endDate)
 
         return "\(start) – \(end)"
     }
@@ -98,14 +94,14 @@ struct CardTripView: View {
                     month: 10,
                     day: 15
                 )
-            ),
+            )!,
             endDate: Calendar.current.date(
                 from: DateComponents(
                     year: 2026,
                     month: 11,
                     day: 12
                 )
-            ),
+            )!,
             image: TripIcon.airplane.rawValue
         )
     )

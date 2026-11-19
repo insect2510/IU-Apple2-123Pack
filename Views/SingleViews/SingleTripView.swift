@@ -17,7 +17,7 @@ struct SingleTripView: View {
     
     @Bindable var trip: Trip
     
-   // @Query(sort: \Item.name) private var items: [Item]
+    // @Query(sort: \Item.name) private var items: [Item]
     
     @State private var showDeleteConfirmation = false
     
@@ -48,40 +48,32 @@ struct SingleTripView: View {
                     }
                 }
                 
-                if let startDate = trip.startDate {
+                HStack {
+                    Text("Start Date:")
                     
-                    HStack {
-                        Text("Start Date:")
-                        
-                        Spacer()
-                        
-                        Text(
-                            startDate.formatted(
-                                date: .abbreviated,
-                                time: .omitted
-                            )
+                    Spacer()
+                    
+                    Text(
+                        trip.startDate.formatted(
+                            date: .abbreviated,
+                            time: .omitted
                         )
-                        
-                    }
-                    
+                    )
                 }
                 
-                if let endDate = trip.endDate {
+                
+                HStack {
                     
-                    HStack {
-                        
-                        Text("End Date:")
-                        
-                        Spacer()
-                        
-                        Text(
-                            endDate.formatted(
-                                date: .abbreviated,
-                                time: .omitted
-                            )
+                    Text("End Date:")
+                    
+                    Spacer()
+                    
+                    Text(
+                        trip.endDate.formatted(
+                            date: .abbreviated,
+                            time: .omitted
                         )
-                    }
-                    
+                    )
                 }
             }
             
@@ -158,9 +150,9 @@ struct SingleTripView: View {
     
     @ViewBuilder
     private func packingListRow(_ entry: PackingList) -> some View {
-
+        
         HStack(spacing: 12) {
-
+            
             Image(
                 systemName: entry.isPacked
                 ? "checkmark.circle.fill"
@@ -170,27 +162,27 @@ struct SingleTripView: View {
             .foregroundStyle(
                 entry.isPacked ? .green : .secondary
             )
-
+            
             VStack(alignment: .leading) {
-
+                
                 Text(entry.item.name)
                     .strikethrough(entry.isPacked)
                     .foregroundStyle(
                         entry.isPacked ? .secondary : .primary
                     )
-
+                
                 HStack (spacing: 4) {
                     Image(systemName: entry.item.category.icon)
                     Text(entry.item.category.name)
-
+                    
                 }
                 .font(.caption)
                 .foregroundStyle(.secondary)
-
+                
             }
-
+            
             Spacer()
-
+            
             Text("× \(entry.quantity)")
                 .foregroundStyle(.secondary)
         }

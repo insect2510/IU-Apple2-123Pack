@@ -50,7 +50,7 @@ struct EditItemView: View {
             
             Section("Item Information") {
                 
-                TextField("Item Name", text: $name)
+                TextField("Item Name:", text: $name)
                 
                 Stepper(
                     "Default Quantity: \(defaultQuantity)",

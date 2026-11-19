@@ -103,11 +103,13 @@ struct SampleData {
             details: "From Tokyo to Hiroshima mit dem Shinkansen. What a Fun!",
             startDate: Calendar.current.date(
                 from: DateComponents(year: 2026, month: 10, day: 22)
-            ),
+            )!,
             endDate: Calendar.current.date(
                 from: DateComponents(year: 2026, month: 11, day: 8)
-            ),
+            )!,
+            image: TripIcon.airplane.rawValue,
             packingList: packingList1
+
         )
 
         let trip2 = Trip(
@@ -115,10 +117,11 @@ struct SampleData {
             details: "Endlich wieder in die Sonne. Bangkok und Koh Phangan",
             startDate: Calendar.current.date(
                 from: DateComponents(year: 2027, month: 5, day: 10)
-            ),
+            )!,
             endDate: Calendar.current.date(
                 from: DateComponents(year: 2027, month: 5, day: 24)
-            ),
+            )!,
+            image: TripIcon.airplane.rawValue,
             packingList: packingList2
         )
 
