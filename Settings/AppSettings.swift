@@ -13,7 +13,7 @@ enum Colors {
     static let primarycolor: Color = .darkBlueGrey
     static let backgroundcolor: Color = .warmWhite
     static let cardbackgroundcolor: Color = .darkSand
-    static let cardbacktextdcolor: Color = .darkBlueGrey
+    static let cardtextdcolor: Color = .darkBlueGrey
     static let menubackgroundcolor: Color = .terra
     static let menutextcolor: Color = .warmWhite
     static let buttonbackgroundcolor: Color = .ocean

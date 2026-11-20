@@ -24,7 +24,7 @@ struct CardTripView: View {
             
             Image(systemName: trip.image ?? "photo")
                 .font(.largeTitle)
-                .foregroundStyle(Colors.cardbacktextdcolor)
+                .foregroundStyle(Colors.cardtextdcolor)
                 .font(.system(size: 48))
                     .frame(width: 70, height: 70)
             
@@ -34,27 +34,27 @@ struct CardTripView: View {
                 
                 Text(trip.name)
                     .font(.title2.bold())
-                    .foregroundStyle(Colors.cardbacktextdcolor)
+                    .foregroundStyle(Colors.cardtextdcolor)
                 
                 // Date
                 HStack {
                     Image(systemName: "calendar")
-                        .foregroundStyle(Colors.cardbacktextdcolor)
+                        .foregroundStyle(Colors.cardtextdcolor)
                     
                     Text(dateRange)
                         .font(.subheadline)
-                        .foregroundStyle(Colors.cardbacktextdcolor)
+                        .foregroundStyle(Colors.cardtextdcolor)
                 }
                 
                 // Packing List Items
                 
                 HStack {
                     Image(systemName: "suitcase")
-                        .foregroundStyle(Colors.cardbacktextdcolor)
+                        .foregroundStyle(Colors.cardtextdcolor)
                     
                     Text("\(trip.packingList.filter { $0.isPacked }.count)/\(trip.packingList.count) Items packed")
                         .font(.subheadline)
-                        .foregroundStyle(Colors.cardbacktextdcolor)
+                        .foregroundStyle(Colors.cardtextdcolor)
                 }
             }
             
