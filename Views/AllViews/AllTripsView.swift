@@ -2,9 +2,9 @@ import SwiftData
 import SwiftUI
 
 struct AllTripsView: View {
-
+    
     @Environment(\.modelContext) private var modelContext
-
+    
     @Query private var categories: [Category]
     @Query private var items: [Item]
     @Query private var trips: [Trip]
@@ -14,79 +14,82 @@ struct AllTripsView: View {
     enum ActiveSheet: Identifiable {
         case newTrip
         case newItem
-
+        
         var id: Self { self }
     }
     
     @State private var activeSheet: ActiveSheet?
-
+    
     var body: some View {
         
         // MARK: - MAIN
-
+        
         ZStack {
             
             Colors.backgroundcolor
+                .ignoresSafeArea()
             
-            NavigationStack {
-
-                List {
-
-                    tripSection
-                    
-                    // MARK: - Create Sample Data
+            List {
+                
+                
+                // MARK: - Trip Cards
+                
+                tripSection
+                
+                // MARK: - Create Sample Data
+                
+                PrimaryButton(
+                    title: "Create Sample Data",
+                    icon: NavIcons.new.rawValue
+                ) {
+                    SampleData.create(in: modelContext)
+                }
+                .disabled(!trips.isEmpty)
+                
+                
+                // MARK: - Button for New Trip and Item
+                
+                HStack(spacing: 16) {
                     
                     PrimaryButton(
-                        title: "Create Sample Data",
+                        title: "New Trip",
                         icon: NavIcons.new.rawValue
                     ) {
-                        SampleData.create(in: modelContext)
+                        activeSheet = .newTrip
                     }
-                    .disabled(!trips.isEmpty)
                     
-
-                    // MARK: - Button for New Trip and Item
-
-                    HStack(spacing: 16) {
-
-                        PrimaryButton(
-                            title: "New Trip",
-                            icon: NavIcons.new.rawValue
-                        ) {
-                            activeSheet = .newTrip
-                        }
+                    Spacer()
                     
-                        Spacer()
-                        
-                        PrimaryButton(
-                            title: "New Item",
-                            icon: NavIcons.new.rawValue
-                        ) {
-                            activeSheet = .newItem
-                        }
-                    
+                    PrimaryButton(
+                        title: "New Item",
+                        icon: NavIcons.new.rawValue
+                    ) {
+                        activeSheet = .newItem
                     }
-                    .listRowBackground(Color.clear)
+                    
                 }
-                .navigationTitle("Trips")
-                .navigationBarTitleDisplayMode(.large)
-                .scrollContentBackground(.hidden)
+                .listRowBackground(Color.clear)
             }
-
+            .listSectionSeparator(.hidden)
+            .navigationTitle("Trips")
+            .navigationBarTitleDisplayMode(.large)
+            
         }
         .preferredColorScheme(.light)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .scrollContentBackground(.hidden)
         
         // MARK: Sheet für NewTripView / NewItemView
-
+        
         .sheet(item: $activeSheet) { sheet in
-
+            
             NavigationStack {
-
+                
                 switch sheet {
-
+                    
                 case .newTrip:
                     NewTripView()
-
+                    
                 case .newItem:
                     NewItemView()
                 }
@@ -96,21 +99,22 @@ struct AllTripsView: View {
         
     }
     
-
+    
     // MARK: - Trip Section
-
+    
     private var tripSection: some View {
         
         Section("Trips (\(trips.count))") {
-
+            
             ForEach(trips) { trip in
-
+                
                 NavigationLink {
                     SingleTripView(trip: trip)
                 } label: {
                     CardTripView(trip: trip)
                 }
                 .buttonStyle(.plain)
+                .listRowSeparator(.hidden)
             }
         }
     }

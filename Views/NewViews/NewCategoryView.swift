@@ -32,7 +32,35 @@ struct NewCategoryView: View {
             
             Section("Category Information") {
                 
-                TextField("Category Name", text: $name)
+                // MARK: - Category Name
+                
+                VStack(alignment: .leading, spacing: 8) {
+                    
+                    Text("Category Name")
+                        .foregroundStyle(.primary)
+                    
+                    PrimaryTextField(title: "No category without a name", text: $name)
+                }
+                
+                // MARK: - Category Details
+                
+                VStack(alignment: .leading, spacing: 8) {
+                    
+                    Text("Category Details")
+                        .foregroundStyle(.primary)
+                    
+                    PrimaryTextField(
+                        title: "Enter some details",
+                        text: $details,
+                    )
+                    .lineLimit(3...5)
+                }
+                
+            }
+            
+            // MARK: - Category Icon
+            
+            Section("Category Icon") {
                 
                 Picker("Select Icon", selection: $icon) {
                     
@@ -46,37 +74,12 @@ struct NewCategoryView: View {
                     }
                 }
                 
-                VStack(alignment: .leading, spacing: 8) {
-                    
-                    Text("Details")
-                        .foregroundStyle(.secondary)
-                    
-                    TextField(
-                        "Category Details",
-                        text: $details,
-                        axis: .vertical
-                    )
-                    .lineLimit(3...5)
-                }
-            }
-            
-            // MARK: - Icon Preview
-            
-            Section("Icon Preview") {
-                
-                HStack(spacing: 16) {
-                    
-                    Image(systemName: icon.isEmpty ? "folder" : icon)
-                        .font(.system(size: 28))
-                        .frame(width: 44)
-                    
-                    Text(name.isEmpty ? "Category Name" : name)
-                        .fontWeight(.semibold)
-                }
             }
         }
         
         // MARK: - Navigation
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .scrollContentBackground(.hidden)
         
         .navigationTitle("New Category")
         .navigationBarTitleDisplayMode(.inline)

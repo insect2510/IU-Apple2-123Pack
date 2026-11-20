@@ -45,23 +45,33 @@ struct EditTripView: View {
 
             // MARK: - Trip Information
 
-            Section("Trip Information") {
-
-                TextField("Trip Name", text: $name)
-
+            Section ("Trip Information") {
+                
                 VStack(alignment: .leading, spacing: 8) {
-
-                    Text("Details")
-                        .foregroundStyle(.secondary)
-
-                    TextField(
-                        "Trip Details",
-                        text: $details,
-                        axis: .vertical
+                    
+                    Text("Trip Name")
+                        .foregroundStyle(.primary)
+                    
+                    PrimaryTextField(title: "Give it a name", text: $name)
+                }
+                
+                VStack(alignment: .leading, spacing: 8) {
+                    
+                    Text("Trip Details")
+                        .foregroundStyle(.primary)
+                    
+                    PrimaryTextField(
+                        title: "Enter some details",
+                        text: $details
                     )
                     .lineLimit(3...5)
                 }
-
+                
+            }
+            
+            // MARK: - Trip Dates
+            
+            Section ("Trip Dates") {
                 DatePicker(
                     "Start Date",
                     selection: $startDate,
@@ -173,7 +183,9 @@ struct EditTripView: View {
         }
 
         // MARK: - Navigation
-
+        
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .scrollContentBackground(.hidden)
         .navigationTitle("Edit Trip")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
@@ -194,7 +206,6 @@ struct EditTripView: View {
                 ).isEmpty
             )
         }
-
         
         .onAppear {
             loadTrip()

@@ -44,8 +44,31 @@ struct EditCategoryView: View {
             // MARK: - Category Information
 
             Section("Category Information") {
+                
+                VStack(alignment: .leading, spacing: 8) {
+                    
+                    Text("Category Name")
+                        .foregroundStyle(.primary)
+                    
+                    PrimaryTextField(title: "No category without a name", text: $name)
+                }
+                
+                VStack(alignment: .leading, spacing: 8) {
 
-                TextField("Category Name", text: $name)
+                    Text("Category Details")
+                        .foregroundStyle(.primary)
+
+                    PrimaryTextField(
+                        title: "Category Details",
+                        text: $details,
+                    )
+                    .lineLimit(3...5)
+                }
+            }
+            
+            // MARK: - Category Icon
+            
+            Section("Category Icon") {
 
                 Picker("Select Icon", selection: $icon) {
 
@@ -58,38 +81,12 @@ struct EditCategoryView: View {
                         .tag(categoryIcon.rawValue)
                     }
                 }
-
-                VStack(alignment: .leading, spacing: 8) {
-
-                    Text("Details")
-                        .foregroundStyle(.secondary)
-
-                    TextField(
-                        "Category Details",
-                        text: $details,
-                        axis: .vertical
-                    )
-                    .lineLimit(3...5)
-                }
-            }
-
-            // MARK: - Icon Preview
-
-            Section("Icon Preview") {
-
-                HStack(spacing: 16) {
-
-                    Image(systemName: icon.isEmpty ? "folder" : icon)
-                        .font(.system(size: 28))
-                        .frame(width: 44)
-
-                    Text(name.isEmpty ? "Category Name" : name)
-                        .fontWeight(.semibold)
-                }
             }
         }
 
         // MARK: - Navigation
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .scrollContentBackground(.hidden)
 
         .navigationTitle("Edit Category")
         .navigationBarTitleDisplayMode(.inline)

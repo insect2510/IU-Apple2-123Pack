@@ -13,60 +13,50 @@ struct SampleData {
     static func create(in modelContext: ModelContext) {
 
         // MARK: - Categories
-
         let clothing = Category(
             name: "Clothing",
             icon: "tshirt",
             details: "Clothing and accessories"
         )
-
         let hygiene = Category(
             name: "Hygiene",
             icon: "shower",
             details: "Personal hygiene"
         )
-
         modelContext.insert(clothing)
         modelContext.insert(hygiene)
 
-
         // MARK: - Items
-
         let tshirt = Item(
             name: "T-Shirt",
             defaultQuantity: 2,
             details: "Basic T-Shirt",
             category: clothing
         )
-
         let pullover = Item(
             name: "Pullover",
             defaultQuantity: 1,
             details: "Warm pullover",
             category: clothing
         )
-
         let trousers = Item(
             name: "Trousers",
             defaultQuantity: 2,
             details: "Comfortable trousers",
             category: clothing
         )
-
         let toothbrush = Item(
             name: "Toothbrush",
             defaultQuantity: 1,
             details: "Manual toothbrush",
             category: hygiene
         )
-
         let shampoo = Item(
             name: "Shampoo",
             defaultQuantity: 1,
             details: "Travel size shampoo",
             category: hygiene
         )
-
         let sampleItems: [Item] = [
             tshirt,
             pullover,
@@ -74,20 +64,16 @@ struct SampleData {
             toothbrush,
             shampoo
         ]
-
         for item in sampleItems {
             modelContext.insert(item)
         }
 
-
         // MARK: - Packing Lists
-
         let packingList1: [PackingList] = [
             PackingList(item: tshirt, quantity: 3, isPacked: true),
             PackingList(item: pullover, quantity: 1, isPacked: true),
             PackingList(item: toothbrush, quantity: 1, isPacked: false)
         ]
-
         let packingList2: [PackingList] = [
             PackingList(item: tshirt, quantity: 2, isPacked: false),
             PackingList(item: trousers, quantity: 2, isPacked: false),
@@ -95,9 +81,7 @@ struct SampleData {
             PackingList(item: shampoo, quantity: 1, isPacked: true)
         ]
 
-
         // MARK: - Trips
-
         let trip1 = Trip(
             name: "Japan Backpacking",
             details: "From Tokyo to Hiroshima mit dem Shinkansen. What a Fun!",

@@ -45,12 +45,37 @@ struct NewTripView: View {
 
                 // MARK: - Trip Information
 
-                Section("Trip Information") {
+                Section("Trip Information"){
                     
                     
-                    // Trip Name
-
-                    TextField("Trip Name", text: $name)
+                    // MARK: Trip Name
+                    
+                    VStack(alignment: .leading, spacing: 8) {
+                        
+                        Text("Trip Name")
+                            .foregroundStyle(.primary)
+                        
+                        PrimaryTextField(title: "No trip without a name", text: $name)
+                    }
+                    
+                    // MARK: Trip Details
+                    
+                    VStack(alignment: .leading, spacing: 8) {
+                        
+                        Text("Trip Details")
+                            .foregroundStyle(.primary)
+                        
+                        PrimaryTextField(
+                            title: "Enter some details",
+                            text: $details
+                        )
+                        .lineLimit(3...5)
+                    }
+                }
+                
+                // MARK: Trip Dates
+                
+                Section("Trip Dates"){
 
                     // Trip Start Date
                     
@@ -69,14 +94,6 @@ struct NewTripView: View {
                         displayedComponents: .date
                     )
                     
-                    // Trip Details
-                    
-                    TextField(
-                        "Description",
-                        text: $details,
-                        axis: .vertical
-                    )
-                    .lineLimit(3...5)
                 }
 
                 // MARK: - Trip Icon
@@ -161,7 +178,8 @@ struct NewTripView: View {
             }
             
             // MARK: - Navigation
-            
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .scrollContentBackground(.hidden)
             .navigationTitle("New Trip")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden(true)
@@ -238,7 +256,6 @@ struct NewTripView: View {
         }
     }
 }
-
 
 #Preview {
     NewTripView()

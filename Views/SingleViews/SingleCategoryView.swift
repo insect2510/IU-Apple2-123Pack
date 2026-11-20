@@ -36,8 +36,6 @@ struct SingleCategoryView: View {
         Form {
             
             // MARK: - Item Name
-
-
             
             HStack(spacing: 8) {
                 
@@ -50,7 +48,7 @@ struct SingleCategoryView: View {
                     .fontWeight(.bold)
             }
             
-            // MARK: - Category Information
+            // MARK: - Category Details
             
             Section {
                 
@@ -116,6 +114,8 @@ struct SingleCategoryView: View {
         
         // MARK: - Navigation
         
+        .scrollContentBackground(.hidden)
+        .background(Colors.backgroundcolor)
         .navigationTitle("Category Details")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)

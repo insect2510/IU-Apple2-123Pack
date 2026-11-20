@@ -25,7 +25,7 @@ struct SingleTripView: View {
         
         Form {
             
-            // MARK: - Trip Titel
+            // MARK: - Trip Name
             
             Text(trip.name)
                 .font(.title)
@@ -35,6 +35,7 @@ struct SingleTripView: View {
             
             Section() {
                 
+                // MARK: - Trip Details
                 
                 if let details = trip.details,
                    !details.isEmpty {
@@ -48,6 +49,8 @@ struct SingleTripView: View {
                     }
                 }
                 
+                // MARK: - Trip Dates
+                
                 HStack {
                     Text("Start Date:")
                     
@@ -60,8 +63,7 @@ struct SingleTripView: View {
                         )
                     )
                 }
-                
-                
+        
                 HStack {
                     
                     Text("End Date:")

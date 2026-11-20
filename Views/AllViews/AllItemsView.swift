@@ -20,62 +20,61 @@ struct AllItemsView: View {
         ZStack {
             
             Colors.backgroundcolor
+                .ignoresSafeArea()
             
-            NavigationStack {
+            List {
                 
-                List {
+                Section("All Items (\(items.count))") {
                     
-                    Section("All Items (\(items.count))") {
+                    ForEach(items) { item in
                         
-                        ForEach(items) { item in
+                        NavigationLink {
+                            SingleItemView(item: item)
+                        } label: {
                             
-                            NavigationLink {
-                                SingleItemView(item: item)
-                            } label: {
+                            HStack(spacing: 12) {
                                 
-                                HStack(spacing: 12) {
+                                Image(systemName: item.category.icon)
+                                    .foregroundStyle(.secondary)
+                                    .frame(width: 28)
+                                
+                                VStack(alignment: .leading, spacing: 4) {
                                     
-                                    Image(systemName: item.category.icon)
-                                        .foregroundStyle(.secondary)
-                                        .frame(width: 28)
+                                    Text(item.name)
+                                        .font(.headline)
                                     
-                                    VStack(alignment: .leading, spacing: 4) {
-                                        
-                                        Text(item.name)
-                                            .font(.headline)
-                                        
-                                        Text(item.category.name)
-                                            .font(.caption)
-                                            .foregroundStyle(.secondary)
-                                    }
-                                    
-                                    Spacer()
-                                    
-                                    Text("× \(item.defaultQuantity)")
+                                    Text(item.category.name)
+                                        .font(.caption)
                                         .foregroundStyle(.secondary)
                                 }
+                                
+                                Spacer()
+                                
+                                Text("× \(item.defaultQuantity)")
+                                    .foregroundStyle(.secondary)
                             }
                         }
                     }
-                    
-                    
-                    // MARK: Button Create New Item
-                    
-                    PrimaryButton(
-                        title: "New Item",
-                        icon: "plus"
-                    ) {
-                        showNewItemView = true
-                    }
                 }
                 
-                .navigationTitle("Items")
-                .navigationBarTitleDisplayMode(.large)
+                
+                // MARK: Button Create New Item
+                
+                PrimaryButton(
+                    title: "New Item",
+                    icon: "plus"
+                ) {
+                    showNewItemView = true
+                }
             }
+            .navigationTitle("Items")
+            .navigationBarTitleDisplayMode(.large)
+            
         }
+        .preferredColorScheme(.light)
+        
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .scrollContentBackground(.hidden)
-        
         
         
         // MARK: Sheet für NewItemView
@@ -86,7 +85,7 @@ struct AllItemsView: View {
                 NewItemView()
             }
             
-      
+            
         }
         .padding(0)
     }

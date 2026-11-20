@@ -23,64 +23,60 @@ struct AllCategoriesView: View {
             
             Colors.backgroundcolor
             
-            NavigationStack {
+            List {
                 
-                List {
-                    Section("All Categories (\(categories.count))") {
+                Section("All Categories (\(categories.count))") {
+                    
+                    ForEach(categories) { category in
                         
-                        ForEach(categories) { category in
+                        NavigationLink {
+                            SingleCategoryView(category: category)
+                        } label: {
                             
-                            NavigationLink {
-                                SingleCategoryView(category: category)
-                            } label: {
+                            HStack(spacing: 12) {
                                 
-                                HStack(spacing: 12) {
+                                Image(systemName: category.icon)
+                                    .foregroundStyle(.secondary)
+                                    .frame(width: 28)
+                                
+                                VStack(alignment: .leading, spacing: 4) {
                                     
-                                    Image(systemName: category.icon)
+                                    Text(category.name)
+                                        .font(.headline)
+                                    
+                                    Text(category.details)
+                                        .font(.caption)
                                         .foregroundStyle(.secondary)
-                                        .frame(width: 28)
-                                    
-                                    VStack(alignment: .leading, spacing: 4) {
-                                        
-                                        Text(category.name)
-                                            .font(.headline)
-                                        
-                                        Text(category.details)
-                                            .font(.caption)
-                                            .foregroundStyle(.secondary)
-                                    }
-                                    
-                                    Spacer()
                                 }
+                                
+                                Spacer()
                             }
                         }
                     }
-                    
-                    // MARK: Button Create New Category
-                    PrimaryButton(
-                        title: "New Category",
-                        icon: NavIcons.new.rawValue
-                    ) {
-                        showNewCategoryView = true
-                    }
-                    
                 }
-                .navigationTitle("Categories")
-                .navigationBarTitleDisplayMode(.large)
                 
-                .sheet(isPresented: $showNewCategoryView) {
-                    
-                    NavigationStack {
-                        NewCategoryView()
-                    }
+                // MARK: Button Create New Category
+                PrimaryButton(
+                    title: "New Category",
+                    icon: NavIcons.new.rawValue
+                ) {
+                    showNewCategoryView = true
+                }
+                
+            }
+            .navigationTitle("Categories")
+            .navigationBarTitleDisplayMode(.large)
+            
+            .sheet(isPresented: $showNewCategoryView) {
+                
+                NavigationStack {
+                    NewCategoryView()
                 }
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .scrollContentBackground(.hidden)
             
-            
-
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .scrollContentBackground(.hidden)
     }
 }
 

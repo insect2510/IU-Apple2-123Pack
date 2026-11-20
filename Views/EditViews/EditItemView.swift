@@ -50,71 +50,86 @@ struct EditItemView: View {
             
             Section("Item Information") {
                 
-                TextField("Item Name:", text: $name)
+                // MARK: Trip Name
+                
+                VStack(alignment: .leading, spacing: 8) {
+                    
+                    Text("Item Name")
+                        .foregroundStyle(.primary)
+                    
+                    PrimaryTextField(title: "No item without a name", text: $name)
+                }
+                
+                // MARK: Default Quantity
                 
                 Stepper(
                     "Default Quantity: \(defaultQuantity)",
                     value: $defaultQuantity,
                     in: 1...99
                 )
-            }
-            
-            // MARK: - Category
-            
-            Section() {
                 
-                Picker(
-                    "Select Category:",
-                    selection: $selectedCategoryID
-                ) {
-                    
-                    Text("Select Category")
-                        .tag(nil as UUID?)
-                    
-                    ForEach(categories) { category in
-                        
-                        HStack(spacing: 8) {
-                            Image(systemName: category.icon)
-                                .foregroundStyle(.secondary)
-                            Text(category.name)
-                        }
-                        .tag(category.id as UUID?)
-                    }
-                }
                 
-                Button {
-                    
-                    showNewCategoryView = true
-                    
-                } label: {
-                    Label(
-                        "Create New Category",
-                        systemImage: "plus.circle"
-                    )
-                }
-            }
-            
-            // MARK: - Details
-            
-            Section {
+                // MARK: Trip Details
                 
                 VStack(alignment: .leading, spacing: 8) {
                     
-                    Text("Details")
-                        .foregroundStyle(.secondary)
+                    Text("Item Details")
+                        .foregroundStyle(.primary)
                     
-                    TextField(
-                        "Item Details",
+                    PrimaryTextField(
+                        title: "Enter some details",
                         text: $details,
-                        axis: .vertical
                     )
                     .lineLimit(3...5)
                 }
+                
             }
             
+            Section("Item Category") {
+                
+                // MARK: - Category
+                
+                VStack(alignment: .leading, spacing: 12) {
+                    
+                    Picker(
+                        "Select Category:",
+                        selection: $selectedCategoryID
+                    ) {
+                        
+                        Text("Select Category")
+                            .tag(nil as UUID?)
+                        
+                        ForEach(categories) { category in
+                            
+                            HStack(spacing: 8) {
+                                Image(systemName: category.icon)
+                                    .foregroundStyle(.secondary)
+                                Text(category.name)
+                            }
+                            .tag(category.id as UUID?)
+                        }
+                    }
+                    
+                    Button {
+                        
+                        showNewCategoryView = true
+                        
+                    } label: {
+                        Label(
+                            "Create New Category",
+                            systemImage: "plus.circle"
+                        )
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                }
+            
+            }
         }
         
         // MARK: - Navigation
+        
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .scrollContentBackground(.hidden)
         
         .navigationTitle("Edit Item")
         .navigationBarTitleDisplayMode(.inline)

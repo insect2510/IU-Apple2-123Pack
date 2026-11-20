@@ -92,6 +92,8 @@ struct SingleItemView: View {
 
         // MARK: - Navigation
 
+        .scrollContentBackground(.hidden)
+        .background(Colors.backgroundcolor)
         .navigationTitle("Item Detail")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)

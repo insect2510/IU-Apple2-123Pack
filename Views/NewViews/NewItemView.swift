@@ -36,7 +36,15 @@ struct NewItemView: View {
             
             Section("Item Information") {
                 
-                TextField("Item Name", text: $name)
+                VStack(alignment: .leading, spacing: 8) {
+                    
+                    Text("Item Name")
+                        .foregroundStyle(.primary)
+                    
+                    PrimaryTextField(title: "No item without a name", text: $name)
+                }
+                
+                // MARK: - Quantity
                 
                 Stepper(
                     "Default Quantity: \(defaultQuantity)",
@@ -44,15 +52,16 @@ struct NewItemView: View {
                     in: 1...99
                 )
                 
+                // MARK: - Item Details
+                
                 VStack(alignment: .leading, spacing: 8) {
                     
-                    Text("Details")
-                        .foregroundStyle(.secondary)
+                    Text("Item Details")
+                        .foregroundStyle(.primary)
                     
-                    TextField(
-                        "Item Details",
+                    PrimaryTextField(
+                        title: "Item Details",
                         text: $details,
-                        axis: .vertical
                     )
                     .lineLimit(3...5)
                 }
@@ -101,6 +110,8 @@ struct NewItemView: View {
         }
         
         // MARK: - Navigation
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .scrollContentBackground(.hidden)
         
         .navigationTitle("New Item")
         .navigationBarTitleDisplayMode(.inline)
