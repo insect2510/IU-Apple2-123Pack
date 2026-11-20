@@ -38,7 +38,7 @@ struct AllTripsView: View {
                 
                 // MARK: - Button for New Trip and Item
                 
-                HStack(spacing: 16) {
+                HStack {
                     
                     PrimaryButton(
                         title: "New Trip",

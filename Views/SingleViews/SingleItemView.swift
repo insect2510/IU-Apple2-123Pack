@@ -17,6 +17,7 @@ struct SingleItemView: View {
     let item: Item
     
     @State private var showDeleteConfirmation = false
+    @State private var showEditItem = false
     
     @Query private var trips: [Trip]
 
@@ -76,19 +77,34 @@ struct SingleItemView: View {
                 }
                 
             }
-            .background(Colors.cardbackgroundcolor.opacity(0.1))
             
             // MARK: - Delete Item
 
             Section {
                 
-                PrimaryButton(
-                    title: "Delete Item",
-                    icon: NavIcons.trash.rawValue
-                ) {
-                    showDeleteConfirmation = true
+                HStack {
+                    
+                    PrimaryButton(
+                        title: "Edit item",
+                        icon: NavIcons.edit.rawValue
+                    ) {
+                        showEditItem = true
+                    }
+                    
+                    Spacer()
+                    
+                    PrimaryButton(
+                        title: "Delete Item",
+                        icon: NavIcons.trash.rawValue
+                    ) {
+                        showDeleteConfirmation = true
+                    }
+
+                    
                 }
+                .listRowBackground(Color.clear)
             }
+            
         }
 
         // MARK: - Navigation
@@ -98,6 +114,9 @@ struct SingleItemView: View {
         .navigationTitle("Item Detail")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
+        .navigationDestination(isPresented: $showEditItem) {
+            EditItemView(item: item)
+        }
         .toolbar {
             ToolbarDetails(
                 dismissAction: {

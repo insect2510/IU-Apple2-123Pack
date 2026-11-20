@@ -30,6 +30,7 @@ enum NavIcons: String {
     case back = "chevron.left"
     case new = "plus"
     case trash = "trash"
+    case edit = "pencil"
 }
 
 // MARK: Icons for main flying menu

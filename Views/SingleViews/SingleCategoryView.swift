@@ -17,6 +17,7 @@ struct SingleCategoryView: View {
     let category: Category
     
     @State private var showDeleteConfirmation = false
+    @State private var showEditCategory = false
     
     
     // MARK: - Assigned Items
@@ -94,20 +95,30 @@ struct SingleCategoryView: View {
                 }
             }
             
-            
             // MARK: Actions
             
             Section {
                 
-                // Delete Category
-                 
-                 PrimaryButton(
-                     title: "Delete Category",
-                     icon: NavIcons.trash.rawValue
-                 ) {
-                     showDeleteConfirmation = true
-                 }
-                 .disabled(!categoryItems.isEmpty)
+                HStack {
+                    
+                    PrimaryButton(
+                        title: "Edit Category",
+                        icon: NavIcons.edit.rawValue
+                    ) {
+                        showEditCategory = true
+                    }
+                    
+                    Spacer()
+                    
+                    PrimaryButton(
+                        title: "Delete Category",
+                        icon: NavIcons.trash.rawValue
+                    ) {
+                        showDeleteConfirmation = true
+                    }
+                    .disabled(!categoryItems.isEmpty)
+                }
+                .listRowBackground(Color.clear)
             }
             
         }
@@ -119,6 +130,9 @@ struct SingleCategoryView: View {
         .navigationTitle("Category Details")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
+        .navigationDestination(isPresented: $showEditCategory) {
+            EditCategoryView(category: category)
+        }
         
         .toolbar {
             ToolbarDetails(

@@ -20,6 +20,7 @@ struct SingleTripView: View {
     // @Query(sort: \Item.name) private var items: [Item]
     
     @State private var showDeleteConfirmation = false
+    @State private var showEditTrip = false
     
     var body: some View {
         
@@ -103,14 +104,29 @@ struct SingleTripView: View {
             
             Section {
                 
-                PrimaryButton(
-                    title: "Delete Trip",
-                    icon: NavIcons.trash.rawValue
-                ) {
-                    showDeleteConfirmation = true
+                HStack {
+                    
+                    PrimaryButton(
+                        title: "Edit Trip",
+                        icon: NavIcons.edit.rawValue
+                    ) {
+                        showEditTrip = true
+                    }
+                    
+                    Spacer()
+                    
+                    PrimaryButton(
+                        title: "Delete Trip",
+                        icon: NavIcons.trash.rawValue
+                    ) {
+                        showDeleteConfirmation = true
+                    }
+                    .disabled(!trip.packingList.isEmpty)
+                    
                 }
-                .disabled(!trip.packingList.isEmpty)
+                .listRowBackground(Color.clear)
             }
+            
         }
 
         
@@ -121,11 +137,16 @@ struct SingleTripView: View {
         .navigationTitle("Trip Details")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
+        .navigationDestination(isPresented: $showEditTrip) {
+            EditTripView(trip: trip)
+        }
         .toolbar {
             ToolbarDetails(
                 dismissAction: {
                     dismiss()
-                },
+                }
+                ,
+                
                 editDestination: AnyView(
                     EditTripView(trip: trip)
                 )
