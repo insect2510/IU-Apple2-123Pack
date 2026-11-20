@@ -86,7 +86,7 @@ struct NewCategoryView: View {
         .navigationBarBackButtonHidden(true)
         
         .toolbar {
-            ToolbarEdit(
+            ToolbarSave(
                 cancelAction: {
                     dismiss()
                 },

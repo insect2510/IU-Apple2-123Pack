@@ -141,7 +141,7 @@ struct SingleTripView: View {
             EditTripView(trip: trip)
         }
         .toolbar {
-            ToolbarDetails(
+            ToolbarEdit(
                 dismissAction: {
                     dismiss()
                 }

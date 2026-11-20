@@ -1,46 +1,31 @@
 
-//
-//  FormToolbar.swift
-//  123Pack
-//
-//  Created by Oliver Hartmann on 16.11.26.
-//
-
 import Foundation
 import SwiftUI
 
 struct ToolbarEdit: ToolbarContent {
 
-    let cancelAction: () -> Void
-    let saveAction: () -> Void
-
-    var saveDisabled: Bool = false
+    let dismissAction: () -> Void
+    var editDestination: AnyView? = nil
 
     var body: some ToolbarContent {
 
-        ToolbarItem(placement: .cancellationAction) {
-
+        ToolbarItem(placement: .navigationBarLeading) {
             Button {
-                cancelAction()
+                dismissAction()
             } label: {
-                Label(
-                    "Cancel",
-                    systemImage: NavIcons.cancel.rawValue
-                )
+                Label("Back", systemImage: NavIcons.back.rawValue)
             }
         }
 
-        ToolbarItem(placement: .confirmationAction) {
+        if let editDestination {
 
-            Button {
-                saveAction()
-            } label: {
-                Label(
-                    "Save",
-                    systemImage: NavIcons.save.rawValue
-                )
+            ToolbarItem(placement: .confirmationAction) {
+                NavigationLink {
+                    editDestination
+                } label: {
+                    Text("Edit")
+                }
             }
-            .disabled(saveDisabled)
         }
     }
 }

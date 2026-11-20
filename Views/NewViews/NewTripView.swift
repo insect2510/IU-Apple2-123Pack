@@ -187,7 +187,7 @@ struct NewTripView: View {
             // MARK: - Toolbar
 
             .toolbar {
-                ToolbarEdit(
+                ToolbarSave(
                     cancelAction: {
                         dismiss()
                     },

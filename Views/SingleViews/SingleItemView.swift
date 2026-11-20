@@ -118,7 +118,7 @@ struct SingleItemView: View {
             EditItemView(item: item)
         }
         .toolbar {
-            ToolbarDetails(
+            ToolbarEdit(
                 dismissAction: {
                     dismiss()
                 },

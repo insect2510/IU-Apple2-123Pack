@@ -135,7 +135,7 @@ struct SingleCategoryView: View {
         }
         
         .toolbar {
-            ToolbarDetails(
+            ToolbarEdit(
                 dismissAction: {
                     dismiss()
                 },

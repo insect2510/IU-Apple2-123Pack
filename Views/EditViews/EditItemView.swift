@@ -138,7 +138,7 @@ struct EditItemView: View {
         // MARK: - Toolbar
         
         .toolbar {
-            ToolbarEdit(
+            ToolbarSave(
                 cancelAction: {
                     dismiss()
                 },
