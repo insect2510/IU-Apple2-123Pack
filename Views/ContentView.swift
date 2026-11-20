@@ -14,7 +14,7 @@ struct ContentView: View {
     var body: some View {
 
         // MARK: - Header
-        Menu1Header()
+        Header()
     
         
         Menu2Bottom()
