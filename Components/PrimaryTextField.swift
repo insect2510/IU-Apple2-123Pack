@@ -19,7 +19,7 @@ struct PrimaryTextField: View {
 
         TextField(title, text: $text, axis: .vertical)
             .padding(12)
-            .background(Colors.cardcolor)
+            .background(Colors.backgroundcolor)
             .clipShape(RoundedRectangle(cornerRadius: 8))
             .overlay {
                 RoundedRectangle(cornerRadius: 8)

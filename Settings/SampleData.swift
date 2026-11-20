@@ -91,7 +91,7 @@ struct SampleData {
             endDate: Calendar.current.date(
                 from: DateComponents(year: 2026, month: 11, day: 8)
             )!,
-            image: TripIcon.airplane.rawValue,
+            image: TripIcon.holiday.rawValue,
             packingList: packingList1
 
         )
@@ -105,7 +105,7 @@ struct SampleData {
             endDate: Calendar.current.date(
                 from: DateComponents(year: 2027, month: 5, day: 24)
             )!,
-            image: TripIcon.airplane.rawValue,
+            image: TripIcon.backpack.rawValue,
             packingList: packingList2
         )
 

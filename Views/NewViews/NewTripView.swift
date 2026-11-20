@@ -31,7 +31,7 @@ struct NewTripView: View {
     
     @State private var details = ""
 
-    @State private var selectedIcon: TripIcon = .airplane
+    @State private var selectedIcon: TripIcon = .holiday
 
     // MARK: - Item Selection
 

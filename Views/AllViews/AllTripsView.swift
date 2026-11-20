@@ -36,17 +36,6 @@ struct AllTripsView: View {
                 
                 tripSection
                 
-                // MARK: - Create Sample Data
-                
-                PrimaryButton(
-                    title: "Create Sample Data",
-                    icon: NavIcons.new.rawValue
-                ) {
-                    SampleData.create(in: modelContext)
-                }
-                .disabled(!trips.isEmpty)
-                
-                
                 // MARK: - Button for New Trip and Item
                 
                 HStack(spacing: 16) {

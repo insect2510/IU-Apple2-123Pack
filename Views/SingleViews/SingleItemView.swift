@@ -22,7 +22,7 @@ struct SingleItemView: View {
 
     var body: some View {
 
-        Form {
+        List {
             
             // MARK: - Item Name
 
@@ -76,6 +76,7 @@ struct SingleItemView: View {
                 }
                 
             }
+            .background(Colors.cardbackgroundcolor.opacity(0.1))
             
             // MARK: - Delete Item
 

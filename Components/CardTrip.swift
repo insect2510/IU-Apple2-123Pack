@@ -17,18 +17,16 @@ struct CardTripView: View {
     let trip: Trip
     
     var body: some View {
+        
         HStack(spacing: 8) {
             
             // MARK: Trip Icon
             
-            RoundedRectangle(cornerRadius: 8)
-                .fill(Colors.cardcolor.opacity(0.5))
-                .frame(width: 100, height: 100)
-                .overlay {
-                    Image(systemName: trip.image ?? "photo")
-                        .font(.largeTitle)
-                        .foregroundStyle(Colors.primarycolor)
-                }
+            Image(systemName: trip.image ?? "photo")
+                .font(.largeTitle)
+                .foregroundStyle(Colors.cardbacktextdcolor)
+                .font(.system(size: 48))
+                    .frame(width: 70, height: 70)
             
             // MARK: Trip Information
             
@@ -36,38 +34,37 @@ struct CardTripView: View {
                 
                 Text(trip.name)
                     .font(.title2.bold())
-                    .foregroundStyle(Colors.primarycolor)
+                    .foregroundStyle(Colors.cardbacktextdcolor)
                 
                 // Date
                 HStack {
                     Image(systemName: "calendar")
-                        .foregroundStyle(Colors.primarycolor)
+                        .foregroundStyle(Colors.cardbacktextdcolor)
                     
                     Text(dateRange)
                         .font(.subheadline)
-                        .foregroundStyle(Colors.primarycolor)
+                        .foregroundStyle(Colors.cardbacktextdcolor)
                 }
                 
                 // Packing List Items
                 
                 HStack {
                     Image(systemName: "suitcase")
-                        .foregroundStyle(Colors.primarycolor)
+                        .foregroundStyle(Colors.cardbacktextdcolor)
                     
                     Text("\(trip.packingList.filter { $0.isPacked }.count)/\(trip.packingList.count) Items packed")
                         .font(.subheadline)
-                        .foregroundStyle(Colors.primarycolor)
+                        .foregroundStyle(Colors.cardbacktextdcolor)
                 }
             }
             
             Spacer()
         }
         .padding()
-        .background(Colors.cardcolor)
+        .background(Colors.cardbackgroundcolor.opacity(0.1))
         .clipShape(
-            RoundedRectangle(cornerRadius: 16)
+            RoundedRectangle(cornerRadius: 8)
         )
-        .shadow(radius: 2)
     }
     
     // MARK: - Date Range
@@ -102,7 +99,7 @@ struct CardTripView: View {
                     day: 12
                 )
             )!,
-            image: TripIcon.airplane.rawValue
+            image: TripIcon.holiday.rawValue
         )
     )
     .padding()

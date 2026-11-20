@@ -33,7 +33,7 @@ struct SingleCategoryView: View {
     
     var body: some View {
         
-        Form {
+        List {
             
             // MARK: - Item Name
             

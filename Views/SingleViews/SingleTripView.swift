@@ -23,7 +23,7 @@ struct SingleTripView: View {
     
     var body: some View {
         
-        Form {
+        List {
             
             // MARK: - Trip Name
             
@@ -78,6 +78,8 @@ struct SingleTripView: View {
                     )
                 }
             }
+
+           
             
             // MARK: - Packing List
             
@@ -95,6 +97,8 @@ struct SingleTripView: View {
                     }
                 }
             }
+
+            
             // MARK: - Delete Trip
             
             Section {
@@ -108,6 +112,7 @@ struct SingleTripView: View {
                 .disabled(!trip.packingList.isEmpty)
             }
         }
+
         
         // MARK: - Navigation
         

@@ -12,7 +12,8 @@ enum Colors {
 
     static let primarycolor: Color = .darkBlueGrey
     static let backgroundcolor: Color = .warmWhite
-    static let cardcolor: Color = .warmWhite
+    static let cardbackgroundcolor: Color = .darkSand
+    static let cardbacktextdcolor: Color = .darkBlueGrey
     static let menubackgroundcolor: Color = .terra
     static let menutextcolor: Color = .warmWhite
     static let buttonbackgroundcolor: Color = .ocean
@@ -44,23 +45,33 @@ enum MenuIcon: String {
 
 enum TripIcon: String, CaseIterable {
 
-    case airplane = "airplane"
     case backpack = "backpack"
+    case business = "briefcase"
     case camping = "tent"
     case city = "building.2"
     case hiking = "figure.hiking"
+    case holiday = "airplane"
+    case musicGig = "music.mic"
     case roadtrip = "car"
+    case roundTheWorld = "globe"
     case sailboat = "sailboat"
+    case schoolTrip = "house.lodge"
+
 
     var title: String {
         switch self {
-        case .airplane: return "Airplane"
+     
         case .backpack: return "Backpack"
+        case .business: return "Business"
         case .camping: return "Camping"
         case .city: return "Citytrip"
         case .hiking: return "Hiking"
+        case .holiday: return "Holyday"
+        case .musicGig: return "Music Gig"
         case .roadtrip: return "Roadtrip"
+        case .roundTheWorld: return "Round-the-World Trip"
         case .sailboat: return "Sailing"
+        case .schoolTrip: return "School Trip"
             
         }
     }
@@ -73,6 +84,7 @@ enum TripIcon: String, CaseIterable {
 
 // MARK: Icons for categories
 
+
 enum CategoryIcon: String, CaseIterable, Identifiable {
 
     case none = "folder"
@@ -81,11 +93,17 @@ enum CategoryIcon: String, CaseIterable, Identifiable {
     case clothing = "tshirt"
     case documents = "doc.text"
     case food = "fork.knife"
+    case footwear = "shoe"
     case hygiene = "shower"
+    case instruments = "pianokeys"
     case medicine = "cross.case"
+    case money = "wallet.bifold"
     case music = "headphones"
     case outdoor = "figure.hiking"
+    case photography = "camera"
+    case sleeping = "bed.double"
     case technology = "iphone"
+    case tickets = "ticket"
 
     var id: String {
         rawValue
@@ -93,18 +111,23 @@ enum CategoryIcon: String, CaseIterable, Identifiable {
 
     var title: String {
         switch self {
-
         case .none: return "None"
         case .accessories: return "Accessories"
         case .camping: return "Camping"
         case .clothing: return "Clothing"
         case .documents: return "Documents"
         case .food: return "Food"
+        case .footwear: return "Footwear"
         case .hygiene: return "Hygiene"
+        case .instruments: return "Musical Instruments"
         case .medicine: return "Medicine"
+        case .money: return "Money"
         case .music: return "Music"
         case .outdoor: return "Outdoor"
+        case .photography: return "Photography"
+        case .sleeping: return "Sleeping"
         case .technology: return "Technology"
+        case .tickets: return "Tickets"
         }
     }
 }

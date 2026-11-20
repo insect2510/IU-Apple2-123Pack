@@ -27,7 +27,7 @@ struct EditTripView: View {
     @State private var startDate = Date()
     @State private var endDate = Date()
 
-    @State private var selectedIcon: TripIcon = .airplane
+    @State private var selectedIcon: TripIcon = .holiday
 
     // Packing List
 
@@ -228,7 +228,7 @@ struct EditTripView: View {
 
         selectedIcon = TripIcon(
             rawValue: trip.image ?? ""
-        ) ?? .airplane
+        ) ?? .holiday
 
         selectedItemIDs = Set(
             trip.packingList.map { $0.item.id }
