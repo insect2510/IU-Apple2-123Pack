@@ -10,14 +10,14 @@ import SwiftUI
 
 enum Colors {
 
-    static let primarycolor: Color = .darkBlueGrey
-    static let backgroundcolor: Color = .warmWhite
+    static let primarycolor: Color = .blueGrey
+    static let backgroundcolor: Color = .white
     static let cardbackgroundcolor: Color = .darkSand
-    static let cardtextdcolor: Color = .darkBlueGrey
+    static let cardtextdcolor: Color = .blueGrey
     static let menubackgroundcolor: Color = .terra
-    static let menutextcolor: Color = .warmWhite
+    static let menutextcolor: Color = .white
     static let buttonbackgroundcolor: Color = .ocean
-    static let buttontextcolor: Color = .warmWhite
+    static let buttontextcolor: Color = .white
 }
 
 
@@ -90,21 +90,21 @@ enum CategoryIcon: String, CaseIterable, Identifiable {
 
     case none = "folder"
     case accessories = "bag"
+    case books = "book"
     case camping = "tent"
     case clothing = "tshirt"
     case documents = "doc.text"
     case food = "fork.knife"
     case footwear = "shoe"
     case hygiene = "shower"
-    case instruments = "pianokeys"
     case medicine = "cross.case"
     case money = "wallet.bifold"
     case music = "headphones"
     case outdoor = "figure.hiking"
     case photography = "camera"
     case sleeping = "bed.double"
+    case sport = "figure.run"
     case technology = "iphone"
-    case tickets = "ticket"
 
     var id: String {
         rawValue
@@ -114,21 +114,21 @@ enum CategoryIcon: String, CaseIterable, Identifiable {
         switch self {
         case .none: return "None"
         case .accessories: return "Accessories"
+        case .books: return "Books"
         case .camping: return "Camping"
         case .clothing: return "Clothing"
         case .documents: return "Documents"
         case .food: return "Food"
         case .footwear: return "Footwear"
         case .hygiene: return "Hygiene"
-        case .instruments: return "Musical Instruments"
         case .medicine: return "Medicine"
         case .money: return "Money"
         case .music: return "Music"
         case .outdoor: return "Outdoor"
         case .photography: return "Photography"
         case .sleeping: return "Sleeping"
+        case .sport: return "Sport"
         case .technology: return "Technology"
-        case .tickets: return "Tickets"
         }
     }
 }

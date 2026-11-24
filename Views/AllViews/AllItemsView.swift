@@ -56,6 +56,8 @@ struct AllItemsView: View {
                         }
                     }
                 }
+
+  
                 
                 
                 // MARK: Button Create New Item
@@ -66,9 +68,11 @@ struct AllItemsView: View {
                 ) {
                     showNewItemView = true
                 }
+               
             }
             .navigationTitle("Items")
             .navigationBarTitleDisplayMode(.large)
+    
             
         }
         .preferredColorScheme(.light)
@@ -88,6 +92,7 @@ struct AllItemsView: View {
             
         }
         .padding(0)
+ 
     }
 }
 

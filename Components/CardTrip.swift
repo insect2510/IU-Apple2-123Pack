@@ -61,7 +61,7 @@ struct CardTripView: View {
             Spacer()
         }
         .padding()
-        .background(Colors.cardbackgroundcolor.opacity(0.1))
+        .background(Colors.cardbackgroundcolor)
         .clipShape(
             RoundedRectangle(cornerRadius: 8)
         )
