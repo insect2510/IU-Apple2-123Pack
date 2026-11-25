@@ -94,7 +94,7 @@ struct EditItemView: View {
                     selection: $selectedCategoryID
                 ) {
                     
-                    Text("Select Category")
+                    Text("Select Category:")
                         .tag(nil as UUID?)
                     
                     ForEach(categories) { category in
@@ -117,7 +117,7 @@ struct EditItemView: View {
                 } label: {
                     Label(
                         "Create New Category",
-                        systemImage: "plus.circle"
+                        systemImage: NavIcons.newcircle.rawValue
                     )
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)

@@ -64,12 +64,15 @@ struct NewCategoryView: View {
                 
                 Picker("Select Icon", selection: $icon) {
                     
+                    Text("Select Icon:")
+                    
                     ForEach(CategoryIcon.allCases) { categoryIcon in
                         
-                        Label(
-                            categoryIcon.title,
-                            systemImage: categoryIcon.rawValue
-                        )
+                        HStack(spacing: 8) {
+                            Image(systemName: categoryIcon.rawValue)
+                                .foregroundStyle(.secondary)
+                            Text(categoryIcon.title)
+                        }
                         .tag(categoryIcon.rawValue)
                     }
                 }

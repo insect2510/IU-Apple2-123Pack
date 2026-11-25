@@ -90,7 +90,6 @@ enum CategoryIcon: String, CaseIterable, Identifiable {
     case none = "folder"
     case accessories = "bag"
     case books = "book"
-    case camping = "tent"
     case clothing = "tshirt"
     case documents = "doc.text"
     case food = "fork.knife"
@@ -102,7 +101,7 @@ enum CategoryIcon: String, CaseIterable, Identifiable {
     case outdoor = "figure.hiking"
     case photography = "camera"
     case sleeping = "bed.double"
-    case sport = "figure.run"
+    case sport = "dumbbell"
     case technology = "iphone"
 
     var id: String {
@@ -114,7 +113,6 @@ enum CategoryIcon: String, CaseIterable, Identifiable {
         case .none: return "None"
         case .accessories: return "Accessories"
         case .books: return "Books"
-        case .camping: return "Camping"
         case .clothing: return "Clothing"
         case .documents: return "Documents"
         case .food: return "Food"
