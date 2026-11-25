@@ -5,7 +5,7 @@
 
 import SwiftUI
 
-struct Menu2Bottom: View {
+struct MenuTabView: View {
     
     var body: some View {
         
@@ -18,9 +18,7 @@ struct Menu2Bottom: View {
                 NavigationStack {
                     
                     AllTripsView()
-                    
                 }
-                
             }
             
             // Items    AllItemsView()
@@ -30,9 +28,7 @@ struct Menu2Bottom: View {
                 NavigationStack {
                     
                     AllItemsView()
-                    
                 }
-                
             }
             
             // CategoryAllCategoriesView()
@@ -42,11 +38,8 @@ struct Menu2Bottom: View {
                 NavigationStack {
                     
                     AllCategoriesView()
-                    
                 }
-                
             }
-            
         }
         
         .frame(maxWidth: .infinity)
@@ -85,5 +78,5 @@ struct MenuItemView: View {
 // MARK: - Preview
 
 #Preview {
-    Menu2Bottom()
+    MenuTabView()
 }

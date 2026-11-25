@@ -17,7 +17,7 @@ struct ContentView: View {
         Header()
     
         
-        Menu2Bottom()
+        MenuTabView()
   
     }
     
