@@ -17,8 +17,6 @@ struct SingleTripView: View {
     
     @Bindable var trip: Trip
     
-    // @Query(sort: \Item.name) private var items: [Item]
-    
     @State private var showDeleteConfirmation = false
     @State private var showEditTrip = false
     

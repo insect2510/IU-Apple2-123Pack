@@ -59,7 +59,6 @@ struct AllItemsView: View {
 
   
                 
-                
                 // MARK: Button Create New Item
                 
                 PrimaryButton(
