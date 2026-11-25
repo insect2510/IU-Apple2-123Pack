@@ -219,10 +219,10 @@ struct EditTripView: View {
         name = trip.name
         details = trip.details ?? ""
 
-        startDate = trip.startDate ?? Date()
+        startDate = trip.startDate
 
         endDate = max(
-            trip.endDate ?? Date(),
+            trip.endDate,
             startDate
         )
 

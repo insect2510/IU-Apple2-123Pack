@@ -31,12 +31,13 @@ enum NavIcons: String {
     case new = "plus"
     case trash = "trash"
     case edit = "pencil"
+    case newcircle = "plus.circle"
 }
 
 // MARK: Icons for main flying menu
 
 enum MenuIcon: String {
-    case trips = "airplane"
+    case trips = "airplane.up.right"
     case categories = "list.bullet"
     case items = "checklist"
 }
@@ -47,12 +48,11 @@ enum MenuIcon: String {
 enum TripIcon: String, CaseIterable {
 
     case backpack = "backpack"
+    case holiday = "beach.umbrella"
     case business = "briefcase"
     case camping = "tent"
     case city = "building.2"
-    case hiking = "figure.hiking"
-    case holiday = "airplane"
-    case musicGig = "music.mic"
+    case hiking = "mountain.2"
     case roadtrip = "car"
     case roundTheWorld = "globe"
     case sailboat = "sailboat"
@@ -62,16 +62,15 @@ enum TripIcon: String, CaseIterable {
     var title: String {
         switch self {
      
-        case .backpack: return "Backpack"
-        case .business: return "Business"
-        case .camping: return "Camping"
-        case .city: return "Citytrip"
-        case .hiking: return "Hiking"
-        case .holiday: return "Holyday"
-        case .musicGig: return "Music Gig"
-        case .roadtrip: return "Roadtrip"
-        case .roundTheWorld: return "Round-the-World Trip"
-        case .sailboat: return "Sailing"
+        case .backpack: return "Backpacking Trip"
+        case .holiday: return "Beach Holyday"
+        case .business: return "Business Trip"
+        case .camping: return "Camping Trip"
+        case .city: return "City Trip"
+        case .hiking: return "Hiking Trip"
+        case .roadtrip: return "Road Trip"
+        case .roundTheWorld: return "Round-the-World-Trip"
+        case .sailboat: return "Sailing Trip"
         case .schoolTrip: return "School Trip"
             
         }
@@ -130,58 +129,5 @@ enum CategoryIcon: String, CaseIterable, Identifiable {
         case .sport: return "Sport"
         case .technology: return "Technology"
         }
-    }
-}
-
-
-enum ItemIcon: String, CaseIterable, Identifiable {
-
-    // Kleidung
-    case tshirt = "tshirt"
-    case pants = "figure.walk"
-    case shoes = "shoe"
-    case socks = "tshirt.fill"
-    case jacket = "cloud"
-
-    // Hygiene
-    case toothbrush = "mouth"
-    case shampoo = "shower"
-    case towel = "rectangle.portrait"
-
-    // Medizin
-    case firstAid = "cross.case"
-    case medication = "pills"
-    case sunscreen = "sun.max"
-
-    // Technik
-    case smartphone = "iphone"
-    case charger = "battery.100.bolt"
-    case headphones = "headphones"
-    case camera = "camera"
-    case laptop = "laptopcomputer"
-
-    // Dokumente & Geld
-    case passport = "person.text.rectangle"
-    case wallet = "wallet.pass"
-    case creditCard = "creditcard"
-
-    // Essen
-    case waterBottle = "waterbottle"
-    case snacks = "fork.knife"
-    case mug = "mug"
-
-    // Camping & Outdoor
-    case tent = "tent"
-    case sleepingBag = "bed.double"
-    case flashlight = "flashlight.on.fill"
-    case backpack = "backpack"
-
-    // Sonstiges
-    case sunglasses = "sunglasses"
-    case book = "book"
-    case padlock = "lock"
-
-    var id: String {
-        rawValue
     }
 }

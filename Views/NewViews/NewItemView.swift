@@ -103,7 +103,7 @@ struct NewItemView: View {
                 } label: {
                     Label(
                         "Create New Category",
-                        systemImage: "plus.circle"
+                        systemImage: NavIcons.newcircle.rawValue
                     )
                 }
             }
