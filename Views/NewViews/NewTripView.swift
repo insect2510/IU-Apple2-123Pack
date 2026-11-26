@@ -20,17 +20,13 @@ struct NewTripView: View {
     // MARK: - Properties
 
     @State private var name = ""
-
     @State private var startDate = Date()
-    
     @State private var endDate = Calendar.current.date(
         byAdding: .day,
         value: 1,
         to: Date()
     ) ?? Date()
-    
     @State private var details = ""
-
     @State private var selectedIcon: TripIcon = .holiday
 
     // MARK: - Item Selection

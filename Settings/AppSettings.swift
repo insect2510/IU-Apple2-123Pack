@@ -34,6 +34,8 @@ enum NavIcons: String {
     case newcircle = "plus.circle"
 }
 
+
+
 // MARK: Icons for main flying menu
 
 enum MenuIcon: String {

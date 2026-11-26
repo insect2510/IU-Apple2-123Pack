@@ -12,7 +12,12 @@ import SwiftData
 
 struct AllItemsView: View {
     
-    @Query(sort: \Item.name) private var items: [Item]
+    @Query(sort: [
+        SortDescriptor(\Item.category.name),
+        SortDescriptor(\Item.name)
+    ])
+    
+    private var items: [Item]
     @State private var showNewItemView = false
     
     var body: some View {
@@ -56,8 +61,6 @@ struct AllItemsView: View {
                         }
                     }
                 }
-
-  
                 
                 // MARK: Button Create New Item
                 
@@ -67,12 +70,12 @@ struct AllItemsView: View {
                 ) {
                     showNewItemView = true
                 }
-               
+                
             }
             .navigationTitle("Items")
             .navigationBarTitleDisplayMode(.large)
-    
             
+
         }
         .preferredColorScheme(.light)
         
@@ -91,7 +94,7 @@ struct AllItemsView: View {
             
         }
         .padding(0)
- 
+        
     }
 }
 

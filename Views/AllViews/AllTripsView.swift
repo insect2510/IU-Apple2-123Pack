@@ -7,7 +7,7 @@ struct AllTripsView: View {
     
     @Query private var categories: [Category]
     @Query private var items: [Item]
-    @Query private var trips: [Trip]
+    @Query(sort: \Trip.startDate) private var trips: [Trip]
     
     // sheet modifier for buttons
     
