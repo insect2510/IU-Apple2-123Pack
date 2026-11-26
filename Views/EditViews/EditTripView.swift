@@ -16,8 +16,13 @@ struct EditTripView: View {
     @Environment(\.dismiss) private var dismiss
 
     @Bindable var trip: Trip
-
-    @Query(sort: \Item.name) private var items: [Item]
+    
+    @Query(sort: [
+        SortDescriptor(\Item.category.name),
+        SortDescriptor(\Item.name)
+    ])
+    
+    private var items: [Item]
 
     // MARK: - State
 

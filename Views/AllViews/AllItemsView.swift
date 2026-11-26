@@ -18,6 +18,7 @@ struct AllItemsView: View {
     ])
     
     private var items: [Item]
+    
     @State private var showNewItemView = false
     
     var body: some View {

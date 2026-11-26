@@ -20,6 +20,7 @@ struct SingleTripView: View {
     @State private var showDeleteConfirmation = false
     @State private var showEditTrip = false
     
+    
     var body: some View {
         
         List {
@@ -77,8 +78,6 @@ struct SingleTripView: View {
                     )
                 }
             }
-
-           
             
             // MARK: - Packing List
             

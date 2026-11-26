@@ -79,7 +79,7 @@ struct SingleCategoryView: View {
                     ForEach(categoryItems) { item in
                         
                         NavigationLink {
-                            EditItemView(item: item)
+                            SingleItemView(item: item)
                         } label: {
                             
                             HStack(spacing: 12) {

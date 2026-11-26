@@ -16,6 +16,7 @@ struct AllCategoriesView: View {
     @State private var showNewCategoryView = false
     
     @Query(sort: \Category.name) private var categories: [Category]
+    @Query private var items: [Item]
     
     var body: some View {
         
@@ -41,7 +42,7 @@ struct AllCategoriesView: View {
                                 
                                 VStack(alignment: .leading, spacing: 4) {
                                     
-                                    Text(category.name)
+                                    Text("\(category.name) (\(items.filter { $0.category.id == category.id }.count))")
                                         .font(.headline)
                                     
                                     Text(category.details)
