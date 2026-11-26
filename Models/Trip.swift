@@ -13,7 +13,7 @@ class Trip {
     var details: String?
     var startDate: Date
     var endDate: Date
-    var image: String?
+    var image: String
 
     @Relationship(deleteRule: .cascade)
     var packingList: [PackingList] = []
@@ -23,7 +23,7 @@ class Trip {
         details: String? = nil,
         startDate: Date,
         endDate: Date,
-        image: String? = nil,
+        image: String,
         packingList: [PackingList] = []
     ) {
         self.name = name

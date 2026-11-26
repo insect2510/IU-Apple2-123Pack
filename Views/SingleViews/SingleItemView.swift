@@ -20,6 +20,15 @@ struct SingleItemView: View {
     @State private var showEditItem = false
     
     @Query private var trips: [Trip]
+    
+    // MARK: - Assigned Trips
+
+    private var assignedTrips: [Trip] {
+        trips.filter { trip in
+            trip.packingList.contains { $0.item.id == item.id }
+        }
+        .sorted { $0.name.localizedStandardCompare($1.name) == .orderedAscending }
+    }
 
     var body: some View {
 
@@ -33,7 +42,7 @@ struct SingleItemView: View {
 
             // MARK: - Item Information
 
-            Section() {
+            Section {
                 
                 // MARK: - Category
                 
@@ -78,7 +87,45 @@ struct SingleItemView: View {
                 
             }
             
-            // MARK: - Delete Item
+            // MARK: - Assigned Trips
+
+            Section("Trips (\(assignedTrips.count))") {
+
+                if assignedTrips.isEmpty {
+
+                    Text("This item is not assigned to any trip.")
+                        .foregroundStyle(.secondary)
+
+                } else {
+
+                    ForEach(assignedTrips) { trip in
+
+                        NavigationLink {
+                            SingleTripView(trip: trip)
+                        } label: {
+
+                            HStack(spacing: 12) {
+
+                                Image(systemName: trip.image)
+                                    .foregroundStyle(.secondary)
+                                    .frame(width: 28)
+
+                                VStack(alignment: .leading, spacing: 4) {
+
+                                    Text(trip.name)
+                                        .font(.headline)
+
+                                }
+
+                                Spacer()
+                            }
+                        }
+                    }
+                }
+            }
+            
+            
+            // MARK: - Edit or Delete Item
 
             Section {
                 
@@ -99,6 +146,7 @@ struct SingleItemView: View {
                     ) {
                         showDeleteConfirmation = true
                     }
+                    .disabled(!assignedTrips.isEmpty)
 
                     
                 }
