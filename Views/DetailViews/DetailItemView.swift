@@ -9,11 +9,11 @@ import Foundation
 import SwiftUI
 import SwiftData
 
-struct SingleItemView: View {
-
+struct DetailItemView: View {
+    
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
-
+    
     let item: Item
     
     @State private var showDeleteConfirmation = false
@@ -22,42 +22,47 @@ struct SingleItemView: View {
     @Query private var trips: [Trip]
     
     // MARK: - Assigned Trips
-
+    
     private var assignedTrips: [Trip] {
         trips.filter { trip in
             trip.packingList.contains { $0.item.id == item.id }
         }
         .sorted { $0.name.localizedStandardCompare($1.name) == .orderedAscending }
     }
-
+    
     var body: some View {
-
+        
         List {
             
-            // MARK: - Item Name
-
-            Text(item.name)
-                .font(.title)
-                .fontWeight(.bold)
-
-            // MARK: - Item Information
-
-            Section {
+            // MARK: - Item Header
+            
+            VStack(alignment: .leading, spacing: 16) {
                 
-                // MARK: - Category
-                
-                HStack {
+                HStack(spacing: 16) {
                     
-                    Text("Category:")
+                    Image(systemName: item.category.icon)
+                        .font(.system(size: 32, weight: .medium))
+                        .foregroundStyle(.primary)
+                        .frame(width: 68, height: 68)
+                        .background(
+                            Colors.cardbackgroundcolor,
+                            in: RoundedRectangle(cornerRadius: 16)
+                        )
                     
-                    Spacer()
-                    
-                    HStack(spacing: 8) {
-                        Image(systemName: item.category.icon)
-                            .foregroundStyle(.secondary)
+                    VStack(alignment: .leading, spacing: 5) {
+                        
+                        Text(item.name)
+                            .font(.title)
+                            .fontWeight(.bold)
+                        
                         Text(item.category.name)
                     }
                 }
+            }
+            
+            // MARK: - Item Information
+            
+            Section {
                 
                 // MARK: - Default Quantity
                 
@@ -71,52 +76,58 @@ struct SingleItemView: View {
                     
                 }
                 
-                // MARK: - Details
-
-                if let details = item.details, !details.isEmpty {
-                    
-                    VStack(alignment: .leading, spacing: 8) {
-
-                        Text("Details:")
-                            .foregroundStyle(.secondary)
-
-                        Text(item.details ?? "...")
-                     
-                    }
-                }
-                
             }
             
+            
+            // MARK: - Details
+            
+            Section("Details") {
+                
+                if let details = item.details, !details.isEmpty {
+                    
+                    Text(details)
+                    
+                } else {
+                    
+                    // in case there are no details entered
+                    
+                    Text("No Details.")
+                        .foregroundStyle(.secondary)
+                    
+                }
+            }
+            
+            
             // MARK: - Assigned Trips
-
+            
             Section("Trips (\(assignedTrips.count))") {
-
+                
                 if assignedTrips.isEmpty {
-
+                    
                     Text("This item is not assigned to any trip.")
                         .foregroundStyle(.secondary)
-
+                    
                 } else {
-
+                    
                     ForEach(assignedTrips) { trip in
-
+                        
                         NavigationLink {
                             SingleTripView(trip: trip)
                         } label: {
-
+                            
                             HStack(spacing: 12) {
-
+                                
                                 Image(systemName: trip.image)
                                     .foregroundStyle(.secondary)
                                     .frame(width: 28)
-
+                                
                                 VStack(alignment: .leading, spacing: 4) {
-
+                                    
                                     Text(trip.name)
                                         .font(.headline)
-
+                                    
                                 }
-
+                                
                                 Spacer()
                             }
                         }
@@ -126,7 +137,7 @@ struct SingleItemView: View {
             
             
             // MARK: - Edit or Delete Item
-
+            
             Section {
                 
                 HStack {
@@ -147,16 +158,16 @@ struct SingleItemView: View {
                         showDeleteConfirmation = true
                     }
                     .disabled(!assignedTrips.isEmpty)
-
+                    
                     
                 }
                 .listRowBackground(Color.clear)
             }
             
         }
-
+        
         // MARK: - Navigation
-
+        
         .scrollContentBackground(.hidden)
         .background(Colors.backgroundcolor)
         .navigationTitle("Item Detail")
@@ -183,43 +194,43 @@ struct SingleItemView: View {
             isPresented: $showDeleteConfirmation,
             titleVisibility: .visible
         ) {
-
+            
             Button("Delete Item", role: .destructive) {
                 deleteItem()
             }
-
+            
             Button("Cancel", role: .cancel) {}
-
+            
         } message: {
-
+            
             Text("Are you sure you want to delete this item?")
         }
     }
     
     // MARK: - Delete Trip
-
+    
     private func deleteItem() {
-
+        
         // Alle Packlisten-Einträge dieses Items finden und löschen
         
         for trip in trips {
-
+            
             let entriesToDelete = trip.packingList.filter {
                 $0.item == item
             }
-
+            
             for entry in entriesToDelete {
                 trip.packingList.removeAll {
                     $0.persistentModelID == entry.persistentModelID
                 }
-
+                
                 modelContext.delete(entry)
             }
         }
-
+        
         // Anschließend das eigentliche Item löschen
         modelContext.delete(item)
-
+        
         do {
             try modelContext.save()
             dismiss()

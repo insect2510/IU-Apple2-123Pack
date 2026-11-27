@@ -31,7 +31,7 @@ struct EditCategoryView: View {
         _name = State(initialValue: category.name)
         _icon = State(initialValue: category.icon)
         _details = State(
-            initialValue: category.details
+            initialValue: category.details ?? "No details."
         )
     }
 

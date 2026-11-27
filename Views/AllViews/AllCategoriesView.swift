@@ -31,7 +31,7 @@ struct AllCategoriesView: View {
                     ForEach(categories) { category in
                         
                         NavigationLink {
-                            SingleCategoryView(category: category)
+                            DetailCategoryView(category: category)
                         } label: {
                             
                             HStack(spacing: 12) {
@@ -44,10 +44,6 @@ struct AllCategoriesView: View {
                                     
                                     Text("\(category.name) (\(items.filter { $0.category.id == category.id }.count))")
                                         .font(.headline)
-                                    
-                                    Text(category.details)
-                                        .font(.caption)
-                                        .foregroundStyle(.secondary)
                                 }
                                 
                                 Spacer()

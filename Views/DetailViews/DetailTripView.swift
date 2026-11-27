@@ -25,29 +25,51 @@ struct SingleTripView: View {
         
         List {
             
-            // MARK: - Trip Name
+            // MARK: - Trip Header
             
-            Text(trip.name)
-                .font(.title)
-                .fontWeight(.bold)
+            VStack(alignment: .leading, spacing: 16) {
+                
+                HStack(spacing: 16) {
+                    
+                    Image(systemName: trip.image)
+                        .font(.system(size: 32, weight: .medium))
+                        .foregroundStyle(.primary)
+                        .frame(width: 68, height: 68)
+                        .background(
+                            Colors.cardbackgroundcolor,
+                            in: RoundedRectangle(cornerRadius: 16)
+                        )
+                    
+                    VStack(alignment: .leading, spacing: 5) {
+                        
+                        Text(trip.name)
+                            .font(.title)
+                            .fontWeight(.bold)
+                    }
+                }
+            }
+            
+            // MARK: - Trip Details
+            
+            Section("Details") {
+                
+                if let details = trip.details, !details.isEmpty {
+                    
+                    Text(details)
+                    
+                } else {
+                    
+                    // in case there are no details entered
+                    
+                    Text("No Details.")
+                        .foregroundStyle(.secondary)
+                    
+                }
+            }
             
             // MARK: - Trip Information
             
-            Section() {
-                
-                // MARK: - Trip Details
-                
-                if let details = trip.details,
-                   !details.isEmpty {
-                    
-                    VStack(alignment: .leading, spacing: 8) {
-                        
-                        Text("Details")
-                            .foregroundStyle(.secondary)
-                        
-                        Text(details)
-                    }
-                }
+            Section("Dates") {
                 
                 // MARK: - Trip Dates
                 
@@ -63,7 +85,7 @@ struct SingleTripView: View {
                         )
                     )
                 }
-        
+                
                 HStack {
                     
                     Text("End Date:")
@@ -95,7 +117,7 @@ struct SingleTripView: View {
                     }
                 }
             }
-
+            
             
             // MARK: - Delete Trip
             
@@ -125,7 +147,7 @@ struct SingleTripView: View {
             }
             
         }
-
+        
         
         // MARK: - Navigation
         

@@ -27,7 +27,7 @@ struct NewTripView: View {
         to: Date()
     ) ?? Date()
     @State private var details = ""
-    @State private var selectedIcon: TripIcon = .holiday
+    @State private var selectedIcon: TripIcon = TripIcon.allCases.first ?? .holiday
 
     // MARK: - Item Selection
 
@@ -96,11 +96,13 @@ struct NewTripView: View {
 
                 Section("Trip Icon") {
 
-                    Picker("Select Icon", selection: $selectedIcon) {
+                    Picker("", selection: $selectedIcon) {
+                        
+                        Text("Select Icon")
 
                         ForEach(TripIcon.allCases, id: \.self) { icon in
 
-                            HStack(spacing: 10) {
+                            HStack(spacing: 12) {
                                 Image(systemName: icon.rawValue)
                                 Text(icon.title)
                             }

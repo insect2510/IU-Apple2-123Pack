@@ -96,9 +96,11 @@ struct EditTripView: View {
             Section("Trip Icon") {
 
                 Picker(
-                    "Select Icon",
+                    "",
                     selection: $selectedIcon
                 ) {
+                    
+                    Text("Trip Icon")
 
                     ForEach(TripIcon.allCases, id: \.self) { icon in
 

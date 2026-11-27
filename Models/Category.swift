@@ -19,13 +19,13 @@ class Category {
 
     var name: String
     var icon: String
-    var details: String
+    var details: String?
 
     init(
         id: UUID = UUID(),
         name: String,
         icon: String,
-        details: String
+        details: String?
     ) {
         self.id = id
         self.name = name

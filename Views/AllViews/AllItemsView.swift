@@ -35,7 +35,7 @@ struct AllItemsView: View {
                     ForEach(items) { item in
                         
                         NavigationLink {
-                            SingleItemView(item: item)
+                            DetailItemView(item: item)
                         } label: {
                             
                             HStack(spacing: 12) {

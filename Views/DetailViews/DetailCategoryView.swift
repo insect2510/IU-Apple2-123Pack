@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import SwiftData
 
-struct SingleCategoryView: View {
+struct DetailCategoryView: View {
     
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
@@ -38,32 +38,49 @@ struct SingleCategoryView: View {
             
             // MARK: - Item Name
             
-            HStack(spacing: 8) {
+            VStack(alignment: .leading, spacing: 16) {
+
+                // MARK: - Category Header
+
+                HStack(spacing: 16) {
+
+                    Image(systemName: category.icon)
+                        .font(.system(size: 32, weight: .medium))
+                        .foregroundStyle(.primary)
+                        .frame(width: 68, height: 68)
+                        .background(
+                            Colors.cardbackgroundcolor,
+                            in: RoundedRectangle(cornerRadius: 16)
+                        )
+
+                    VStack(alignment: .leading, spacing: 5) {
                 
-                // MARK: - Category Icon
-                Image(systemName: category.icon)
-                    .font(.title)
-                
-                Text(category.name)
-                    .font(.title)
-                    .fontWeight(.bold)
-            }
-            
-            // MARK: - Category Details
-            
-            Section {
-                
-                if !category.details.isEmpty {
-                    
-                    VStack(alignment: .leading, spacing: 8) {
-                        
-                        Text("Details")
-                            .foregroundStyle(.secondary)
-                        
-                        Text(category.details)
+                        Text(category.name)
+                            .font(.title)
+                            .fontWeight(.bold)
                     }
                 }
             }
+            
+            
+            // MARK: - Details
+            
+            Section("Details") {
+                
+                if let details = category.details, !details.isEmpty {
+                    
+                    Text(details)
+                    
+                } else {
+                    
+                    // in case there are no details entered
+                    
+                    Text("No Details.")
+                        .foregroundStyle(.secondary)
+                    
+                }
+            }
+            
                         
             // MARK: - Assigned Items
             
@@ -79,7 +96,7 @@ struct SingleCategoryView: View {
                     ForEach(categoryItems) { item in
                         
                         NavigationLink {
-                            SingleItemView(item: item)
+                            DetailItemView(item: item)
                         } label: {
                             
                             HStack(spacing: 12) {
