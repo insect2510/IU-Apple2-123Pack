@@ -71,7 +71,7 @@ enum TripIcon: String, CaseIterable {
         case .city: return "City Trip"
         case .hiking: return "Hiking Trip"
         case .roadtrip: return "Road Trip"
-        case .roundTheWorld: return "Round-the-World-Trip"
+        case .roundTheWorld: return "Round-the-World"
         case .sailboat: return "Sailing Trip"
         case .schoolTrip: return "School Trip"
             

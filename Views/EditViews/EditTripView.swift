@@ -17,6 +17,8 @@ struct EditTripView: View {
 
     @Bindable var trip: Trip
     
+    // sort category name > item name
+    
     @Query(sort: [
         SortDescriptor(\Item.category.name),
         SortDescriptor(\Item.name)
@@ -54,6 +56,8 @@ struct EditTripView: View {
                 
                 VStack(alignment: .leading, spacing: 8) {
                     
+                    // display trip name
+                    
                     Text("Trip Name")
                         .foregroundStyle(.primary)
                     
@@ -61,6 +65,8 @@ struct EditTripView: View {
                 }
                 
                 VStack(alignment: .leading, spacing: 8) {
+                    
+                    // display trip details
                     
                     Text("Trip Details")
                         .foregroundStyle(.primary)
@@ -77,11 +83,16 @@ struct EditTripView: View {
             // MARK: - Trip Dates
             
             Section ("Trip Dates") {
+                
+                // start date
+                
                 DatePicker(
                     "Start Date",
                     selection: $startDate,
                     displayedComponents: .date
                 )
+                
+                // end date
 
                 DatePicker(
                     "End Date",
@@ -94,13 +105,13 @@ struct EditTripView: View {
             // MARK: - Trip Icon
 
             Section("Trip Icon") {
+                
+                // icon picker
 
-                Picker(
-                    "",
-                    selection: $selectedIcon
+                Picker("Select Icon:", selection: $selectedIcon
                 ) {
                     
-                    Text("Trip Icon")
+                    Text("Select Icon")
 
                     ForEach(TripIcon.allCases, id: \.self) { icon in
 
@@ -121,12 +132,16 @@ struct EditTripView: View {
                     selectedItemIDs.contains($0.id)
                 }
 
+                // if no items have been added to a trip
+                
                 if addedItems.isEmpty {
 
                     Text("No items added yet.")
                         .foregroundStyle(.secondary)
 
                 } else {
+                    
+                    // if items have been added, show them
 
                     ForEach(addedItems) { item in
                         addedItemRow(item)
@@ -142,6 +157,8 @@ struct EditTripView: View {
                     !selectedItemIDs.contains($0.id)
                 }
 
+                // if no more items are available
+                
                 if availableItems.isEmpty {
 
                     Text("All items have been added.")
@@ -149,7 +166,11 @@ struct EditTripView: View {
 
                 } else {
 
+                    // if items are availablem show them
+                    
                     ForEach(availableItems) { item in
+                        
+                        // button to add item to a trip
 
                         Button {
 
@@ -158,15 +179,21 @@ struct EditTripView: View {
                         } label: {
 
                             HStack(spacing: 12) {
+                                
+                                // display item category icon
 
                                 Image(systemName: item.category.icon)
                                     .foregroundStyle(.secondary)
                                     .frame(width: 28)
 
                                 VStack(alignment: .leading) {
+                                    
+                                    // display item name
 
                                     Text(item.name)
                                         .foregroundStyle(.primary)
+                                    
+                                    // display item categoriy name
 
                                     Text(item.category.name)
                                         .font(.caption)
@@ -201,6 +228,7 @@ struct EditTripView: View {
         // MARK: - Toolbar
 
         .toolbar {
+            
             ToolbarSave(
                 cancelAction: {
                     dismiss()
@@ -219,7 +247,7 @@ struct EditTripView: View {
         }
     }
 
-    // MARK: - Load Trip
+    // MARK: - Load Trip to edit non destructive
 
     private func loadTrip() {
 
@@ -227,25 +255,35 @@ struct EditTripView: View {
         details = trip.details ?? ""
 
         startDate = trip.startDate
+        
+        // end date not earlier than start date
 
         endDate = max(
             trip.endDate,
             startDate
         )
+        
+        // trip icon
 
         selectedIcon = TripIcon(
-            rawValue: trip.image ?? ""
+            rawValue: trip.image
         ) ?? .holiday
+        
+        // selectected items for a trip
 
         selectedItemIDs = Set(
             trip.packingList.map { $0.item.id }
         )
 
+        // packed items for a trip
+        
         packedItemIDs = Set(
             trip.packingList
                 .filter { $0.isPacked }
                 .map { $0.item.id }
         )
+        
+        // quantity of an item for a trip
 
         quantities = Dictionary(
             uniqueKeysWithValues: trip.packingList.map {
@@ -322,6 +360,7 @@ struct EditTripView: View {
         .padding(.vertical, 4)
     }
 
+    
     // MARK: - Add Item
 
     private func addItem(_ item: Item) {
@@ -331,6 +370,7 @@ struct EditTripView: View {
         quantities[item.id] = item.defaultQuantity
         packedItemIDs.remove(item.id)
     }
+    
 
     // MARK: - Remove Item
 
@@ -340,6 +380,7 @@ struct EditTripView: View {
         packedItemIDs.remove(item.id)
         quantities.removeValue(forKey: item.id)
     }
+    
 
     // MARK: - Toggle Packed
 
@@ -352,6 +393,7 @@ struct EditTripView: View {
         }
     }
 
+    
     // MARK: - Quantity Binding
 
     private func quantityBinding(
@@ -369,6 +411,7 @@ struct EditTripView: View {
             }
         )
     }
+    
 
     // MARK: - Save Changes
 
@@ -417,6 +460,8 @@ struct EditTripView: View {
                     quantity: quantities[itemID] ?? 1,
                     isPacked: packedItemIDs.contains(itemID)
                 )
+                
+                // insert into modelconext
 
                 modelContext.insert(newEntry)
 

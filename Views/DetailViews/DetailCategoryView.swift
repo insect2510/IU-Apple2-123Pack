@@ -95,6 +95,8 @@ struct DetailCategoryView: View {
                     
                     ForEach(categoryItems) { item in
                         
+                        // Open DetailView
+                        
                         NavigationLink {
                             DetailItemView(item: item)
                         } label: {

@@ -58,7 +58,7 @@ struct NewTripView: View {
                     
                     VStack(alignment: .leading, spacing: 8) {
                         
-                        Text("Trip Details")
+                        Text("Details")
                             .foregroundStyle(.primary)
                         
                         PrimaryTextField(
@@ -71,7 +71,7 @@ struct NewTripView: View {
                 
                 // MARK: Trip Dates
                 
-                Section("Trip Dates"){
+                Section("Dates"){
 
                     // Trip Start Date
                     
@@ -94,9 +94,9 @@ struct NewTripView: View {
 
                 // MARK: - Trip Icon
 
-                Section("Trip Icon") {
+                Section("Icon") {
 
-                    Picker("", selection: $selectedIcon) {
+                    Picker("Select Icon:", selection: $selectedIcon) {
                         
                         Text("Select Icon")
 

@@ -53,6 +53,7 @@ struct AllCategoriesView: View {
                 }
                 
                 // MARK: Button Create New Category
+                
                 PrimaryButton(
                     title: "New Category",
                     icon: NavIcons.new.rawValue

@@ -60,7 +60,7 @@ struct NewItemView: View {
                         .foregroundStyle(.primary)
                     
                     PrimaryTextField(
-                        title: "Item Details",
+                        title: "Enter some details",
                         text: $details,
                     )
                     .lineLimit(3...5)

@@ -89,9 +89,7 @@ struct EditItemView: View {
                 
                 // MARK: - Category
                 
-                Picker(
-                    "Select Category:",
-                    selection: $selectedCategoryID
+                Picker("Select Category:", selection: $selectedCategoryID
                 ) {
                     
                     Text("Select Category:")
