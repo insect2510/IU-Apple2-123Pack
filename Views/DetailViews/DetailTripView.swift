@@ -202,12 +202,12 @@ struct SingleTripView: View {
             
             Image(
                 systemName: entry.isPacked
-                ? "checkmark.circle.fill"
-                : "circle"
+                ? NavIcons.checkmark.rawValue
+                : NavIcons.circle.rawValue
             )
             .font(.system(size: 22))
             .foregroundStyle(
-                entry.isPacked ? .green : .secondary
+                entry.isPacked ? Colors.primarycolor : .secondary
             )
             
             VStack(alignment: .leading) {

@@ -62,22 +62,34 @@ struct NewCategoryView: View {
             
             Section("Category Icon") {
                 
-                Picker("Select Icon", selection: $icon) {
-                    
-                    Text("Select Icon:")
-                    
-                    ForEach(CategoryIcon.allCases) { categoryIcon in
-                        
-                        HStack(spacing: 8) {
-                            Image(systemName: categoryIcon.rawValue)
-                                .foregroundStyle(.secondary)
-                            Text(categoryIcon.title)
+                VStack(alignment: .leading, spacing: 8) {
+
+                    Picker("", selection: $icon) {
+
+                        ForEach(CategoryIcon.allCases) { categoryIcon in
+                            
+                            HStack(spacing: 8) {
+                                Image(systemName: categoryIcon.rawValue)
+                                    .foregroundStyle(.secondary)
+                                Text(categoryIcon.title)
+                            }
+                            .tag(categoryIcon.rawValue)
                         }
-                        .tag(categoryIcon.rawValue)
+                    }
+                    .pickerStyle(.menu)
+                    .labelsHidden()
+                    .tint(.primary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(12)
+                    .background(Colors.backgroundcolor)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 8)
+                            .strokeBorder(.quaternary, lineWidth: 1)
                     }
                 }
-                
             }
+
         }
         
         // MARK: - Navigation

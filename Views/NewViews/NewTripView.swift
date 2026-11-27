@@ -48,7 +48,7 @@ struct NewTripView: View {
                     
                     VStack(alignment: .leading, spacing: 8) {
                         
-                        Text("Trip Name")
+                        Text("Trip Name:")
                             .foregroundStyle(.primary)
                         
                         PrimaryTextField(title: "No trip without a name", text: $name)
@@ -58,7 +58,7 @@ struct NewTripView: View {
                     
                     VStack(alignment: .leading, spacing: 8) {
                         
-                        Text("Details")
+                        Text("Trip Details:")
                             .foregroundStyle(.primary)
                         
                         PrimaryTextField(
@@ -71,12 +71,12 @@ struct NewTripView: View {
                 
                 // MARK: Trip Dates
                 
-                Section("Dates"){
+                Section("Trip Dates"){
 
                     // Trip Start Date
                     
                     DatePicker(
-                        "Start Date",
+                        "Start Date:",
                         selection: $startDate,
                         displayedComponents: .date
                     )
@@ -84,7 +84,7 @@ struct NewTripView: View {
                     // Trip End Date
                     
                     DatePicker(
-                        "End Date",
+                        "End Date:",
                         selection: $endDate,
                         in: startDate...,
                         displayedComponents: .date
@@ -94,19 +94,32 @@ struct NewTripView: View {
 
                 // MARK: - Trip Icon
 
-                Section("Icon") {
+                Section("Trip Icon") {
+                    
+                    VStack(alignment: .leading, spacing: 8) {
 
-                    Picker("Select Icon:", selection: $selectedIcon) {
-                        
-                        Text("Select Icon")
+                        Picker("", selection: $selectedIcon
+                        ) {
 
-                        ForEach(TripIcon.allCases, id: \.self) { icon in
-
-                            HStack(spacing: 12) {
-                                Image(systemName: icon.rawValue)
-                                Text(icon.title)
+                            ForEach(TripIcon.allCases, id: \.self) { icon in
+                                
+                                Label(
+                                    icon.title,
+                                    systemImage: icon.rawValue
+                                )
+                                .tag(icon)
                             }
-                            .tag(icon)
+                        }
+                        .pickerStyle(.menu)
+                        .labelsHidden()
+                        .tint(.primary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(12)
+                        .background(Colors.backgroundcolor)
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 8)
+                                .strokeBorder(.quaternary, lineWidth: 1)
                         }
                     }
                 }
@@ -143,11 +156,13 @@ struct NewTripView: View {
 
                                     Text("× \(item.defaultQuantity)")
                                         .foregroundStyle(.secondary)
+                                    
+                                    // toggle button icon
 
                                     Image(
                                         systemName: selectedItemIDs.contains(item.persistentModelID)
-                                        ? "checkmark.circle.fill"
-                                        : "circle"
+                                        ? NavIcons.checkmark.rawValue
+                                        : NavIcons.circle.rawValue
                                     )
                                     .foregroundStyle(
                                         selectedItemIDs.contains(item.persistentModelID)

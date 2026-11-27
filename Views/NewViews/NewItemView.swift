@@ -38,7 +38,7 @@ struct NewItemView: View {
                 
                 VStack(alignment: .leading, spacing: 8) {
                     
-                    Text("Item Name")
+                    Text("Item Name:")
                         .foregroundStyle(.primary)
                     
                     PrimaryTextField(title: "No item without a name", text: $name)
@@ -56,7 +56,7 @@ struct NewItemView: View {
                 
                 VStack(alignment: .leading, spacing: 8) {
                     
-                    Text("Item Details")
+                    Text("Item Details:")
                         .foregroundStyle(.primary)
                     
                     PrimaryTextField(
@@ -69,30 +69,41 @@ struct NewItemView: View {
             
             // MARK: - Category
             
-            Section("Category") {
+            Section("Item Category") {
                 
-                Picker(
-                    "Select Category",
-                    selection: $selectedCategoryID
-                ) {
+                // MARK: - Category
                     
-                    Text("Select Category:")
-                        .tag(nil as UUID?)
-                    
-                    ForEach(categories) { category in
-                        
-                        HStack(spacing: 8) {
-                            Image(systemName: category.icon)
-                                .foregroundStyle(.secondary)
-                            Text(category.name)
-                            
+                VStack(alignment: .leading, spacing: 8) {
+
+                    Picker("", selection: $selectedCategoryID) {
+
+                        ForEach(categories) { category in
+
+                            HStack(spacing: 8) {
+
+                                Image(systemName: category.icon)
+                                    .foregroundStyle(.secondary)
+
+                                Text(category.name)
+                            }
+                            .tag(category.id as UUID?)
                         }
-                        .tag(category.id as UUID?)
                     }
-                }
-                .onAppear {
-                    if selectedCategoryID == nil {
-                        selectedCategoryID = categories.first?.id
+                    .pickerStyle(.menu)
+                    .labelsHidden()
+                    .tint(.primary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(12)
+                    .background(Colors.backgroundcolor)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 8)
+                            .strokeBorder(.quaternary, lineWidth: 1)
+                    }
+                    .onAppear {
+                        if selectedCategoryID == nil {
+                            selectedCategoryID = categories.first?.id
+                        }
                     }
                 }
                 

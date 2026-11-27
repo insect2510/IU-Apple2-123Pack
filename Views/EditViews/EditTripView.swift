@@ -6,16 +6,15 @@
 //  Created by Oliver Hartmann on 16.11.26.
 //
 
-import Foundation
 import SwiftUI
 import SwiftData
 
 struct EditTripView: View {
-
+    
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
-
-    @Bindable var trip: Trip
+    
+    let trip: Trip
     
     // sort category name > item name
     
@@ -25,40 +24,40 @@ struct EditTripView: View {
     ])
     
     private var items: [Item]
-
+    
     // MARK: - State
-
+    
+    // Temporary states store changes until the trip is saved.
+    
     @State private var name = ""
     @State private var details = ""
-
+    
     @State private var startDate = Date()
     @State private var endDate = Date()
-
+    
     @State private var selectedIcon: TripIcon = .holiday
-
+    
     // Packing List
-
+    
     @State private var selectedItemIDs: Set<UUID> = []
     @State private var packedItemIDs: Set<UUID> = []
     @State private var quantities: [UUID: Int] = [:]
-
-    @State private var showDeleteConfirmation = false
-
+    
     // MARK: - Body
-
+    
     var body: some View {
-
+        
         Form {
-
+            
             // MARK: - Trip Information
-
+            
             Section ("Trip Information") {
                 
                 VStack(alignment: .leading, spacing: 8) {
                     
                     // display trip name
                     
-                    Text("Trip Name")
+                    Text("Trip Name:")
                         .foregroundStyle(.primary)
                     
                     PrimaryTextField(title: "Give it a name", text: $name)
@@ -68,7 +67,7 @@ struct EditTripView: View {
                     
                     // display trip details
                     
-                    Text("Trip Details")
+                    Text("Trip Details:")
                         .foregroundStyle(.primary)
                     
                     PrimaryTextField(
@@ -87,125 +86,137 @@ struct EditTripView: View {
                 // start date
                 
                 DatePicker(
-                    "Start Date",
+                    "Start Date:",
                     selection: $startDate,
                     displayedComponents: .date
                 )
                 
                 // end date
-
+                
                 DatePicker(
-                    "End Date",
+                    "End Date:",
                     selection: $endDate,
                     in: startDate...,
                     displayedComponents: .date
                 )
             }
-
+            
             // MARK: - Trip Icon
-
+            
             Section("Trip Icon") {
                 
                 // icon picker
-
-                Picker("Select Icon:", selection: $selectedIcon
-                ) {
+                
+                VStack(alignment: .leading, spacing: 8) {
                     
-                    Text("Select Icon")
-
-                    ForEach(TripIcon.allCases, id: \.self) { icon in
-
-                        Label(
-                            icon.title,
-                            systemImage: icon.rawValue
-                        )
-                        .tag(icon)
+                    Picker("", selection: $selectedIcon
+                    ) {
+                        
+                        ForEach(TripIcon.allCases, id: \.self) { icon in
+                            
+                            Label(
+                                icon.title,
+                                systemImage: icon.rawValue
+                            )
+                            .tag(icon)
+                        }
+                    }
+                    .pickerStyle(.menu)
+                    .labelsHidden()
+                    .tint(.primary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(12)
+                    .background(Colors.backgroundcolor)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 8)
+                            .strokeBorder(.quaternary, lineWidth: 1)
                     }
                 }
             }
-
+            
             // MARK: - Added Items
-
+            
             Section("Added Items") {
-
+                
                 let addedItems = items.filter {
                     selectedItemIDs.contains($0.id)
                 }
-
+                
                 // if no items have been added to a trip
                 
                 if addedItems.isEmpty {
-
+                    
                     Text("No items added yet.")
                         .foregroundStyle(.secondary)
-
+                    
                 } else {
                     
                     // if items have been added, show them
-
+                    
                     ForEach(addedItems) { item in
                         addedItemRow(item)
                     }
                 }
             }
-
+            
             // MARK: - Available Items
-
+            
             Section("Available Items") {
-
+                
                 let availableItems = items.filter {
                     !selectedItemIDs.contains($0.id)
                 }
-
+                
                 // if no more items are available
                 
                 if availableItems.isEmpty {
-
+                    
                     Text("All items have been added.")
                         .foregroundStyle(.secondary)
-
+                    
                 } else {
-
+                    
                     // if items are availablem show them
                     
                     ForEach(availableItems) { item in
                         
                         // button to add item to a trip
-
+                        
                         Button {
-
+                            
                             addItem(item)
-
+                            
                         } label: {
-
+                            
                             HStack(spacing: 12) {
                                 
                                 // display item category icon
-
+                                
                                 Image(systemName: item.category.icon)
                                     .foregroundStyle(.secondary)
                                     .frame(width: 28)
-
+                                
                                 VStack(alignment: .leading) {
                                     
                                     // display item name
-
+                                    
                                     Text(item.name)
                                         .foregroundStyle(.primary)
                                     
                                     // display item categoriy name
-
+                                    
                                     Text(item.category.name)
                                         .font(.caption)
                                         .foregroundStyle(.secondary)
                                 }
-
+                                
                                 Spacer()
-
+                                
                                 Text("× \(item.defaultQuantity)")
                                     .foregroundStyle(.secondary)
-
-                                Image(systemName: "plus.circle")
+                                
+                                Image(systemName: NavIcons.newcircle.rawValue)
                                     .foregroundStyle(Colors.primarycolor)
                             }
                         }
@@ -215,7 +226,7 @@ struct EditTripView: View {
             }
             
         }
-
+        
         // MARK: - Navigation
         
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -223,10 +234,10 @@ struct EditTripView: View {
         .navigationTitle("Edit Trip")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
-
+        
         
         // MARK: - Toolbar
-
+        
         .toolbar {
             
             ToolbarSave(
@@ -246,35 +257,38 @@ struct EditTripView: View {
             loadTrip()
         }
     }
-
-    // MARK: - Load Trip to edit non destructive
-
+    
+    // MARK: - Load Trip
+    
+    // Load existing trip data into temporary states
+    // to allow non-destructive editing.
+    
     private func loadTrip() {
-
+        
         name = trip.name
         details = trip.details ?? ""
-
+        
         startDate = trip.startDate
         
         // end date not earlier than start date
-
+        
         endDate = max(
             trip.endDate,
             startDate
         )
         
         // trip icon
-
+        
         selectedIcon = TripIcon(
             rawValue: trip.image
         ) ?? .holiday
         
         // selectected items for a trip
-
+        
         selectedItemIDs = Set(
             trip.packingList.map { $0.item.id }
         )
-
+        
         // packed items for a trip
         
         packedItemIDs = Set(
@@ -284,177 +298,183 @@ struct EditTripView: View {
         )
         
         // quantity of an item for a trip
-
+        
         quantities = Dictionary(
             uniqueKeysWithValues: trip.packingList.map {
                 ($0.item.id, $0.quantity)
             }
         )
     }
-
+    
     // MARK: - Added Item Row
-
+    
     private func addedItemRow(_ item: Item) -> some View {
-
+        
         HStack(spacing: 12) {
-
+            
             // Packed Status
-
+            
             Button {
-
+                
                 togglePacked(item)
-
+                
             } label: {
-
+                
                 Image(
                     systemName: packedItemIDs.contains(item.id)
-                    ? "checkmark.circle.fill"
-                    : "circle"
+                    ? NavIcons.checkmark.rawValue
+                    : NavIcons.circle.rawValue
                 )
                 .font(.system(size: 22))
                 .foregroundStyle(
                     packedItemIDs.contains(item.id)
-                    ? .green : .secondary
+                    ? Colors.primarycolor : .secondary
                 )
             }
             .buttonStyle(.plain)
-
+            
             // Item Information
-
+            
             VStack(alignment: .leading) {
-
+                
                 Text(item.name)
                     .strikethrough(
                         packedItemIDs.contains(item.id)
                     )
-
+                
                 Text(item.category.name)
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
-
+            
             Spacer()
-
+            
             // Quantity
-
+            
             Stepper(
                 "\(quantities[item.id] ?? item.defaultQuantity)",
                 value: quantityBinding(for: item),
                 in: 1...99
             )
             .fixedSize()
-
+            
             // Remove Item
-
+            
             Button(role: .destructive) {
-
+                
                 removeItem(item)
-
+                
             } label: {
-
-                Image(systemName: "minus.circle")
-                    .foregroundStyle(.red)
+                
+                Image(systemName: NavIcons.deletecircle.rawValue)
+                    .foregroundStyle(Colors.deletecolor)
             }
             .buttonStyle(.plain)
         }
         .padding(.vertical, 4)
     }
-
+    
     
     // MARK: - Add Item
-
+    
     private func addItem(_ item: Item) {
-
+        
         selectedItemIDs.insert(item.id)
-
+        
         quantities[item.id] = item.defaultQuantity
         packedItemIDs.remove(item.id)
     }
     
-
+    
     // MARK: - Remove Item
-
+    
     private func removeItem(_ item: Item) {
-
+        
         selectedItemIDs.remove(item.id)
         packedItemIDs.remove(item.id)
         quantities.removeValue(forKey: item.id)
     }
     
-
+    
     // MARK: - Toggle Packed
-
+    
     private func togglePacked(_ item: Item) {
-
+        
         if packedItemIDs.contains(item.id) {
             packedItemIDs.remove(item.id)
         } else {
             packedItemIDs.insert(item.id)
         }
     }
-
+    
     
     // MARK: - Quantity Binding
-
+    
+    // Connect the Stepper to the quantity dictionary
+    // using a custom binding for each item.
+    
     private func quantityBinding(
         for item: Item
     ) -> Binding<Int> {
-
+        
         Binding(
-
+            
             get: {
                 quantities[item.id] ?? item.defaultQuantity
             },
-
+            
             set: {
                 quantities[item.id] = $0
             }
         )
     }
     
-
+    
     // MARK: - Save Changes
-
+    
+    // Update existing packing list entries or create new ones
+    // based on the current item selection.
+    
     private func saveChanges() {
-
+        
         // Trip Information
-
+        
         trip.name = name.trimmingCharacters(
             in: .whitespacesAndNewlines
         )
-
+        
         trip.details = details.isEmpty ? nil : details
-
+        
         trip.startDate = startDate
         trip.endDate = endDate
         trip.image = selectedIcon.rawValue
-
+        
         // Existing Packing List Entries
-
+        
         let oldEntries = trip.packingList
-
+        
         var updatedPackingList: [PackingList] = []
-
+        
         for itemID in selectedItemIDs {
-
+            
             guard let item = items.first(where: {
                 $0.id == itemID
             }) else {
                 continue
             }
-
+            
             if let existingEntry = oldEntries.first(where: {
                 $0.item.id == itemID
             }) {
-
+                
                 existingEntry.quantity = quantities[itemID] ?? 1
-
+                
                 existingEntry.isPacked = packedItemIDs.contains(itemID)
-
+                
                 updatedPackingList.append(existingEntry)
-
+                
             } else {
-
+                
                 let newEntry = PackingList(
                     item: item,
                     quantity: quantities[itemID] ?? 1,
@@ -462,35 +482,38 @@ struct EditTripView: View {
                 )
                 
                 // insert into modelconext
-
+                
                 modelContext.insert(newEntry)
-
+                
                 updatedPackingList.append(newEntry)
             }
         }
-
+        
         // MARK: - Delete Removed Entries
-
+        
+        // Remove packing list entries that are no longer selected
+        // from the SwiftData context.
+        
         for entry in oldEntries {
-
+            
             if !selectedItemIDs.contains(entry.item.id) {
                 modelContext.delete(entry)
             }
         }
-
+        
         // MARK: - Update Packing List
-
+        
         trip.packingList = updatedPackingList
-
+        
         // Save
-
+        
         do {
-
+            
             try modelContext.save()
             dismiss()
-
+            
         } catch {
-
+            
             print(
                 "Error saving trip: \(error.localizedDescription)"
             )

@@ -54,7 +54,7 @@ struct EditItemView: View {
                 
                 VStack(alignment: .leading, spacing: 8) {
                     
-                    Text("Item Name")
+                    Text("Item Name:")
                         .foregroundStyle(.primary)
                     
                     PrimaryTextField(title: "No item without a name", text: $name)
@@ -73,7 +73,7 @@ struct EditItemView: View {
                 
                 VStack(alignment: .leading, spacing: 8) {
                     
-                    Text("Item Details")
+                    Text("Item Details:")
                         .foregroundStyle(.primary)
                     
                     PrimaryTextField(
@@ -88,23 +88,36 @@ struct EditItemView: View {
             Section("Item Category") {
                 
                 // MARK: - Category
-                
-                Picker("Select Category:", selection: $selectedCategoryID
-                ) {
                     
-                    Text("Select Category:")
-                        .tag(nil as UUID?)
-                    
-                    ForEach(categories) { category in
-                        
-                        HStack(spacing: 8) {
-                            Image(systemName: category.icon)
-                                .foregroundStyle(.secondary)
-                            Text(category.name)
+                VStack(alignment: .leading, spacing: 8) {
+
+                    Picker("", selection: $selectedCategoryID) {
+
+                        ForEach(categories) { category in
+
+                            HStack(spacing: 8) {
+
+                                Image(systemName: category.icon)
+                                    .foregroundStyle(.secondary)
+
+                                Text(category.name)
+                            }
+                            .tag(category.id as UUID?)
                         }
-                        .tag(category.id as UUID?)
+                    }
+                    .pickerStyle(.menu)
+                    .labelsHidden()
+                    .tint(.primary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(12)
+                    .background(Colors.backgroundcolor)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 8)
+                            .strokeBorder(.quaternary, lineWidth: 1)
                     }
                 }
+                
                 
                 // MARK: - New Category Button
                 
@@ -121,19 +134,19 @@ struct EditItemView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
-    
-    
-    // MARK: - Navigation
-    
+        
+        
+        // MARK: - Navigation
+        
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .scrollContentBackground(.hidden)
-    
+        
         .navigationTitle("Edit Item")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
-    
-    // MARK: - Toolbar
-    
+        
+        // MARK: - Toolbar
+        
         .toolbar {
             ToolbarSave(
                 cancelAction: {
@@ -147,9 +160,9 @@ struct EditItemView: View {
                 ).isEmpty
             )
         }
-    
-    // MARK: - New Category Sheet
-    
+        
+        // MARK: - New Category Sheet
+        
         .sheet(isPresented: $showNewCategoryView) {
             NavigationStack {
                 NewCategoryView { category in
@@ -157,32 +170,32 @@ struct EditItemView: View {
                 }
             }
         }
-}
-
-// MARK: - Save Changes
-
-private func saveChanges() {
-    
-    guard let category = categories.first(where: {
-        $0.id == selectedCategoryID
-    }) else {
-        return
     }
     
-    let trimmedName = name.trimmingCharacters(
-        in: .whitespacesAndNewlines
-    )
+    // MARK: - Save Changes
     
-    item.name = trimmedName
-    item.details = details.isEmpty ? nil : details
-    item.defaultQuantity = defaultQuantity
-    item.category = category
-    
-    do {
-        try modelContext.save()
-        dismiss()
-    } catch {
-        print("Error updating item: \(error.localizedDescription)")
+    private func saveChanges() {
+        
+        guard let category = categories.first(where: {
+            $0.id == selectedCategoryID
+        }) else {
+            return
+        }
+        
+        let trimmedName = name.trimmingCharacters(
+            in: .whitespacesAndNewlines
+        )
+        
+        item.name = trimmedName
+        item.details = details.isEmpty ? nil : details
+        item.defaultQuantity = defaultQuantity
+        item.category = category
+        
+        do {
+            try modelContext.save()
+            dismiss()
+        } catch {
+            print("Error updating item: \(error.localizedDescription)")
+        }
     }
-}
 }

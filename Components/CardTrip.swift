@@ -22,7 +22,7 @@ struct CardTripView: View {
             
             // MARK: Trip Icon
             
-            Image(systemName: trip.image ?? "photo")
+            Image(systemName: trip.image)
                 .font(.largeTitle)
                 .foregroundStyle(Colors.cardtextdcolor)
                 .font(.system(size: 48))

@@ -18,6 +18,7 @@ enum Colors {
     static let menutextcolor: Color = .white
     static let buttonbackgroundcolor: Color = .ocean
     static let buttontextcolor: Color = .white
+    static let deletecolor: Color = .red
 }
 
 
@@ -31,7 +32,10 @@ enum NavIcons: String {
     case new = "plus"
     case trash = "trash"
     case edit = "pencil"
-    case newcircle = "plus.circle"
+    case newcircle = "plus.circle.fill"
+    case deletecircle = "minus.circle.fill"
+    case checkmark = "checkmark.circle.fill"
+    case circle = "circle"
 }
 
 
